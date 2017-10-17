@@ -71,3 +71,10 @@ Instead of user '\*', we could have listed the fields that we are interested in.
 ![Select 2](./select2.png)
 
 You'll notice that you can list multiple fields with a comma separator.
+
+As was said before, the data will come out in a random order from the SELECT statement, but we can control the order with the
+\'ORDER BY\' clause. For example
+
+```SELECT age FROM users ORDER BY age;```
+
+![Select 3](./select3.png)
