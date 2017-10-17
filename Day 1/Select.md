@@ -37,3 +37,35 @@ is a table. Let's start with a basic query to get the information from the table
 ```SELECT * FROM users;```
 
 ![Select 1](./select1.png)
+
+<details><summary>
+	Displaying NULL as *
+</summary><p>
+
+Aside: You'll notice that I have a '*' where there's a NULL in the data. You can do that by running the command
+
+```\pset null *```
+
+in psql.
+
+</p></details>
+
+One important point is that the order in which you receive the rows is random-ish. There's no guarentee of a particular
+order unless you specify it. (It's not truly random. The server has an algorithm that it uses to retrieve and format the
+data. But it might not be the order that we expected and it might be a different order tomorrow depending on what happened
+overnight or what's happening now.)
+
+So let's disect the SELECT statement that I used.
+
+```SELECT * FROM users;```
+
+SELECT - the keyword that tells the server that we're doing a SELECT statement. (But I bet you'd already figured that out.)<br>
+\* - Get all of the fields for the relavant table.<br>
+FROM - Another keyword that tells the command parser that the table name is next.<br>
+users - The name of the table that we're pulling the information from.
+
+Instead of user '\*', we could have listed the fields that we are interested in. And they don't have to be in the original order.
+
+```SELECT name, age FROM users;```
+
+![Select 2](./select2.png)
