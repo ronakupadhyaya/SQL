@@ -27,7 +27,7 @@ insert into users values
 	(13, 'Karen', 38, '231 Third Ave.', 'Salt Lake City', 'UT', 84047),
 	(14, 'Chris', 28, '1313 Mockingbird Ln.', 'San Francisco', 'CA', 94102),
 	(15, 'Fred', 31, '12 LeTour Ave.', 'Bend', 'OR', 97701),
-	(16, 'Karen', 38, '231 Third Ave.', 'Salt Lake City', 'UT', 84047),
+	(16, 'Karen', 14, '412 Payton Place', 'Los Angeles', 'CA', 90001),
 	(17, 'George', 73, '1 Lucas Valley Rd.', 'Nicasio', 'CA', 94946),
 	(18, 'James', 38, '1701 Main St.', 'Riverside', 'IA', 52327),
 	(19, 'Robert', NULL, '1951 Heinlein Way', 'Colorado Srpings', 'CO', 80829),
