@@ -22,7 +22,7 @@ Using pgweb, we can see all of the information in the table.
 
 ![Table contents](./table_info.png)
 
-But we really need to learn how to access this data programmically.
+But we really need to learn how to access this data programmaticly.
 
 ## The SELECT Statement
 
@@ -50,17 +50,17 @@ in psql.
 
 </p></details>
 
-One important point is that the order in which you receive the rows is random-ish. There's no guarentee of a particular
+One important point is that the order in which you receive the rows is random-ish. There's no guarantee of a particular
 order unless you specify it. (It's not truly random. The server has an algorithm that it uses to retrieve and format the
 data. But it might not be the order that we expected and it might be a different order tomorrow depending on what happened
 overnight or what's happening now.)
 
-So let's disect the SELECT statement that I used.
+So let's dissect the SELECT statement that I used.
 
 ```SELECT * FROM users;```
 
 SELECT - the keyword that tells the server that we're doing a SELECT statement. (But I bet you'd already figured that out.)<br>
-\* - Get all of the fields for the relavant table.<br>
+\* - Get all of the fields for the relevant table.<br>
 FROM - Another keyword that tells the command parser that the table name is next.<br>
 users - The name of the table that we're pulling the information from.
 
@@ -69,3 +69,5 @@ Instead of user '\*', we could have listed the fields that we are interested in.
 ```SELECT name, age FROM users;```
 
 ![Select 2](./select2.png)
+
+You'll notice that you can list multiple fields with a comma separator.
