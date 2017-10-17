@@ -78,3 +78,17 @@ As was said before, the data will come out in a random order from the SELECT sta
 ```SELECT age FROM users ORDER BY age;```
 
 ![Select 3](./select3.png)
+
+This will sort the output by the specified field. You can also sort in descending order using this command.
+
+```SELECT age FROM users ORDER BY age DESC;```
+
+ASC is used for ascending if you need to specify that.
+
+You'll notice that the NULLs came out at the bottom. NULLs are a special case in SQL. Unlike in many programming
+languages where a NULL is equivalent to zero, in SQL NULLs are their own entity. You can't compare a NULL to a
+number or a string. And you can specify where you want the NULLs to appear in a sorted order.
+
+```SELECT age FROM users ORDER BY age NULLS FIRST;```
+
+![Select 4](./select4.png)
