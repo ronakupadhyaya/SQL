@@ -384,3 +384,111 @@ WHERE
 ```
 
 </p></details>
+
+## The GROUP BY Clause
+
+The last part of SELECT that we're going to look at now is the ```GROUP BY``` clause. This will just be an
+introduction to aggregates as this is a much more complicated topic that we'll explore more thoroughly later.
+The ```GROUP BY``` clause allows you to group records by one or more fields. For instance if you wanted to
+look at all of the people that live in Colorado. But this is **ONLY** when you are aggregating data. So I wouldn't
+use ```GROUP BY``` to just grab the records where state = 'CO'. We still use the WHERE clause for that. Let's look
+at an example.
+
+```SQL
+SELECT
+	state,
+	COUNT(1)
+FROM
+	users
+GROUP BY
+	state
+ORDER BY
+	state;
+```
+
+![Select 21](./select21.png)
+
+This query took all of the records and group them by state. For each of the records in each state, it increased
+the count by one (the COUNT(1) part), this giving a count of the number of records in each state. (Note: COUNT(\*)
+is used interchangeably with COUNT(1).) I could use state in this query because we were grouping by state so there
+was only one state associated with each count. Here's another example.
+
+```SQL
+SELECT
+	state,
+	MAX(age)
+FROM
+	users
+GROUP BY
+	state
+ORDER BY
+	state;
+```
+
+![Select 22](./select22.png)
+
+This query lists the max age of the people in each state. Notice that the max age for the person in NY is 'NULL'. Why
+is that?
+<details><summary>
+	Answer
+</summary><p>
+That's the **ONLY** record in NY.
+</p></details>
+
+Unfortunately, we can't just add the name of the oldest person into the query. Aggregates are a little more complicated
+than that and we'll get to that later.
+
+Other functions (like COUNT() and MAX()) that you can use are MIN(), SUM(), and AVG().
+
+### Exercises
+
+1. Write and execute a query that displays the average age of the people in each state. (What are you going to
+do about those NULLs?) Your output should look like this:
+
+![Select 23](./select23.png)
+
+<details><summary>
+	Solution
+</summary><p>
+
+```SQL
+SELECT
+	state,
+	AVG(age)
+FROM
+	users
+WHERE
+	age IS NOT NULL
+GROUP BY
+	state
+ORDER BY
+	state;
+```
+
+</p></details>
+
+2. Write and execute a query that displays the number of people in each city/state combination. (Hint: GROUP BY both city and state.) Your output should look like this:
+
+![Select 24](./select24.png)
+
+<details><summary>
+	Solution
+</summary><p>
+
+```SQL
+SELECT
+	city,
+	state,
+	COUNT(1)
+FROM
+	users
+GROUP BY
+	city,
+	state
+ORDER BY
+	state,
+	city;
+```
+
+</p></details>
+
