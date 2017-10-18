@@ -6,9 +6,12 @@ SELECT is the basic tool to read data from a SQL database. The full syntax of SE
 
 ![Full SELECT Syntax](./select_syntax.png)
 
-Fortunately, we'll only be starting with a subset of this. In particular, we're going to use this part:
-
-![Full SELECT Syntax](./select_syntax_brief.png)
+Fortunately, we'll be starting with a subset of this. In particular, we're going to look at the
+following clauses of the SELECT statement:
+* LIMIT
+* ORDER BY
+* WHERE
+* GROUP BY
 
 ## Setup
 
