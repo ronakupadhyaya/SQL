@@ -34,7 +34,7 @@ options and mastering these can make you a very valuable member of a development
 that take forever to run, so writing efficient queries is also very important. We're not going to worry about
 efficiency just yet however.
 
-A SELECT query always returns a table. Even if there is only one field and one line, the structure that is returned
+A SELECT query always returns a table. Even if there is only one field and one record, the structure that is returned
 is a table. Let's start with a basic query to get the information from the table.
 
 ```SELECT * FROM users;```
@@ -42,14 +42,14 @@ is a table. Let's start with a basic query to get the information from the table
 ![Select 1](./select1.png)
 
 <details><summary>
-	Displaying NULL as *
+	Displaying NULL as NULL
 </summary><p>
 
-Aside: You'll notice that I have a '*' where there's a NULL in the data. You can do that by running the command
+Aside: You'll notice that I have a 'NULL' where there's a NULL in the data. You can do that by running the command
 
-```\pset null *```
+```\pset null NULL```
 
-in psql.
+in psql. Normally psql displays NULL as a blank area which can be confusing.
 
 </p></details>
 
@@ -62,10 +62,11 @@ So let's dissect the SELECT statement that I used.
 
 ```SELECT * FROM users;```
 
-SELECT - the keyword that tells the server that we're doing a SELECT statement. (But I bet you'd already figured that out.)<br>
-\* - Get all of the fields for the relevant table.<br>
-FROM - Another keyword that tells the command parser that the table name is next.<br>
-users - The name of the table that we're pulling the information from.
+* SELECT - the keyword that tells the server that we're doing a SELECT statement. (But I bet you'd already figured that out.)
+* \* - Get all of the fields for the relevant table.
+* FROM - Another keyword that tells the command parser that the table name is next.
+* users - The name of the table that we're pulling the information from.
+* ; - Because we never forget the semicolon.
 
 Instead of user '\*', we could have listed the fields that we are interested in. And they don't have to be in the original order.
 
@@ -74,6 +75,39 @@ Instead of user '\*', we could have listed the fields that we are interested in.
 ![Select 2](./select2.png)
 
 You'll notice that you can list multiple fields with a comma separator.
+
+### Exercises
+
+1. Write and execute a query that displays the name and city of each person in the table.
+2. Write and execute a query that displays the states followed by the zipcode of each person in the table.
+
+## LIMIT
+
+While showing the 20 records of the table in our database isn't too bad, most production databases have tables
+that have hundreds/thousands/millions of entries. So we need a way to limit the number of records in the output.
+PostgreSQL has a LIMIT clause that allows us to do this. So if we wanted to just show the top 5 records of the table,
+we'd do this:
+
+```SELECT name, age FROM users LIMIT 5;```
+
+![Select 5](./select5.png)
+
+One problem with this is that there's no discrimination on which records we get. This query just returned the \"first\"
+5 records, but it was up to the server to determine which records those were. We'll see ways to help that in a minute.
+
+NOTE: While most (all?) other products also have this functionality, it seems to be different in each one. For instance:
+* Microsoft SQL Server uses TOP
+```SELECT TOP 5 age FROM users;```
+* Oracle SQL:
+```SELECT age FROM users WHERE ROWNUM <= 5;``` (We'll see WHERE in just a minute.)
+
+### Exercises
+
+1. Write and execute a query that displays 10 records of the user table.
+2. Write and execute a query that displays 30 records of the user table. (Notice that this still works, but it only shows the 20
+records that are actually in the table.)
+
+## ORDER BY
 
 As was said before, the data will come out in a random order from the SELECT statement, but we can control the order with the
 \'ORDER BY\' clause. For example
