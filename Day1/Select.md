@@ -83,7 +83,7 @@ You'll notice that you can list multiple fields with a comma separator.
 1. Write and execute a query that displays the name and city of each person in the table.
 2. Write and execute a query that displays the states followed by the zipcode of each person in the table.
 
-## LIMIT
+## The LIMIT Clause
 
 While showing the 20 records of the table in our database isn't too bad, most production databases have tables
 that have hundreds/thousands/millions of entries. So we need a way to limit the number of records in the output.
@@ -109,7 +109,7 @@ NOTE: While most (all?) other products also have this functionality, it seems to
 2. Write and execute a query that displays 30 records of the user table. (Notice that this still works, but it only shows the 20
 records that are actually in the table.)
 
-## ORDER BY
+## The ORDER BY Clause
 
 As we said before, the records will come out in a random order from the SELECT statement, but we can control the order with the
 \'ORDER BY\' clause. For example
@@ -131,3 +131,57 @@ number or a string. And you can specify where you want the NULLs to appear in a 
 ```SELECT age FROM users ORDER BY age NULLS FIRST LIMIT 5;```
 
 ![Select 4](./select4.png)
+
+The various clauses must be in the proper order. See the big syntax diagram at the beginning for that order.
+We can also put the NULLs last using ```NULLS LAST``` but that is also the default for an ascending list.
+
+### Exercises
+
+1. Write and execute a query that displays the name and age of the 5 oldest people in the table. Your output should look like this:
+
+![Select 6](./select6.png)
+
+2. Write and execute a query that displays the name and age of the 5 youngest people in the table. Your output should look like this:
+
+![Select 7](./select7.png)
+
+3. Write and execute a query that displays the name and age of the 6 youngest people in the table. Your output should look like this:
+
+![Select 8](./select8.png)
+
+4. Did your last query correctly reflect all of the people in the list that should have been displayed? There are 3 people that are 28.
+
+This leads to....
+
+## The WHERE Clause
+
+The WHERE clause allows us to filter the records on certain criteria. Let's look at that last exercise.
+
+3. Write and execute a query that displays the name and age of the 6 youngest people in the table.
+
+There were 3 entries with an age of 28. It's basically random which of the entries made it onto our list of 5.
+But there's another what to constrain the data. Let's look at an example.
+
+```SELECT name, age FROM users where age < 30 order by age;```
+
+![Select 9](./select9.png)
+
+The new part, of course, is the WHERE clause. This allows us to filter the records on particular constraints. In this case
+we got all records for people under the age of 30. You can also filter for strings.
+
+```SELECT name, age, state FROM users where state='CA';```
+
+![Select 10](./select10.png)
+
+This query reads all records whose state field is equal to 'CA'. And of course we can combine constraints in the usual way.
+I'm going to start writing longer queries on multiple lines to make them easier to read.
+
+```SELECT
+	name,
+	age, 
+	state
+FROM
+	users
+WHERE
+	age < 30
+	AND state = 'CA';```
