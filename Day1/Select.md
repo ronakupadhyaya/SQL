@@ -226,3 +226,83 @@ WHERE
 ```
 
 ![Select 12](./select12.png)
+
+There are 3 other types of boolean expressions that you need to know about for the WHERE clause. The first
+is ```LIKE``` which permits us to create wildcard expressions. The \'%\' is the wildcard character. This query
+fetches all records where the first character in the state field is \'C\'.
+
+```SQL
+SELECT
+	name,
+	age, 
+	state
+FROM
+	users
+WHERE
+	state LIKE 'C%';
+```
+
+![Select 13](./select13.png)
+
+Note that while the SQL language isn't case sensitive, the data in the fields **IS** case sensitive so this query
+has a different result.
+
+```SQL
+SELECT
+	name,
+	age, 
+	state
+FROM
+	users
+WHERE
+	state LIKE 'c%';
+```
+
+![Select 14](./select14.png)
+
+The next is ```BETWEEN```. This allows you to create an expression that tests for values between upper and lower bounds.
+Note that BETWEEN is between inclusively.
+
+```SQL
+SELECT
+	name,
+	age, 
+	state
+FROM
+	users
+WHERE
+	age BETWEEN 20 AND 45;
+```
+
+![Select 15](./select15.png)
+
+And last is an expression that checks for NULLs.
+
+```SQL
+SELECT
+	name,
+	age, 
+	state
+FROM
+	users
+WHERE
+	age IS NULL;
+```
+
+![Select 16](./select16.png)
+
+Or check for the absence of NULLs.
+
+```SQL
+SELECT
+	name,
+	age, 
+	state
+FROM
+	users
+WHERE
+	age IS NOT NULL;
+```
+
+![Select 17](./select17.png)
+
