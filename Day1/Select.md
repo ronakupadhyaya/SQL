@@ -38,7 +38,9 @@ efficiency just yet however.
 A SELECT query always returns a table. Even if there is only one field and one record, the structure that is returned
 is a table. Let's start with a basic query to get the information from the table.
 
-```SELECT * FROM users;```
+```SQL
+SELECT * FROM users;
+```
 
 ![Select 1](./select1.png)
 
@@ -48,7 +50,9 @@ is a table. Let's start with a basic query to get the information from the table
 
 Aside: You'll notice that I have a 'NULL' where there's a NULL in the data. You can do that by running the command
 
-```\pset null NULL```
+```
+\pset null NULL
+```
 
 in psql. Normally psql displays NULL as a blank area which can be confusing.
 
@@ -62,7 +66,9 @@ that row and it went to the bottom of the list in the next query.)
 
 So let's dissect the SELECT statement that I used.
 
-```SELECT * FROM users;```
+```SQL
+SELECT * FROM users;
+```
 
 * SELECT - the keyword that tells the server that we're doing a SELECT statement. (But I bet you'd already figured that out.)
 * \* - Get all of the fields for the relevant table.
@@ -72,7 +78,9 @@ So let's dissect the SELECT statement that I used.
 
 Instead of '\*', we could have listed the fields that we are interested in. And they don't have to be in the original order.
 
-```SELECT age, name FROM users;```
+```SQL
+SELECT age, name FROM users;
+```
 
 ![Select 2](./select2.png)
 
@@ -90,7 +98,9 @@ that have hundreds/thousands/millions of entries. So we need a way to limit the 
 PostgreSQL has a LIMIT clause that allows us to do this. So if we wanted to just show the top 5 records of the table,
 we'd do this:
 
-```SELECT name, age FROM users LIMIT 5;```
+```SQL
+SELECT name, age FROM users LIMIT 5;
+```
 
 ![Select 5](./select5.png)
 
@@ -100,6 +110,7 @@ One problem with this is that there's no discrimination on which records we get.
 NOTE: While most (all?) other products also have this functionality, it seems to be different in each one. For instance:
 * Microsoft SQL Server uses TOP<br>
 ```SELECT TOP 5 age FROM users;```
+
 * Oracle SQL uses ROWNUM<br>
 ```SELECT age FROM users WHERE ROWNUM <= 5;``` (We'll see WHERE in just a minute.)
 
@@ -112,15 +123,19 @@ records that are actually in the table.)
 ## The ORDER BY Clause
 
 As we said before, the records will come out in a random order from the SELECT statement, but we can control the order with the
-\'ORDER BY\' clause. For example
+```ORDER BY``` clause. For example
 
-```SELECT age FROM users ORDER BY age;```
+```SQL
+SELECT age FROM users ORDER BY age;
+```
 
 ![Select 3](./select3.png)
 
 This will sort the output by the specified field. You can also sort in descending order using this command.
 
-```SELECT age FROM users ORDER BY age DESC;```
+```SQL
+SELECT age FROM users ORDER BY age DESC;
+```
 
 ASC is used for ascending if you need to specify that but ascending is typically the default.
 
@@ -128,7 +143,9 @@ You'll notice that the NULLs came out at the bottom. NULLs are a special case in
 languages where a NULL is equivalent to zero, in SQL NULLs are their own entity. You can't compare a NULL to a
 number or a string. And you can specify where you want the NULLs to appear in a sorted order.
 
-```SELECT age FROM users ORDER BY age NULLS FIRST LIMIT 5;```
+```SQL
+SELECT age FROM users ORDER BY age NULLS FIRST LIMIT 5;
+```
 
 ![Select 4](./select4.png)
 
@@ -160,23 +177,28 @@ The WHERE clause allows us to filter the records on certain criteria. Let's look
 3. Write and execute a query that displays the name and age of the 6 youngest people in the table.
 
 There were 3 entries with an age of 28. It's basically random which of the entries made it onto our list of 5.
-But there's another what to constrain the data. Let's look at an example.
+But there's another way to constrain the data. Let's look at an example.
 
-```SELECT name, age FROM users where age < 30 order by age;```
+```SQL
+SELECT name, age FROM users WHERE age < 30 order by age;
+```
 
 ![Select 9](./select9.png)
 
 The new part, of course, is the WHERE clause. This allows us to filter the records on particular constraints. In this case
-we got all records for people under the age of 30. You can also filter for strings.
+we read all records for people under the age of 30. You can also filter for strings.
 
-```SELECT name, age, state FROM users where state='CA';```
+```SQL
+SELECT name, age, state FROM users WHERE state='CA';
+```
 
 ![Select 10](./select10.png)
 
 This query reads all records whose state field is equal to 'CA'. And of course we can combine constraints in the usual way.
 I'm going to start writing longer queries on multiple lines to make them easier to read.
 
-```SELECT
+```SQL
+SELECT
 	name,
 	age, 
 	state
@@ -184,4 +206,23 @@ FROM
 	users
 WHERE
 	age < 30
-	AND state = 'CA';```
+	AND state = 'CA';
+```
+
+![Select 11](./select11.png)
+
+You can also use ```NOT``` to change the constraint.
+
+```SQL
+SELECT
+	name,
+	age, 
+	state
+FROM
+	users
+WHERE
+	age < 30
+	AND NOT state = 'CA';
+```
+
+![Select 12](./select12.png)
