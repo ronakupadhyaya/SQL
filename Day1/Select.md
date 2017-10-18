@@ -316,6 +316,7 @@ lives in a city that starts with 'S'. Your output should look like this:
 <details><summary>
 	Solution
 </summary><p>
+
 ```SQL
 SELECT
 	*
@@ -325,4 +326,61 @@ WHERE
 	age BETWEEN 20 AND 30
 	AND city LIKE 'S%';
 ```
+
+</p></details>
+
+2. Write and execute a query that will find the name and state of all records that have a NULL age. Order
+your output by state. Your output should look like this:
+
+![Select 19](./select19.png)
+
+<details><summary>
+	Solution
+</summary><p>
+
+```SQL
+SELECT
+	name,
+	state
+FROM
+	users
+WHERE
+	age IS NULL
+ORDER BY
+	state;
+```
+
+</p></details>
+
+3. Write and execute a query that will find all records where the person lives in Colorado (CO) and whose name isn't Kevin.
+Your output should look like this:
+
+![Select 20](./select20.png)
+
+<details><summary>
+	Solution
+</summary><p>
+
+```SQL
+SELECT
+	*
+FROM
+	users
+WHERE
+	state = 'CO'
+	AND NOT name = 'Kevin;
+```
+
+**OR**
+
+```SQL
+SELECT
+	*
+FROM
+	users
+WHERE
+	state = 'CO'
+	AND name <> 'Kevin;
+```
+
 </p></details>
