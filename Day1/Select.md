@@ -96,9 +96,9 @@ One problem with this is that there's no discrimination on which records we get.
 5 records, but it was up to the server to determine which records those were. We'll see ways to help that in a minute.
 
 NOTE: While most (all?) other products also have this functionality, it seems to be different in each one. For instance:
-* Microsoft SQL Server uses TOP
+* Microsoft SQL Server uses TOP<br>
 ```SELECT TOP 5 age FROM users;```
-* Oracle SQL:
+* Oracle SQL uses ROWNUM<br>
 ```SELECT age FROM users WHERE ROWNUM <= 5;``` (We'll see WHERE in just a minute.)
 
 ### Exercises
