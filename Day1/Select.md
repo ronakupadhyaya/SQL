@@ -492,3 +492,38 @@ ORDER BY
 
 </p></details>
 
+## Column Aliasing
+
+One last item that needs to be mentioned. You can change the name of a column when the query returns. For instance:
+
+```SQL
+SELECT
+	name as "customer",
+	state "location"
+FROM
+	users;
+```
+
+![Select 25](./select25.png)
+
+The ```AS``` is optional. One more example:
+
+```SQL
+SELECT
+	state AS "State",
+	SUM(age)/COUNT(1) AS "Average Age"
+FROM
+	users
+WHERE
+	age IS NOT NULL
+GROUP BY
+	state
+ORDER BY
+	state;
+```
+
+![Select 26](./select26.png)
+
+You see that you can also do calculations in the SELECT statement.
+
+One good reason for aliasing columns is if you wish to hide the actual column names for security reasons.
