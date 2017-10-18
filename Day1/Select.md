@@ -70,9 +70,9 @@ So let's dissect the SELECT statement that I used.
 * users - The name of the table that we're pulling the information from.
 * ; - Because we never forget the semicolon.
 
-Instead of user '\*', we could have listed the fields that we are interested in. And they don't have to be in the original order.
+Instead of '\*', we could have listed the fields that we are interested in. And they don't have to be in the original order.
 
-```SELECT name, age FROM users;```
+```SELECT age, name FROM users;```
 
 ![Select 2](./select2.png)
 
@@ -111,7 +111,7 @@ records that are actually in the table.)
 
 ## ORDER BY
 
-As was said before, the data will come out in a random order from the SELECT statement, but we can control the order with the
+As we said before, the records will come out in a random order from the SELECT statement, but we can control the order with the
 \'ORDER BY\' clause. For example
 
 ```SELECT age FROM users ORDER BY age;```
@@ -128,6 +128,6 @@ You'll notice that the NULLs came out at the bottom. NULLs are a special case in
 languages where a NULL is equivalent to zero, in SQL NULLs are their own entity. You can't compare a NULL to a
 number or a string. And you can specify where you want the NULLs to appear in a sorted order.
 
-```SELECT age FROM users ORDER BY age NULLS FIRST;```
+```SELECT age FROM users ORDER BY age NULLS FIRST LIMIT 5;```
 
 ![Select 4](./select4.png)
