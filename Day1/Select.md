@@ -306,3 +306,23 @@ WHERE
 
 ![Select 17](./select17.png)
 
+### Exercises
+
+1. Write and execute a query that will find all records where the age of the person is between 20 and 30 and the person
+lives in a city that starts with 'S'. Your output should look like this:
+
+![Select 18](./select18.png)
+
+<details><summary>
+	Solution
+</summary><p>
+```SQL
+SELECT
+	*
+FROM
+	users
+WHERE
+	age BETWEEN 20 AND 30
+	AND city LIKE 'S%';
+```
+</p></details>
