@@ -494,7 +494,7 @@ ORDER BY
 
 ## Column Aliasing
 
-One last item that needs to be mentioned. You can change the name of a column when the query returns. For instance:
+There's one last item that needs to be mentioned. You can change the name of a column when the query returns. For instance:
 
 ```SQL
 SELECT
