@@ -149,12 +149,20 @@ SELECT age FROM users ORDER BY age NULLS FIRST LIMIT 5;
 
 ![Select 4](./select4.png)
 
-The various clauses must be in the proper order. See the big syntax diagram at the beginning for that order.
+We can also have more than one field in the order by clause. For instance:
+
+```SQL
+SELECT city, state FROM users ORDER BY state desc, city;
+```
+
+![Select 27](./select27.png)
+
+Note that he various clauses must be in the proper order. See the big syntax diagram at the beginning for that order.
 We can also put the NULLs last using ```NULLS LAST``` but that is also the default for an ascending list.
 
 ### Exercises
 
-1. Write and execute a query that displays the name and age of the 5 oldest people in the table. Your output should look like this:
+1. Write and execute a query that displays the name and age of each person sorted by age, then name. Your output should look like this:
 
 ![Select 6](./select6.png)
 
@@ -259,6 +267,14 @@ WHERE
 ```
 
 ![Select 14](./select14.png)
+
+<details><summary>
+	ILIKE in PostgreSQL
+</summary><p>
+
+PostgreSQL actually **DOES** have ```ILIKE``` which is case-insensitive but I don't know of an equivalent in any of the other implementations.
+
+</p></details>
 
 The next is ```BETWEEN```. This allows you to create an expression that tests for values between upper and lower bounds.
 Note that BETWEEN is between inclusively.
