@@ -194,10 +194,13 @@ SELECT name, age FROM users WHERE age < 30 order by age;
 ![Select 9](./select9.png)
 
 The new part, of course, is the WHERE clause. This allows us to filter the records on particular constraints. In this case
-we read all records for people under the age of 30. You can also filter for strings.
+we read all records for people under the age of 30. You can also filter for strings. In SQL we use single quotes (\'CA\')
+to delimit strings. This is different than most programming languages that use double quotes (\"CA\"). Please also notice
+that the equals comparison is just a single equals sign (state = 'CA') versus the double equals sign that most programming
+languages use.
 
 ```SQL
-SELECT name, age, state FROM users WHERE state='CA';
+SELECT name, age, state FROM users WHERE state = 'CA';
 ```
 
 ![Select 10](./select10.png)
@@ -321,6 +324,23 @@ WHERE
 ```
 
 ![Select 17](./select17.png)
+
+Once again notice that NULL is really a different beast than it is in most programming languages. See the output of this query:
+
+```SQL
+SELECT
+	name,
+	age, 
+	state
+FROM
+	users
+WHERE
+	age = NULL;
+```
+
+![Select 28](./select28.png)
+
+You just can't compare NULL to data fields in the normal programming language way.
 
 ### Exercises
 
