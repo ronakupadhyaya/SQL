@@ -21,7 +21,8 @@ have a testdb database either drop it or rename the database in the script.) Fro
 
 ```\i <path to script>```
 
-Using pgweb, we can see all of the information in the table.
+Using pgweb, we can see all of the information in the table. Make sure to click on the table name and then
+rows in pgweb.
 
 ![Table contents](./table_info.png)
 
@@ -56,7 +57,8 @@ in psql. Normally psql displays NULL as a blank area which can be confusing.
 One important point is that the order in which you receive the rows is random-ish. There's no guarantee of a particular
 order unless you specify it. (It's not truly random. The server has an algorithm that it uses to retrieve and format the
 data. But it might not be the order that we expected and it might be a different order tomorrow depending on what happened
-overnight or what's happening now.)
+overnight or what's happening now. For instance, the row with id 16 was originally between ids 15 and 17. But I modified
+that row and it went to the bottom of the list in the next query.)
 
 So let's dissect the SELECT statement that I used.
 
