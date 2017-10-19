@@ -163,4 +163,44 @@ UPDATE users
 
 ## The DELETE Statement
 
+And finally the ```DELETE``` command deletes rows from a table. The base syntax is:
+
+```SQL
+DELETE FROM table_name
+	[ WHERE condition ];
+```
+
+Once again you have to be extremely careful. The ```WHERE``` clause is optional and the command will delete
+all rows of the table if ```WHERE``` is not specified. (There's another command ```TRUNCATE table_name``` that
+will delete all rows of a table if that is what you desire.)
+
+Here's an example:
+
+```SQL
+DELETE FROM users
+	WHERE age IS NULL;
+```
+
+![Insert 9](./insert9.png)
+
+You'll notice that Robert and Isaac are now gone and there aren't any records with NULL ages.
+
 ### Exercises
+
+1. Write and execute a command to remove all records where the age is either NULL or under 18. Your resulting
+table should look like this:
+
+![Insert 10](./insert10.png)
+
+<details><summary>
+	Solution
+</summary><p>
+
+```SQL
+DELETE FROM users
+	WHERE age IS NULL
+	OR age < 18;
+```
+
+</p></details>
+
