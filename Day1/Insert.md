@@ -124,6 +124,43 @@ UPDATE users
 
 ### Exercises
 
+1. Write and execute a command to fill in the rest of Frank's information (id=23).
+
+2. Write and execute a command that updates the status of all users under the age of 18 to 'inactive'. Your table should look
+like this after executing the command:
+
+![Insert 7](./insert7.png)
+
+<details><summary>
+	Solution
+</summary><p>
+
+```SQL
+UPDATE users
+	SET status='inactive'
+	WHERE age < 18;
+```
+
+</p></details>
+
+3. Write and execute a command that sets the status of all users living east of the Mississippi to 'inactive'. Note:
+Another option in the ```WHERE``` clause is ```WHERE field IN ( value1, value2, ... )``` which looks for all records that
+have one of the listed values in the specified field. Your table should look like this after executing the command:
+
+![Insert 8](./insert8.png)
+
+<details><summary>
+	Solution
+</summary><p>
+
+```SQL
+UPDATE users
+	SET status='inactive'
+	WHERE state IN ('GA', 'NC', 'NY');
+```
+
+</p></details>
+
 ## The DELETE Statement
 
 ### Exercises
