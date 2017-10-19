@@ -26,7 +26,7 @@ rows in pgweb.
 
 ![Table contents](./table_info.png)
 
-But we really need to learn how to access this data programmaticly.
+But we really need to learn how to access this data programmatically.
 
 ## The SELECT Statement
 
@@ -89,7 +89,7 @@ You'll notice that you can list multiple fields with a comma separator.
 ### Exercises
 
 1. Write and execute a query that displays the name and city of each person in the table.
-2. Write and execute a query that displays the states followed by the zipcode of each person in the table.
+2. Write and execute a query that displays the states followed by the zip code of each person in the table.
 
 ## The LIMIT Clause
 
@@ -239,7 +239,7 @@ WHERE
 ![Select 12](./select12.png)
 
 There are 3 other types of boolean expressions that you need to know about for the WHERE clause. The first
-is ```LIKE``` which permits us to create wildcard expressions. The \'%\' is the wildcard character. This query
+is ```LIKE``` which permits us to create wild card expressions. The \'%\' is the wild card character. This query
 fetches all records where the first character in the state field is \'C\'.
 
 ```SQL
