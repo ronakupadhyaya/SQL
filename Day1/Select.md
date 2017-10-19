@@ -426,7 +426,7 @@ WHERE
 The last part of SELECT that we're going to look at now is the ```GROUP BY``` clause. This will just be an
 introduction to aggregates as this is a much more complicated topic that we'll explore more thoroughly later.
 The ```GROUP BY``` clause allows you to group records by one or more fields. For instance if you wanted to
-look at all of the people that live in Colorado. But this is **ONLY** when you are aggregating data. So you can't
+look at all of the people that live in each state. But this is **ONLY** when you are aggregating data. So you can't
 use ```GROUP BY``` to just grab the records where state = 'CO'. We still use the WHERE clause for that. Let's look
 at an example.
 
@@ -445,15 +445,15 @@ ORDER BY
 ![Select 21](./select21.png)
 
 This query took all of the records and grouped them by state. For each of the records in each state, it increased
-the count by one (the COUNT(1) part), this giving a count of the number of records in each state. (Note: COUNT(\*)
-is used interchangeably with COUNT(1).) I could use state in this query because we were grouping by state so there
+the count by one (the ```COUNT(1)``` part), thus giving a count of the number of records in each state. (Note: ```COUNT(*)```
+is used interchangeably with ```COUNT(1)```.) I could use state in this query because we were grouping by state so there
 was only one state associated with each count. Let's take a look at what's going on behind the scenes. Consider this
 picture of the data.
 
 ![Select 29](./select29.png)
 
 Each of the records enclosed in a block is effectively now a single record. Anything that has multiple values (id,
-name, age, address, city, and zipcode) basically gets tossed in terms of what can be fetched in a SELECT. But we can do
+name, age, address, city, and zipcode) basically gets tossed in terms of what can be fetched in a SELECT statement. But we can do
 things that "aggregate" the data. For instance, we can count the number of records (```COUNT(1)```) in each group. Or we
 could find the minimum value in a particular field (```MIN(zipcode)```). Or we could find the sum of all of the values
 in a particular field (```SUM(age)```).
@@ -480,6 +480,22 @@ ORDER BY
 And once again, let's look at the data.
 
 ![Select 31](./select31.png)
+
+This time we grouped by both city and state. So the data is partitioned accordingly.
+And again we can get only that information that is associated with **ALL** of each group. You just can't pull a single record
+from a group. This is why this query to find the oldest person in a state doesn't work. There is a way to do this and we'll
+look at it later.
+
+```SQL
+SELECT
+	name,
+	state,
+	MAX(age)
+FROM
+	users
+GROUP BY
+	state;
+```
 
 Here's another example.
 
@@ -537,7 +553,7 @@ ORDER BY
 
 </p></details>
 
-2. Write and execute a query that displays the number of people in each city/state combination. (Hint: GROUP BY both city and state.) Your output should look like this:
+2. Write and execute a query that displays the average age of the people in each city. Make sure to ignore any records that have null in the age. (Hint: GROUP BY both city and state.) Your output should look like this:
 
 ![Select 24](./select24.png)
 
@@ -549,9 +565,11 @@ ORDER BY
 SELECT
 	city,
 	state,
-	COUNT(1)
+	AVG(age)
 FROM
 	users
+WHERE
+	age IS NOT NULL
 GROUP BY
 	city,
 	state
