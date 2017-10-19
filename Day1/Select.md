@@ -540,7 +540,7 @@ ORDER BY
 ![Select 32](./select32.png)
 
 When the ```GROUP BY``` has multiple items, name and state in this case, the groups are created based on all possible
-permutations of those items. There are two Karen's but they are not grouped together since they are in different states.
+divisions of those items. There are two Karen's but they are not grouped together since they are in different states.
 
 Other functions (like COUNT() and MAX()) that you can use are MIN(), SUM(), and AVG().
 
