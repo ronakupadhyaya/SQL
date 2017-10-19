@@ -452,7 +452,34 @@ picture of the data.
 
 ![Select 29](./select29.png)
 
+Each of the records enclosed in a block is effectively now a single record. Anything that has multiple values (id,
+name, age, address, city, and zipcode) basically gets tossed in terms of what can be fetched in a SELECT. But we can do
+things that "aggregate" the data. For instance, we can count the number of records (```COUNT(1)```) in each group. Or we
+could find the minimum value in a particular field (```MIN(zipcode)```). Or we could find the sum of all of the values
+in a particular field (```SUM(age)```).
 
+Let's look at another example.
+
+```SQL
+SELECT
+	city,
+	state,
+	COUNT(1)
+FROM
+	users
+GROUP BY
+	city,
+	state
+ORDER BY
+	state,
+	city;
+```
+
+![Select 30](./select30.png)
+
+And once again, let's look at the data.
+
+![Select 31](./select31.png)
 
 Here's another example.
 
