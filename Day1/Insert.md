@@ -29,9 +29,98 @@ INSERT INTO users
 
 ![Insert 1](./insert1.png)
 
+There are a couple of things to note.
+
+1. While I've listed the column names in the command, this is optional. It is only necessary if
+you wish to rearrange the values in the command or insert a subset of the fields.
+2. I've inserted two new records.
+
+Let's look at one more example.
+
+```SQL
+INSERT INTO users
+	VALUES (DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+```
+
+![Insert 2](./insert2.png)
+
+So the default value for basically everything is NULL. But we have 2 fields in our table that can't be NULL
+so let's try that again.
+
+```SQL
+INSERT INTO users
+	VALUES (23, 'Frank', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+```
+
+![Insert 3](./insert3.png)
+
+And that's probably just what we'd expect. Optionally we could have run the command:
+
+```SQL
+INSERT INTO users
+	(id, name)
+	VALUES (23, 'Frank')
+```
+
+which would have given the same result.
+
 ### Exercises
 
+1. Insert the records (if you haven't already done so) that we created above.
+
+2. Insert several of your own records into the users table.
+
 ## The UPDATE Statement
+
+The ```UPDATE``` command modifies existing records in a table. The base syntax is this:
+
+```SQL
+UPDATE table_name
+	SET { column_name = { expression | DEFAULT } |
+			( column_name [, ...] ) = ( { expression | DEFAULT } [, ...] )
+		} [, ...]
+	[ WHERE condition ]
+```
+
+Let's take a look at an example.
+
+```SQL
+UPDATE users
+	SET age = 103
+	WHERE id = 23;
+```
+
+![Insert 4](./insert4.png)
+
+You have to be very careful with the ```UPDATE``` command as it will set the value for **EVERY** record
+in the table if you don't specify a ```WHERE``` clause. I'm going to create a new column in our users table.
+
+```SQL
+ALTER TABLE users
+	ADD	COLUMN status varchar;
+```
+
+And then set the status for all of the records.
+
+```SQL
+UPDATE users
+	SET status='good';
+```
+
+![Insert 5](./insert5.png)
+
+I typically make a habit of testing my ```WHERE``` clause with a ```SELECT``` command prior to running an ```UPDATE```
+command. Of course, that assumes that I'm doing this by hand, but that's not uncommon in the development cycle.
+
+And an example of setting multiple fields. Of course we can also do things like correct the spelling of certain cities.
+
+```SQL
+UPDATE users
+	SET (city, status) = ('Colorado Springs', 'inactive')
+	WHERE city = 'Colorado Srpings';
+```
+
+![Insert 6](./insert6.png)
 
 ### Exercises
 
