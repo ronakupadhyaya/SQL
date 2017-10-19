@@ -426,7 +426,7 @@ WHERE
 The last part of SELECT that we're going to look at now is the ```GROUP BY``` clause. This will just be an
 introduction to aggregates as this is a much more complicated topic that we'll explore more thoroughly later.
 The ```GROUP BY``` clause allows you to group records by one or more fields. For instance if you wanted to
-look at all of the people that live in Colorado. But this is **ONLY** when you are aggregating data. So I wouldn't
+look at all of the people that live in Colorado. But this is **ONLY** when you are aggregating data. So you can't
 use ```GROUP BY``` to just grab the records where state = 'CO'. We still use the WHERE clause for that. Let's look
 at an example.
 
@@ -444,10 +444,17 @@ ORDER BY
 
 ![Select 21](./select21.png)
 
-This query took all of the records and group them by state. For each of the records in each state, it increased
+This query took all of the records and grouped them by state. For each of the records in each state, it increased
 the count by one (the COUNT(1) part), this giving a count of the number of records in each state. (Note: COUNT(\*)
 is used interchangeably with COUNT(1).) I could use state in this query because we were grouping by state so there
-was only one state associated with each count. Here's another example.
+was only one state associated with each count. Let's take a look at what's going on behind the scenes. Consider this
+picture of the data.
+
+![Select 29](./select29.png)
+
+
+
+Here's another example.
 
 ```SQL
 SELECT
