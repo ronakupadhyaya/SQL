@@ -104,7 +104,7 @@ And then set the status for all of the records.
 
 ```SQL
 UPDATE users
-	SET status='good';
+	SET status='active';
 ```
 
 ![Insert 5](./insert5.png)
@@ -121,6 +121,16 @@ UPDATE users
 ```
 
 ![Insert 6](./insert6.png)
+
+One last example
+
+```SQL
+UPDATE users
+	SET status = 'inactive'
+	WHERE age < 18 or age > 65;
+```
+
+![Insert 13](./insert13.png)
 
 ### Exercises
 
