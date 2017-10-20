@@ -30,7 +30,6 @@ INSERT INTO users
 
 We've inserted one new record into the table. You can also insert multiple new records. For example:
 
-
 ```SQL
 INSERT INTO users
 	(id, name, age, address, city, state, zipcode)
@@ -43,7 +42,18 @@ INSERT INTO users
 There one thing to note. While I've listed the column names in the command, this is optional. It is only necessary if
 you wish to rearrange the values in the command or insert a subset of the fields.
 
-Let's look another  example.
+Let's look another example.
+
+```SQL
+INSERT INTO users
+	(id, name)
+	VALUES (24, 'Frank')
+```
+
+![Insert 12](./insert12.png)
+
+Notice that the fields that we didn't specify are filled in with the default value which is NULL. And
+one last example.
 
 ```SQL
 INSERT INTO users
@@ -52,25 +62,7 @@ INSERT INTO users
 
 ![Insert 2](./insert2.png)
 
-So the default value for basically everything is NULL. But we have 2 fields in our table that can't be NULL
-so let's try that again.
-
-```SQL
-INSERT INTO users
-	VALUES (23, 'Frank', DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
-```
-
-![Insert 3](./insert3.png)
-
-And that's probably just what we'd expect. Optionally we could have run the command:
-
-```SQL
-INSERT INTO users
-	(id, name)
-	VALUES (23, 'Frank')
-```
-
-which would have given the same result.
+This didn't work since both the id and name field are required to not be NULL.
 
 ### Exercises
 
