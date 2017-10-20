@@ -39,7 +39,7 @@ INSERT INTO users
 
 ![Insert 1](./insert1.png)
 
-There one thing to note. While I've listed the column names in the command, this is optional. It is only necessary if
+There is one thing to note. While I've listed the column names in the command, this is optional. It is only necessary if
 you wish to rearrange the values in the command or insert a subset of the fields.
 
 Let's look another example.
@@ -87,7 +87,7 @@ Let's take a look at an example.
 ```SQL
 UPDATE users
 	SET age = 103
-	WHERE id = 23;
+	WHERE id = 24;
 ```
 
 ![Insert 4](./insert4.png)
