@@ -97,7 +97,7 @@ in the table if you don't specify a ```WHERE``` clause. I'm going to create a ne
 
 ```SQL
 ALTER TABLE users
-	ADD	COLUMN status varchar;
+	ADD COLUMN status varchar;
 ```
 
 And then set the status for all of the records.
@@ -134,9 +134,9 @@ UPDATE users
 
 ### Exercises
 
-1. Write and execute a command to fill in the rest of Frank's information (id=23).
+1. Write and execute a command to fill in the rest of Frank's information (id=24).
 
-2. Write and execute a command that updates the status of all users under the age of 18 to 'inactive'. Your table should look
+2. Write and execute a command that updates the status of all users under the age of 18 to 'young'. Your table should look
 like this after executing the command:
 
 ![Insert 7](./insert7.png)
@@ -147,7 +147,7 @@ like this after executing the command:
 
 ```SQL
 UPDATE users
-	SET status='inactive'
+	SET status='young'
 	WHERE age < 18;
 ```
 
