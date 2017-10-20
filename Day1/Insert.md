@@ -23,19 +23,27 @@ Let's take a look at an example.
 ```SQL
 INSERT INTO users
 	(id, name, age, address, city, state, zipcode)
-	VALUES (21, 'Zoe', 7, '1573 Mountain Way', 'Durango', 'CO', 81301),
-		(22, 'Willie Mae', 8, '123 Broad St.', 'Douglasville', 'GA', 30135);
+	VALUES (21, 'Yogi', 59, '14 Picnic Basket Way', 'Jellystone Park', 'WY', 82190);
+```
+
+![Insert 11](./insert11.png)
+
+We've inserted one new record into the table. You can also insert multiple new records. For example:
+
+
+```SQL
+INSERT INTO users
+	(id, name, age, address, city, state, zipcode)
+	VALUES (22, 'Zoe', 7, '1573 Mountain Way', 'Durango', 'CO', 81301),
+		(23, 'Willie Mae', 8, '123 Broad St.', 'Douglasville', 'GA', 30135);
 ```
 
 ![Insert 1](./insert1.png)
 
-There are a couple of things to note.
-
-1. While I've listed the column names in the command, this is optional. It is only necessary if
+There one thing to note. While I've listed the column names in the command, this is optional. It is only necessary if
 you wish to rearrange the values in the command or insert a subset of the fields.
-2. I've inserted two new records.
 
-Let's look at one more example.
+Let's look another  example.
 
 ```SQL
 INSERT INTO users
