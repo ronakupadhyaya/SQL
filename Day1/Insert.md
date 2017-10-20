@@ -134,7 +134,7 @@ UPDATE users
 
 ### Exercises
 
-1. Write and execute a command to fill in the rest of Frank's information (id=24).
+1. Write and execute a command to fill in the rest of Frank's information.
 
 2. Write and execute a command that updates the status of all users under the age of 18 to 'young'. Your table should look
 like this after executing the command:
@@ -168,6 +168,42 @@ UPDATE users
 	SET status='inactive'
 	WHERE state IN ('GA', 'NC', 'NY');
 ```
+
+</p></details>
+
+4. Write and execute a command that changes the name of all 'Karen's to 'Deborah'. Your table should look like this after
+executing the command:
+
+![Insert 14](./insert14.png)
+
+<details><summary>
+	Solution
+</summary><p>
+
+```SQL
+UPDATE users
+	SET name = 'Deborah'
+	WHERE name = 'Karen';
+```
+
+</p></details>
+
+5. Write and execute a command that increases all ages by 1. (```SET age = age + 1```) Your table should look like this
+after executing the command:
+
+![Insert 15](./insert15.png)
+
+<details><summary>
+	Solution
+</summary><p>
+
+```SQL
+UPDATE users
+	SET age = age + 1
+	WHERE age IS NOT NULL;
+```
+
+The ```WHERE age IS NOT NULL``` may not be necessary but is good practice as addition with a NULL isn't defined.
 
 </p></details>
 
