@@ -11,11 +11,23 @@ the other is known as **database or schema migration**. Another example might be
 ## Setup
 
 We'll be using the db-migrate service provided by Node.js. You already have Node installed so we just need
-to install the appropriate packages. First install the db-migrate package.
+to install the appropriate packages. First create a directory named 'migration' in an appropriate place and
+initialize package.json.
 
-```npm install -g db-migrate```
+```npm init```
+
+Now install the db-migrate package.
+
+```npm install --save db-migrate```
 
 And then install the PostgreSQL driver for db-migrate.
 
-```npm install -g db-migrate-pg```
+```npm install --save db-migrate-pg```
 
+## Usage
+
+The first thing to understand is that there are **Up** migrations and **Down** migrations. An up migration
+is what we'd typically think of as creating a new database, or adding tables to a database, or modifying
+an existing database, etc. Basically this is the direction where we're creating or adding. A down migration
+is just the opposite. Effectively a down migration is a scripted rollback of some set of database (SQL)
+commands. Or more informally as an "undo".
