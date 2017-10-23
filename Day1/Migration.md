@@ -24,6 +24,12 @@ And then install the PostgreSQL driver for db-migrate.
 
 ```npm install --save db-migrate-pg```
 
+Last, we need to tell the system what database we'll be using (and how to access it.)
+
+```export DATABASE_URL=postgresql://localhost/testdb```
+
+Install this in your .bashrc if you are so inclined.
+
 ## Usage
 
 The first thing to understand is that there are **Up** migrations and **Down** migrations. An up migration
