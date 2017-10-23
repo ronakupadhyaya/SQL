@@ -11,4 +11,11 @@ the other is known as **database or schema migration**. Another example might be
 ## Setup
 
 We'll be using the db-migrate service provided by Node.js. You already have Node installed so we just need
-to install the appropriate packages.
+to install the appropriate packages. First install the db-migrate package.
+
+```npm install -g db-migrate```
+
+And then install the PostgreSQL driver for db-migrate.
+
+```npm install -g db-migrate-pg```
+
