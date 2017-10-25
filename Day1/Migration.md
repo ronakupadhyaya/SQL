@@ -8,6 +8,53 @@ data, but now need to merge the two databases into one. Moving the schema and da
 the other is known as **database or schema migration**. Another example might be if two businesses merge
 (or one acquires another) and there is a need to merge the corporate databases.
 
+## Note on primary keys and the serial data type
+
+To this point, we've been creating our tables like this:
+
+```SQL
+CREATE TABLE users (
+	id INT PRIMARY KEY NOT NULL
+	...
+	);
+```
+
+But there's actually a better way. You don't really want to have to keep track of what the next number
+is for your key. The answer to this is to declare id a ```SERIAL``` type. ```SERIAL``` is an integer type and
+automatically uses the next available integer (starting with 1) for the value. It is also automatically
+```NOT NULL```. It isn't automatically a primary key so you still have to declare that. (So you can
+use ```SERIAL``` for fields other than a primary key.)
+
+```SQL
+CREATE TABLE users (
+	id SERIAL PRIMARY KEY
+	...
+	);
+```
+
+Now you don't have to include the id field in your ```INSERT``` statement.
+
+```SQL
+INSERT INTO users (name, ...)
+	VALUES ('Fred', ...);
+```
+
+Or if you don't want to specify the fields, you can use ```DEFAULT```.
+
+```SQL
+INSERT INTO users
+	(DEFAULT, 'Fred', ...);
+```
+
+Here's a quick example:
+
+![Migrate 6](./migrate6.png)
+
+One thing to note is that if you delete a record, ```SERIAL``` will not reuse that integer so there's no
+problem with duplicate keys.
+
+![Migrate 7](./migrate7.png)
+
 ## Setup
 
 We'll be using the db-migrate service provided by Node.js. You already have Node installed so we just need
@@ -18,11 +65,11 @@ initialize package.json.
 
 Now install the db-migrate package.
 
-```npm install --save db-migrate```
+```npm install -g --save db-migrate```
 
 And then install the PostgreSQL driver for db-migrate.
 
-```npm install --save db-migrate-pg```
+```npm install -g --save db-migrate-pg```
 
 Last, we need to tell the system what database we'll be using (and how to access it.)
 
@@ -35,7 +82,7 @@ account I was using on my computer. In Windows, since there isn't really a logge
 value of the USERNAME environment variable. In psql execute:
 
 ```
-CREATE ROLE gtf WITH SUPERUSER CREATEDB CREATEROLE REPLICATION LOGIN PASSWORD '***';
+CREATE ROLE <your user name here> WITH SUPERUSER CREATEDB CREATEROLE REPLICATION LOGIN PASSWORD '***';
 ```
 
 You will also probably want to create a shell variable ```PGPASSWORD``` with the PostgreSQL password for your account.
@@ -152,6 +199,8 @@ of the up migrations. Well, what it really does is analyze the current state of 
 the necessary commands to bring the database to the intended state once the migrate is complete. So while the
 ```db-migrate up``` command said to create the users table, that wasn't necessary since it was already created,
 and the db-migrate command skipped that part.
+
+![Migrate 5](./migrate5.png)
 
 The down migration for populate-users is to just truncate the table. As mentioned in an earlier lesson,
 
