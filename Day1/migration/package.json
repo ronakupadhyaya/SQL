@@ -7,9 +7,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "db-migrate": "^0.10.0-beta.24",
-    "db-migrate-pg": "^0.2.5"
-  }
+  "license": "ISC"
 }
