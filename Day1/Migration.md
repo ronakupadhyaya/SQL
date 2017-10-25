@@ -73,23 +73,15 @@ And then install the PostgreSQL driver for db-migrate.
 
 Last, we need to tell the system what database we'll be using (and how to access it.)
 
-```export DATABASE_URL=postgresql://localhost/testdb```
-
-Install this in your .bashrc if you are so inclined.
-
-In Windows, I found it necessary to also create a PostgreSQL "role" (user) that was the same as the "user"
-account I was using on my computer. In Windows, since there isn't really a logged in user, this is the
-value of the USERNAME environment variable. In psql execute:
-
 ```
-CREATE ROLE <your user name here> WITH SUPERUSER CREATEDB CREATEROLE REPLICATION LOGIN PASSWORD '***';
+export DATABASE_URL=postgresql://<username>:<password>@localhost/testdb
+export DATABASE_URL=postgresql://<username>@localhost/testdb
 ```
 
-You will also probably want to create a shell variable ```PGPASSWORD``` with the PostgreSQL password for your account.
-
-```
-export PGPASSWORD=***
-```
+Where <username> is is the user name that you installed PostgreSQL (the default was postgres and that's
+probably what you used. And <password> is the password that you created for that user name if you created one.
+Choose the appropriate version and put that into env.sh. Then ```source env.sh``` to get your environment set
+up correctly.
 
 ## Usage
 
@@ -123,7 +115,7 @@ SQL files. Since we're going to create the users table, the SQL command looks li
 
 ```SQL
 CREATE TABLE users (
-	id int primary key not null,
+	id serial primary key,
 	name varchar not null,
 	address varchar,
 	city varchar,
@@ -135,7 +127,7 @@ CREATE TABLE users (
 This will go into the file migrations/sqls/20171023230131-add-users-up.sql. And now we can run the db-migrate tool.
 
 ```
-db-migrate up
+db-migrate up -c 1
 ```
 
 ![Migrate 1](./migrate1.png)
