@@ -78,8 +78,8 @@ export DATABASE_URL=postgresql://<username>:<password>@localhost/testdb
 export DATABASE_URL=postgresql://<username>@localhost/testdb
 ```
 
-Where <username> is is the user name that you installed PostgreSQL (the default was postgres and that's
-probably what you used. And <password> is the password that you created for that user name if you created one.
+Where \<username\> is the user name that you created when you installed PostgreSQL. (The default was postgres and that's
+probably what you used.) And \<password\> is the password that you created for that user name if you created a password.
 Choose the appropriate version and put that into env.sh. Then ```source env.sh``` to get your environment set
 up correctly.
 
@@ -89,7 +89,7 @@ The first thing to understand is that there are **Up** migrations and **Down** m
 is what we'd typically think of as creating a new database, or adding tables to a database, or modifying
 an existing database, etc. Basically this is the direction where we're creating or adding. A down migration
 is just the opposite. Effectively a down migration is a scripted rollback of some set of database (SQL)
-commands. Or more informally as an "undo".
+commands. Or more informally an "undo".
 
 ### Creating a migration
 
@@ -104,9 +104,9 @@ db-migrate create add-users --sql-file
 This will create a migrations directory (if it hasn't already been created) and will create the following files:
 
 ```
-migrations/20171023230131-add-users.js
-migrations/sqls/20171023230131-add-users-down.sql
-migrations/sqls/20171023230131-add-users-up.sql
+migrations/20171025160224-add-users.js
+migrations/sqls/20171025160224-add-users-down.sql
+migrations/sqls/20171025160224-add-users-up.sql
 ```
 
 The first part of those file names are a date/time stamp from when the command was run so yours will be
@@ -124,10 +124,10 @@ CREATE TABLE users (
 	age int);
 ```
 
-This will go into the file migrations/sqls/20171023230131-add-users-up.sql. And now we can run the db-migrate tool.
+This will go into the file migrations/sqls/20171025160224-add-users-up.sql. And now we can run the db-migrate tool.
 
 ```
-db-migrate up -c 1
+db-migrate up
 ```
 
 ![Migrate 1](./migrate1.png)
@@ -140,7 +140,7 @@ You can also see that a migrations table has been created. That's a table that i
 the db-migrate tool and keeps track of the migrations that have been performed.
 
 And we should go ahead and add the appropriate command to the down migration script. Since we just created
-the users table, all we need to do is drop the table.
+the users table, all we need to do is drop the table. This will go into the file migrations/sqls/20171025160224-add-users-down.sql.
 
 ```SQL
 DROP TABLE users;
@@ -148,7 +148,7 @@ DROP TABLE users;
 
 ![Migrate 3](./migrate3.png)
 
-And you can see that the table has been dropped.
+And you can see that the users table has been dropped.
 
 ![Migrate 4](./migrate4.png)
 
@@ -160,30 +160,38 @@ to populate the users table.
 db-migrate create populate-users --sql-file
 ```
 
-And I'll add these commands to it. I could have done all of this in one command but want to demonstrate
+This creates the files:
+
+```
+migrations/20171025160524-populate-users.js
+migrations/sqls/20171025160524-populate-users-down.sql
+migrations/sqls/20171025160524-populate-users-up.sql
+```
+
+And I'll add these commands to the up migration SQL file. I could have done all of this in one command but want to demonstrate
 multiple commands in the migration file.
 
 ```SQL
-INSERT INTO users VALUES (1, 'Tom', '123 Broad St.', 'Douglasville', 'GA', 30135, 45);
-INSERT INTO users VALUES (2, 'Sarah', '123 Broad St.', 'Douglasville', 'GA', 30135, 39);
-INSERT INTO users VALUES (3, 'Camille', '577 Willow Glen Dr.', 'Marietta', 'GA', 30068, 31);
-INSERT INTO users VALUES (4, 'Indiana', '577 Willow Glen Dr.', 'Marietta', 'GA', 30068, 10);
-INSERT INTO users VALUES (5, 'Luke', '4242 Main St.', 'Smyrna', 'GA', 30071, 29);
-INSERT INTO users VALUES (6, 'Natalia', '4242 Main St.', 'Smyrna', 'GA', 30071, 28);
-INSERT INTO users VALUES (7, 'Isaac', '4242 Main St.', 'Smyrna', 'GA', 30071, 3);
-INSERT INTO users VALUES (8, 'Layla', '4242 Main St.', 'Smyrna', 'GA', 30071, 1);
-INSERT INTO users VALUES (9, 'Hilary', '1573 Mountain Way', 'Durango', 'CO', 81301, 26);
-INSERT INTO users VALUES (10, 'Kevin', '1573 Mountain Way', 'Durango', 'CO', 81301, 28);
-INSERT INTO users VALUES (11, 'Fran', '2324 Knoll Ridge Ln.', 'Wake Forest', 'NC', 27587, 63);
-INSERT INTO users VALUES (12, 'Jim', '2324 Knoll Ridge Ln.', 'Wake Forest', 'NC', 27587, 65);
-INSERT INTO users VALUES (13, 'Karen', '231 Third Ave.', 'Salt Lake City', 'UT', 84047, 38);
-INSERT INTO users VALUES (14, 'Chris', '1313 Mockingbird Ln.', 'San Francisco', 'CA', 94102, 28);
-INSERT INTO users VALUES (15, 'Fred', '12 LeTour Ave.', 'Bend', 'OR', 97701, 31);
-INSERT INTO users VALUES (16, 'Karen', '412 Payton Place', 'Los Angeles', 'CA', 90001, 14);
-INSERT INTO users VALUES (17, 'George', '1 Lucas Valley Rd.', 'Nicasio', 'CA', 94946, 73);
-INSERT INTO users VALUES (18, 'James', '1701 Main St.', 'Riverside', 'IA', 52327, 38);
-INSERT INTO users VALUES (19, 'Robert', '1951 Heinlein Way', 'Colorado Srpings', 'CO', 80829, NULL);
-INSERT INTO users VALUES (20, 'Isaac', '42 Broadway', 'New York', 'NY', 10001, NULL);
+INSERT INTO users VALUES (DEFAULT, 'Tom', '123 Broad St.', 'Douglasville', 'GA', 30135, 45);
+INSERT INTO users VALUES (DEFAULT, 'Sarah', '123 Broad St.', 'Douglasville', 'GA', 30135, 39);
+INSERT INTO users VALUES (DEFAULT, 'Camille', '577 Willow Glen Dr.', 'Marietta', 'GA', 30068, 31);
+INSERT INTO users VALUES (DEFAULT, 'Indiana', '577 Willow Glen Dr.', 'Marietta', 'GA', 30068, 10);
+INSERT INTO users VALUES (DEFAULT, 'Luke', '4242 Main St.', 'Smyrna', 'GA', 30071, 29);
+INSERT INTO users VALUES (DEFAULT, 'Natalia', '4242 Main St.', 'Smyrna', 'GA', 30071, 28);
+INSERT INTO users VALUES (DEFAULT, 'Isaac', '4242 Main St.', 'Smyrna', 'GA', 30071, 3);
+INSERT INTO users VALUES (DEFAULT, 'Layla', '4242 Main St.', 'Smyrna', 'GA', 30071, 1);
+INSERT INTO users VALUES (DEFAULT, 'Hilary', '1573 Mountain Way', 'Durango', 'CO', 81301, 26);
+INSERT INTO users VALUES (DEFAULT, 'Kevin', '1573 Mountain Way', 'Durango', 'CO', 81301, 28);
+INSERT INTO users VALUES (DEFAULT, 'Fran', '2324 Knoll Ridge Ln.', 'Wake Forest', 'NC', 27587, 63);
+INSERT INTO users VALUES (DEFAULT, 'Jim', '2324 Knoll Ridge Ln.', 'Wake Forest', 'NC', 27587, 65);
+INSERT INTO users VALUES (DEFAULT, 'Karen', '231 Third Ave.', 'Salt Lake City', 'UT', 84047, 38);
+INSERT INTO users VALUES (DEFAULT, 'Chris', '1313 Mockingbird Ln.', 'San Francisco', 'CA', 94102, 28);
+INSERT INTO users VALUES (DEFAULT, 'Fred', '12 LeTour Ave.', 'Bend', 'OR', 97701, 31);
+INSERT INTO users VALUES (DEFAULT, 'Karen', '412 Payton Place', 'Los Angeles', 'CA', 90001, 14);
+INSERT INTO users VALUES (DEFAULT, 'George', '1 Lucas Valley Rd.', 'Nicasio', 'CA', 94946, 73);
+INSERT INTO users VALUES (DEFAULT, 'James', '1701 Main St.', 'Riverside', 'IA', 52327, 38);
+INSERT INTO users VALUES (DEFAULT, 'Robert', '1951 Heinlein Way', 'Colorado Srpings', 'CO', 80829, NULL);
+INSERT INTO users VALUES (DEFAULT, 'Isaac', '42 Broadway', 'New York', 'NY', 10001, NULL);
 ```
 
 Once ```db-migrate up``` is run, notice that the new records are added. But ```db-migrate up``` runs **ALL**
