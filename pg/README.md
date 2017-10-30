@@ -46,23 +46,26 @@ and re-uses these connections efficiently across requests.
 Edit `query.js` and use the `pg.Pool` object we set up in Part 1 to
 execute the following SQL queries in the following order.
 
-1. ```sql
-CREATE TABLE IF NOT EXISTS animals (
-  name TEXT PRIMARY KEY,
-  favorite_fool TEXT NOT NULL,
-  sound TEXT NOT NULL
-)
-```
-1. ```sql
-INSERT INTO animals VALUES
-  ('donkey', 'carrots', 'hee-haw'),
-  ('cow', 'grass', 'moo'),
-  ('duck', 'quack', 'seeds') ON CONFLICT DO NOTHING
-```
+1.
+    ```sql
+    CREATE TABLE IF NOT EXISTS animals (
+      name TEXT PRIMARY KEY,
+      favorite_fool TEXT NOT NULL,
+      sound TEXT NOT NULL
+    )
+    ```
+1.
+    ```sql
+    INSERT INTO animals VALUES
+      ('donkey', 'carrots', 'hee-haw'),
+      ('cow', 'grass', 'moo'),
+      ('duck', 'quack', 'seeds') ON CONFLICT DO NOTHING
+    ```
 
-1. ```sql
-TEST
-```
+1.
+    ```sql
+    TEST
+    ```
 
 
 ## Part 3. Run queries inside express
