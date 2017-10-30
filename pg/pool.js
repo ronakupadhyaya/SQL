@@ -9,10 +9,12 @@ var pool;
 // Establish a connection to Postgres here using pg.Pool
 // YOUR CODE HERE
 
+// TODO remove
 var pg = require('pg');
 pool = new pg.Pool({
   connectionString: process.env.DATABASE_URL
 });
+// TODO
 
 if (! pool) {
   console.error('pg.Pool is not set up, edit app.js and setup the pool');

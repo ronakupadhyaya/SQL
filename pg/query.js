@@ -2,16 +2,6 @@
 
 var pool = require('./pool');
 
-function populateTable() {
-  return pool.query(queries[0])
-    .then(function() {
-      return pool.query(queries[1]);
-    })
-    .then(function() {
-      return pool.query(queries[2]);
-    });
-}
-
 // YOUR CODE HERE
 
 // TODO remove
@@ -25,7 +15,7 @@ var queries = [
     ('donkey', 'carrots', 'hee-haw'),
     ('cow', 'grass', 'moo'),
     ('duck', 'quack', 'seeds') ON CONFLICT DO NOTHING`,
-  `SELECT * FROM animals`
+  `SELECT name FROM animals WHERE sound = 'moo'`
 ];
 
 pool.query(queries[0])
@@ -36,8 +26,10 @@ pool.query(queries[0])
     return pool.query(queries[2]);
   })
   .then(function(res) {
-    console.log(res.rows);
+    console.log(res);
+    console.log('The animal name is: ', res.rows[0].name);
   })
   .catch(function(err) {
     console.log('Error', err);
   });
+// TODO

@@ -18,6 +18,10 @@ export DATABASE_URL="postgresql://localhost/pg_node"
 
 ## Part 1. Connecting
 
+`pg` manages connections to Postgres through [the `pg.Pool` object.](https://node-postgres.com/features/pooling)
+Just like with `mongoose.connect()` we need to initialize `pg.Pool` with a connection
+string to tell it which database to connect to.
+
 Edit `pool.js` and establish a connection to Postgres using the
 `pg` NPM package. You'll need to use the `pg.Pool` object.
 
@@ -43,30 +47,71 @@ and re-uses these connections efficiently across requests.
 
 ## Part 2. Run queries
 
+Once initialized, `pg.Pool` allows us to make queries using the
+[query() function](https://node-postgres.com/features/pooling#single-query).
+
+You can use `query()` with callbacks:
+
+```javascript
+pool.query('SELECT * FROM users', function(err, result) {
+});
+```
+
+You can also use `query()` with promises:
+
+```javascript
+pool.query('SELECT * FROM users')
+.then(function(result) {
+})
+.catch(function(err) {
+});
+```
+
+If `query()` is successful, `result` will be a
+[`pg.Result` object](https://node-postgres.com/api/result).
+You can read the data returned from the database under `result.rows`.
+
+Let's say `users` table contained the following rows:
+
+| firstName | lastName |
+| :------------- | :------------- |
+| Moose | Paksoy |
+| Pam | Needle |
+| Prath | Desai |
+
+Then the `result.rows` for the query `SELECT * FROM users` would be:
+
+```javascript
+[
+    {firstName: 'Moose', lastName: 'Paksoy'},
+    {firstName: 'Pam', lastName: 'Needle'},
+    {firstName: 'Prath', lastName: 'Desai'}
+]
+```
+
+So if you wanted to read the last name of the 2nd row you could just
+do `result.rows[1].lastName`.
+
 Edit `query.js` and use the `pg.Pool` object we set up in Part 1 to
-execute the following SQL queries in the following order.
+execute the following SQL queries one after another using promises:
 
-1.
-    ```sql
-    CREATE TABLE IF NOT EXISTS animals (
-      name TEXT PRIMARY KEY,
-      favorite_fool TEXT NOT NULL,
-      sound TEXT NOT NULL
-    )
-    ```
-1.
-    ```sql
-    INSERT INTO animals VALUES
-      ('donkey', 'carrots', 'hee-haw'),
-      ('cow', 'grass', 'moo'),
-      ('duck', 'quack', 'seeds') ON CONFLICT DO NOTHING
-    ```
+1. Create an animals table that contains 3 columns:
+    1. `name`, type `TEXT`
+    1. `food`, type `TEXT`
+    1. `sound`, type `TEXT`
+1. Insert 3 animals into the animals table:
+    1. name: `'donkey'`, food: `'carrots'`, sound: `'hee-haw'`
+    1. name: `'cow'`, food: `'grass'`, sound: `'moo'`
+    1. name: `'duck'`, food: `'seeds'`, sound: `'quack'`
+1. Get the animal that makes the sound `'moo'` and log its name to the console.
 
-1.
-    ```sql
-    TEST
-    ```
+When you run `query.js` you should see:
 
+```
+node query.js
+Success, you are connected to Postgres
+The animal name is: cow
+```
 
 ## Part 3. Run queries inside express
 
