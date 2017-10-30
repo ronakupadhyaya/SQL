@@ -1,0 +1,12 @@
+{
+  "name": "pg-exercise",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "pg": "~7.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.10.0"
+  }
+}
