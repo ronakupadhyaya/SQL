@@ -22,6 +22,21 @@ export DATABASE_URL="postgresql://localhost/pg_node"
 Just like with `mongoose.connect()` we need to initialize `pg.Pool` with a connection
 string to tell it which database to connect to.
 
+<details><summary>
+**Aside:** Connection pooling
+</summary><p>
+
+`pg.Pool` actually creates multiple connections to the database behind
+the scenes. This allows our application to handle more requests simultaneously
+than a single connection would allow.
+
+This is called connection pooling and is essential to making SQL databases
+scale.
+
+</p></details>
+
+### Exercise
+
 Edit `pool.js` and establish a connection to Postgres using the
 `pg` NPM package. You'll need to use the `pg.Pool` object.
 
@@ -34,16 +49,6 @@ You should see:
 node pool.js
 Success, you are connected to Postgres
 ```
-
-<details><summary>
-Aside: Connection pooling
-</summary><p>
-
-For SQL databases, database connections are a precious commodity.
-Behind the scenes `pg.Pool` creates multiple connections to the database
-and re-uses these connections efficiently across requests.
-
-</p></details>
 
 ## Part 2. Run queries
 
@@ -71,7 +76,11 @@ If `query()` is successful, `result` will be a
 [`pg.Result` object](https://node-postgres.com/api/result).
 You can read the data returned from the database under `result.rows`.
 
-Let's say `users` table contained the following rows:
+`result.rows` is an array of objects where each object corresponds to a
+a row in the database. The row object will contain a key for each column
+returned.
+
+For example, say we had a `users` table that contained the following rows:
 
 | firstName | lastName |
 | :------------- | :------------- |
@@ -79,7 +88,7 @@ Let's say `users` table contained the following rows:
 | Pam | Needle |
 | Prath | Desai |
 
-Then the `result.rows` for the query `SELECT * FROM users` would be:
+Then `result.rows` for the query `SELECT * FROM users` would be:
 
 ```javascript
 [
@@ -91,6 +100,8 @@ Then the `result.rows` for the query `SELECT * FROM users` would be:
 
 So if you wanted to read the last name of the 2nd row you could just
 do `result.rows[1].lastName`.
+
+### Exercise
 
 Edit `query.js` and use the `pg.Pool` object we set up in Part 1 to
 execute the following SQL queries one after another using promises:
@@ -105,7 +116,7 @@ execute the following SQL queries one after another using promises:
     1. name: `'duck'`, food: `'seeds'`, sound: `'quack'`
 1. Get the animal that makes the sound `'moo'` and log its name to the console.
 
-When you run `query.js` you should see:
+When you run `query.js` in node you should see:
 
 ```
 node query.js
