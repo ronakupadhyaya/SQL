@@ -103,18 +103,26 @@ do `result.rows[1].lastName`.
 
 ### Exercise
 
-Edit `query.js` and use the `pg.Pool` object we set up in Part 1 to
-execute the following SQL queries one after another using promises:
+Let's use `pg.Pool` to create, populate and read data from a table.
 
-1. Create an animals table that contains 3 columns:
-    1. `name`, type `TEXT`
-    1. `food`, type `TEXT`
-    1. `sound`, type `TEXT`
-1. Insert 3 animals into the animals table:
-    1. name: `'donkey'`, food: `'carrots'`, sound: `'hee-haw'`
-    1. name: `'cow'`, food: `'grass'`, sound: `'moo'`
-    1. name: `'duck'`, food: `'seeds'`, sound: `'quack'`
-1. Get the animal that makes the sound `'moo'` and log its name to the console.
+
+1. Export the `pool` variable in `pool.js`
+
+    ```javascript
+    module.exports = pool;
+    ```
+
+1. Edit `query.js` and import `pool` from `pool.js` using `require()`.
+1. Execute the following SQL queries one after another using promises:
+    1. Create an animals table that contains 3 columns:
+        1. `name`, type `TEXT`
+        1. `food`, type `TEXT`
+        1. `sound`, type `TEXT`
+    1. Insert 3 animals into the animals table:
+        1. name: `'donkey'`, food: `'carrots'`, sound: `'hee-haw'`
+        1. name: `'cow'`, food: `'grass'`, sound: `'moo'`
+        1. name: `'duck'`, food: `'seeds'`, sound: `'quack'`
+    1. Get the animal that makes the sound `'moo'` and log its name to the console.
 
 When you run `query.js` in node you should see:
 
@@ -128,6 +136,15 @@ The animal name is: cow
 
 TODO
 
+
+### Exercises
+
 ## Part 4. Parameterized queries
+
+TODO
+
+[Parameterized query documentation](https://node-postgres.com/features/queries#parameterized-query)
+
+### Exercises
 
 TODO

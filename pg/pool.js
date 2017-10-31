@@ -29,4 +29,6 @@ pool.query('SELECT NOW()', (err, res) => {
   }
 });
 
+// TODO remove
 module.exports = pool;
+// TODO remove
