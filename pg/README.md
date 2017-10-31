@@ -271,8 +271,9 @@ We do this:
 pool.query(`SELECT * FROM users WHERE firstName = $1`, [req.query.firstName])
 ```
 
-`$1` is a placeholder that maps to the first item in the array, `$2` maps
-to the second item in the array.
+`$1` is a placeholder that maps to the first item in the array.
+You can pass in more than one argument in the array by using `$2`, `$3`, and
+so forth.
 
 ![Parameterized queries visualized](img/param1.png)
 
@@ -293,4 +294,35 @@ app.get('/users', function(req, res) {
 
 ### Exercises
 
-TODO
+Let's implement some endpoints that read TODO
+
+1. Update the `GET /animals` route to to take an optional `name` argument
+through `req.query`. If `name` is not specified, return all animals,
+otherwise only return animals that match given name.
+
+    Making a `GET` request to `/animals` should still return all animals.
+
+    Making a `GET` request to `/animals?name=cow` should return only the humble cow:
+
+    ```json
+    [
+        {
+            "name": "cow",
+            "sound": "moo"
+        }
+    ]
+    ```
+
+1. Update the `POST /delete/donkey` endpoint so that it can receive a `name`
+argument through `req.params`.
+
+    Making a `POST` request to `/delete/duck` should delete the duck and
+    `/delete/cow` should delete the cow.
+
+    Use the `/animals` endpoint to verify deletion.
+
+1. Create a `POST /create` endpoint that inserts new animals by reading
+`name`, `food`, `sound` from `req.body`. Respond with `{"success": true}`
+if insertion is successful.
+
+    Insert 3 animals and read them back using `/animals`
