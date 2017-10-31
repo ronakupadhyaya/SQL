@@ -1,14 +1,14 @@
 "use strict";
 
-var pool = require('./pool');
 
 // YOUR CODE HERE
 
 // TODO remove
+var pool = require('./pool');
 var queries = [
   `CREATE TABLE IF NOT EXISTS animals (
     name TEXT PRIMARY KEY,
-    favorite_fool TEXT NOT NULL,
+    food TEXT NOT NULL,
     sound TEXT NOT NULL
   )`,
   `INSERT INTO animals VALUES
