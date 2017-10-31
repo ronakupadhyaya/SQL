@@ -5,3 +5,5 @@
 - TODO first model
     - create, update, delete
 - TODO
+
+- TODO mention drop table

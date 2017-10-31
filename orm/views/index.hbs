@@ -1,0 +1,36 @@
+<h1>Guestbook Posts</h1>
+Logged in as {{user.username}} | <a href="/logout">Logout</a>
+
+{{#each posts}}
+  <div class="post">
+    <div class="header">
+      <div class="author">
+        <strong>Author:</strong> {{user.username}}
+      </div>
+      <div class="date">
+        <strong>Posted: </strong> {{formatDate createdAt}}
+      </div>
+    </div>
+    <pre>{{body}}</pre>
+
+    <div class="footer">
+      <a href="/posts/{{id}}" class="btn btn-primary">Edit</a>
+
+      <form method="POST" action="/posts/{{id}}/delete">
+        <button class="btn btn-danger" type="submit">Delete</button>
+      </form>
+    </div>
+  </div>
+{{/each}}
+
+<hr>
+
+<form action="/posts" method="POST">
+  <h2>Create new post</h2>
+  <div class="form-group">
+    <textarea class="form-control" name="post" placeholder="Write a new guestbook post"></textarea>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-success">Post</button>
+  </div>
+</form>
