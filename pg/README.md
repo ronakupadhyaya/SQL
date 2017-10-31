@@ -23,7 +23,7 @@ Just like with `mongoose.connect()` we need to initialize `pg.Pool` with a conne
 string to tell it which database to connect to.
 
 <details><summary>
-**Aside:** Connection pooling
+Aside: Connection pooling
 </summary><p>
 
 `pg.Pool` actually creates multiple connections to the database behind
