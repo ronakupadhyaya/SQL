@@ -208,7 +208,7 @@ from the table `animals`. It should respond with JSON
 
 ## Part 4. Dynamic queries
 
-### SQL Injection Explained
+### ☠ SQL Injection ☠
 
 The queries we've written so far are *static*, meaning they can't change behavior
 based on user input.
@@ -235,7 +235,7 @@ If someone were to set `req.query.firstName` to `"' OR 1 = 1 --"`
 our query would become:
 
 ```
-SELECT * FROM users WHERE firstName = '' OR TRUE = TRUE --'
+SELECT * FROM users WHERE firstName = '' OR 1 = 1 --'
 ```
 
 This query would return all rows instead of just ones matching given `firstName`.
