@@ -101,10 +101,9 @@ Then `result.rows` for the query `SELECT * FROM users` would be:
 So if you wanted to read the last name of the 2nd row you could just
 do `result.rows[1].lastName`.
 
-### Exercise
+### Exercises
 
 Let's use `pg.Pool` to create, populate and read data from a table.
-
 
 1. Export the `pool` variable in `pool.js`
 
