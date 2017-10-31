@@ -112,9 +112,9 @@ Let's use `pg.Pool` to create, populate and read data from a table.
     module.exports = pool;
     ```
 
-1. Edit `query.js` and import `pool` from `pool.js` using `require()`.
+1. Edit `query.js` and `require()` `pool` from `pool.js`
 1. Execute the following SQL queries one after another using promises:
-    1. Create an animals table that contains 3 columns:
+    1. Create an `animals` table that contains 3 columns:
         1. `name`, type `TEXT`
         1. `food`, type `TEXT`
         1. `sound`, type `TEXT`
@@ -132,18 +132,164 @@ Success, you are connected to Postgres
 The animal name is: cow
 ```
 
-## Part 3. Run queries inside express
+## Part 3. Run queries inside Express
 
-TODO
+Say we wanted to write a JSON endpoint that returns users from Postgres.
 
+We've already read data from Postgres using `pool.query()` and
+`result.rows`. We can simply do that in an Express route:
+
+```javascript
+app.get('/users', function(req, res) {
+    pool.query('SELECT * FROM users')
+        .then(function(result) {
+          res.json(result.rows);
+        })
+        .catch(function (err) {
+          res.status(400).json({error: err});
+        });
+});
+```
+
+Now `GET /users` would return our users as a JSON array:
+
+```json
+[
+  {
+    "firstName": "Moose",
+    "lastName": "Paksoy"
+  },
+  {
+    "firstName": "Pam",
+    "lastName": "Needle"
+  },
+  {
+    "firstName": "Prath",
+    "lastName": "Desai"
+  }
+]
+```
 
 ### Exercises
 
-## Part 4. Parameterized queries
+Edit `server.js` and create your own routes to modify the `animals` table.
 
-TODO
+1. `require()` `pool` into `server.js`
+1. Create a `GET /animals` route that returns only the `name` and `sound` of
+each animal in the `animals` table **in increasing name order** as JSON.
 
-[Parameterized query documentation](https://node-postgres.com/features/queries#parameterized-query)
+    <details><summary>
+    Expected output
+    </summary><p>
+
+    ```json
+    [
+        {
+            "name": "cow",
+            "sound": "moo"
+        },
+        {
+            "name": "donkey",
+            "sound": "hee-haw"
+        },
+        {
+            "name": "duck",
+            "sound": "seeds"
+        }
+    ]
+    ```
+
+    </p></details>
+
+1. Create a `POST /delete/donkey` that deletes the animal named `donkey`
+from the table `animals`. It should respond with JSON
+`{ "success": true}` if deletion is successful.
+
+    Use the `GET /animals` route to validate that `donkey` is deleted.
+
+## Part 4. Dynamic queries
+
+### SQL Injection Explained
+
+The queries we've written so far are *static*, meaning they can't change behavior
+based on user input.
+
+Let's say we wanted to change our `GET /users` endpoint to be able to handle
+the request `/users?firstName=moose` and only return rows where `firstName`
+is `moose`. You could be tempted to do this:
+
+```
+// ☠ Don't do this ☠
+app.get('/users', function(req, res) {
+    pool.query(`SELECT * FROM users WHERE firstName = '${req.query.firstName}'`)
+        .then(function(result) {
+          res.json(result.rows);
+        })
+        .catch(function (err) {
+          res.status(400).json({error: err});
+        });
+});
+// ☠ Don't do this ☠
+```
+
+If someone were to set `req.query.firstName` to `"' OR 1 = 1 --"`
+our query would become:
+
+```
+SELECT * FROM users WHERE firstName = '' OR TRUE = TRUE --'
+```
+
+This query would return all rows instead of just ones matching given `firstName`.
+(`--` is how you comment things out in SQL, everything after that is ignored,
+like `//` in JavaScript.)
+
+This attack, generating specially crafted user input to alter query behavior,
+is called [SQL Injection](https://www.w3schools.com/sql/sql_injection.asp).
+It can lead to very [severe vulnerabilities](https://xkcd.com/327/).
+
+### Parameterized queries
+
+The `pg` NPM package offers built-in protection against SQL Injection attacks
+in the form of Parameterized Queries.
+[See documentation for parameterized queries.](https://node-postgres.com/features/queries#parameterized-query)
+
+To use parametrized queries we put placeholders into our queries and then
+pass user provided input in a separate array. `pg` then safely inserts
+user provided input into the query.
+
+So instead of doing this:
+
+```javascript
+// BAD ❌
+pool.query(`SELECT * FROM users WHERE firstName = ${req.query.firstName}`)
+```
+
+We do this:
+
+```javascript
+// Good ✅
+pool.query(`SELECT * FROM users WHERE firstName = $1`, [req.query.firstName])
+```
+
+`$1` is a placeholder that maps to the first item in the array, `$2` maps
+to the second item in the array.
+
+![Parameterized queries visualized](img/param1.png)
+
+Now we can safely implement `GET /users` to take a `firstName` query
+parameter:  
+
+```javascript
+app.get('/users', function(req, res) {
+    pool.query(`SELECT * FROM users WHERE firstName = $1`, [req.query.firstName])
+        .then(function(result) {
+          res.json(result.rows);
+        })
+        .catch(function (err) {
+          res.status(400).json({error: err});
+        });
+});
+```
 
 ### Exercises
 
