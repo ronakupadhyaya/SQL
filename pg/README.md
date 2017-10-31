@@ -294,7 +294,8 @@ app.get('/users', function(req, res) {
 
 ### Exercises
 
-Let's implement some endpoints that read TODO
+Let's implement some endpoints that make queries against Postgres
+using `req.query`, `req.body`, and `req.params`.
 
 1. Update the `GET /animals` route to to take an optional `name` argument
 through `req.query`. If `name` is not specified, return all animals,
@@ -321,7 +322,7 @@ argument through `req.params`.
 
     Use the `/animals` endpoint to verify deletion.
 
-1. Create a `POST /create` endpoint that inserts new animals by reading
+1. Create a `POST /create` endpoint that inserts a new animal by reading
 `name`, `food`, `sound` from `req.body`. Respond with `{"success": true}`
 if insertion is successful.
 
