@@ -223,10 +223,10 @@ column to order the posts when reading them.
 query from the previous step to populate `post.user` using the `belongsTo`
 relationship we set up for `post`.
 
-    ![Missing authors in posts](img/post2.png);
+    ![Missing authors in posts](img/post2.png)
 
     <details><summary>
-    Hint: `JOIN`ing in Sequelize
+    Hint: JOINing in Sequelize
     </summary><p>
 
     We can instruct Sequelize to join against another table when querying by
