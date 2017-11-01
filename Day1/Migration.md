@@ -169,7 +169,7 @@ migrations/sqls/20171025160524-populate-users-up.sql
 ```
 
 And I'll add these commands to the up migration SQL file. I could have done all of this in one command but want to demonstrate
-multiple commands in the migration file.
+multiple commands in the migration file. The file for the up migration is migrations/sqls/20171025160524-populate-users-up.sql.
 
 ```SQL
 INSERT INTO users VALUES (DEFAULT, 'Tom', '123 Broad St.', 'Douglasville', 'GA', 30135, 45);
@@ -208,13 +208,42 @@ The down migration for populate-users is to just truncate the table. As mentione
 TRUNCATE TABLE users;
 ```
 
-deletes all of the records in a table.
+deletes all of the records in a table. The file for the down migration ismigrations/sqls/20171025160524-populate-users-up.sql.
+
+One last note on the ```db-migrate``` command. There an ```-c``` option that specifies the number of migrations
+to run. So
+
+```
+db-migrate down -c 3
+```
+
+would run the first 3 down migrations. This is mostly important because the down migration default is to just run
+1 migration. So
+
+```
+db-migrate down
+```
+
+would only truncate the table and would not delete it. (The second down migration.) If you wanted to run both down
+migrations you would need to run
+
+```
+db-migrate down -c 2
+```
 
 ### Exercises
 
 1. Create and run all of the migration scripts listed above.
 
-2. Create a new migration project and create the up and down migrations necessary to create and populate the tables
+2. Starting with the migration scripts above, write a new migration script to both alter the users table to add a status
+field that is an string and also to create a new table called status_type with the following information:
+
+id | status_name 
+-------- | --------------
+1 | active
+2 | inactive
+
+3. Create a new migration project and create the up and down migrations necessary to create and populate the tables
 you have designed for the PokeBay project.
 
-3. Run the migrations in .... to prepare for the next lesson.
+4. Run the migrations in .... to prepare for the next lesson.
