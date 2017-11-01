@@ -237,7 +237,7 @@ relationship we set up for `post`.
     `include` takes an object in the form of `{model: MODEL TO JOIN AGAINST HERE}`,
     so our query will look like:
 
-    ![Include user in post query](img/post4.png);
+    ![Include user in post query](img/post4.png)
 
     </p></details>
 
