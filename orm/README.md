@@ -4,6 +4,8 @@
 
 - TODO video
 
+---
+
 ## Part 0: Setup
 
 - TODO setup
