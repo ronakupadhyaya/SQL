@@ -99,7 +99,13 @@ the user you registered is present.
     1. Restart your server, go to `/login` and login using the user you
     created earlier. You should see:
 
+        <details><summary>
+        Screenshot
+        </summary><p>
+
         ![Successful login screenshot](img/login1.png)
+
+        </p></details>
 
     1. TODO make sure `/` loads out of the box
 
