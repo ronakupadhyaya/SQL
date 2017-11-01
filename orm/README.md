@@ -4,26 +4,49 @@
 
 - TODO video
 
+In previous exercises, you've been writing your own SQL queries to communicate
+to Postgres. This is a manual and tedious process. Sequelize is a tool
+that makes interacting with relational databases like Postgres easier by
+generating SQL for you.
+
+In this exercise, you will read and write data to Postgres using Sequelize.
+And you will be reading Sequelize documentation to learn how to use it.
+
+Navigating and reading documentation is a learned skill just like coding.
+It will be hard at first but you will get better with practice. Most
+importantly, as you become confortable reading documentation you will gain the
+ability to teach yourself new tools and technologies, which is awesome!
+
 ---
 
 ## Part 0: Setup
 
-TODO overview, guestbook app
+You're going to build a Guestbook app with user logins and the ability to
+post, edit and delete Guestbook posts.
 
-- TODO setup
-    - TODO config.js username?
+### [Read: Sequelize getting started](http://docs.sequelizejs.com/manual/installation/getting-started.html)
 
 ### Exercises
 
-1. TODO
-1. Create `models.js`
-1. Run `node models.js`
+1. Create a new database in Postgres called `guestbook`
+1. Open `models.js` in your browser. Check it out, you have everything you
+need to connect to your local Postgres!
+
+    Run `node models.js`, you should see:
+
+    ```
+    Connection has been established successfully.
+    ```
 
 ---
 
 ## Part 1: Model definitions
 
-TODO
+TODO why we need models
+
+TODO explain what `sync.js` does
+
+### [Read: Sequelize Model Definitions](http://docs.sequelizejs.com/manual/tutorial/models-definition.html)
 
 ### Exercises
 
@@ -72,6 +95,10 @@ that your table exists and it contains the right columns
 
 ## Part 2: Creating and finding users
 
+TODO
+
+### [Read: Sequelize Model Usage](http://docs.sequelizejs.com/manual/tutorial/models-usage.html)
+
 ### Exercises
 
 1. Edit `auth.js` and implement the `POST /register` endpoint to create a
@@ -117,6 +144,8 @@ the user you registered is present.
 ## Part 3: Defining Posts
 
 TODO
+
+### [Read: Sequelize Associations](http://docs.sequelizejs.com/manual/tutorial/associations.html)
 
 ### Exercises
 
@@ -169,6 +198,8 @@ it contains `userId` column.
 ## Part 4: Creating, updating, deleting Posts
 
 TODO
+
+### [Read: Sequelize Querying](http://docs.sequelizejs.com/manual/tutorial/querying.html)
 
 ### Exercises
 
