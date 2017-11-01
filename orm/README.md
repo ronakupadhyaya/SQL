@@ -138,7 +138,7 @@ Verify that the `posts` table has been created in Postgres and that
 it contains `userId` column.
 
     <details><summary>
-    Exprected Post schema
+    Expected Post schema
     </summary><p>
 
     ```
@@ -167,3 +167,6 @@ TODO
 ### Exercises
 
 TODO
+
+1. Edit `routes.js` and implement the `POST /posts` route. This route should
+create a new post using `req.body.contents`

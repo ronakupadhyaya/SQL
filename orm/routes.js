@@ -29,8 +29,9 @@ router.get('/', function(req, res, next) {
     });
 });
 
+// Create a new Post
 router.post('/posts', function(req, res, next) {
-  Post.create({ userId: req.user.id, body: req.body.post })
+  Post.create({ userId: req.user.id, message: req.body.message })
     .then(function(result) {
       res.redirect('/');
     })
@@ -60,7 +61,7 @@ router.get('/posts/:id', function(req, res, next) {
 });
 
 router.post('/posts/:id', function(req, res, next) {
-  Post.update({body: req.body.post},
+  Post.update({message: req.body.message},
     {where: {id: req.params.id}})
     .then(function(result) {
       res.redirect('/');

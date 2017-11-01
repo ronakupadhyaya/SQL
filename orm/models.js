@@ -28,7 +28,7 @@ var User = sequelize.define('user', {
 });
 
 var Post = sequelize.define('post', {
-  body: {
+  message: {
     type: Sequelize.STRING,
     allowNull: false,
   }
