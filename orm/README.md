@@ -140,7 +140,7 @@ it contains `userId` column.
     <details><summary>
     Exprected Post schema
     </summary><p>
-    
+
     ```
         Table "public.posts"
     Column   |           Type           |                     Modifiers
@@ -160,7 +160,7 @@ it contains `userId` column.
 
 ---
 
-## Part 3: Creating, updating, deleting Posts
+## Part 4: Creating, updating, deleting Posts
 
 TODO
 
