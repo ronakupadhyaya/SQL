@@ -168,5 +168,102 @@ TODO
 
 TODO
 
-1. Edit `routes.js` and implement the `POST /posts` route. This route should
-create a new post using `req.body.contents`
+1. Edit `routes.js` and implement the `POST /posts` route. Create a new post
+with a `message` and `userId`. You can read `message` from `req.body` and
+`userId` from `req.user`.
+
+    You will need to import your `Post` model from `models.js`.
+
+    <details><summary>
+    Hint
+    </summary><p>
+
+    ![Creating a post](img/post5.png)
+
+    </p></details>
+
+    Verify that your route is going by visiting `localhost:3000/` and
+    using the form at the bottom of the page to create a Post.
+    Use `pgweb` or `psql` to verify that the new post you created
+    exists in the `posts` table with both `message` and `userId` populated.
+
+1. Edit the `GET /` route and change it to read all posts from the database
+**in reverse chronological order.** Sequelize models have a builtin
+`createdAt` column that contains the time when a row was created, use this
+column to order the posts when reading them.
+
+    The `index.hbs` expects the variable `posts` to contain an array post
+    objects.
+
+    ```javascript
+    res.render('index', {
+        posts: ARRAY OF POSTS HERE
+    });
+    ```
+
+    Create a couple posts, and verify that they are loaded in reverse
+    chronological order.
+
+    <details><summary>
+    Hint: Ordering in Sequelize
+    </summary><p>
+
+    You can pass Sequelize queries an object with the key `order` to
+    change the order of results coming back from the database.
+    `order` takes a 2-dimensional array, where each sub array contains
+    a column name and a sort direction.
+
+    So we can do this:
+
+    ![Ordering posts](img/post3.png)
+
+    </p></details>
+
+1. Note that the `post.user` is not automatically populated. Update your
+query from the previous step to populate `post.user` using the `belongsTo`
+relationship we set up for `post`.
+
+    ![Missing authors in posts](img/post2.png);
+
+    <details><summary>
+    Hint: `JOIN`ing in Sequelize
+    </summary><p>
+
+    We can instruct Sequelize to join against another table when querying by
+    setting the `include` key in the query object. Afterwards `post.user` will
+    contain all the information about the user who wrote the post. This behaves
+    like `.populate()` in Mongoose.
+
+    `include` takes an object in the form of `{model: MODEL TO JOIN AGAINST HERE}`,
+    so our query will look like:
+
+    ![Include user in post query](img/post4.png);
+
+    </p></details>
+
+    Verify that your query works by visiting `localhost:3000/` and
+    checking that usernames are displayed with posts.
+1. Implement the `POST /posts/:id/delete` route. Find a post by id and delete
+it from the database then redirect back to `/`. You can read the id
+of the post that should be deleted from `req.params.id`.
+
+    Verify your code by clicking the `Delete` button next to one of the posts
+    page should refresh and the post should disappear.
+
+    <details><summary>
+    Deleting stuff with Sequelize
+    </summary><p>
+
+    You can delete rows with Sequelize using `.destroy`. Just like `DELETE FROM`
+    in SQL, `.destroy()` will delete everything by default so we must provide
+    a `WHERE` clause to specify which row or rows to delete:
+
+    ```javascript
+    Model.destroy({ where: { COULMN NAME HERE: COLUMN VALUE HERE } })
+    ```
+
+    So our destroy query will look like:
+
+    ![Destroy post by id](img/postdestroy.png)
+
+    </p></details>

@@ -31,7 +31,9 @@ router.get('/', function(req, res, next) {
 
 // Create a new Post
 router.post('/posts', function(req, res, next) {
+
   Post.create({ userId: req.user.id, message: req.body.message })
+
     .then(function(result) {
       res.redirect('/');
     })
@@ -41,9 +43,11 @@ router.post('/posts', function(req, res, next) {
 });
 
 router.get('/posts/:id', function(req, res, next) {
+
   Post.findById(req.params.id, {
     include: {model: User}
   })
+
     .then(function(post) {
       if (! post) {
         var err = new Error(`Post with id ${req.params.id}`);
@@ -61,8 +65,10 @@ router.get('/posts/:id', function(req, res, next) {
 });
 
 router.post('/posts/:id', function(req, res, next) {
+
   Post.update({message: req.body.message},
     {where: {id: req.params.id}})
+
     .then(function(result) {
       res.redirect('/');
     })
@@ -72,7 +78,9 @@ router.post('/posts/:id', function(req, res, next) {
 });
 
 router.post('/posts/:id/delete', function(req, res, next) {
+
   Post.destroy({ where: {id: req.params.id }})
+
     .then(function(result) {
       res.redirect('/');
     })
