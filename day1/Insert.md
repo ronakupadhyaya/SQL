@@ -26,7 +26,7 @@ INSERT INTO users
 	VALUES (21, 'Yogi', 59, '14 Picnic Basket Way', 'Jellystone Park', 'WY', 82190);
 ```
 
-![Insert 11](./insert11.png)
+![Insert 11](img/insert11.png)
 
 We've inserted one new record into the table. You can also insert multiple new records. For example:
 
@@ -37,7 +37,7 @@ INSERT INTO users
 		(23, 'Willie Mae', 8, '123 Broad St.', 'Douglasville', 'GA', 30135);
 ```
 
-![Insert 1](./insert1.png)
+![Insert 1](img/insert1.png)
 
 There is one thing to note. While I've listed the column names in the command, this is optional. It is only necessary if
 you wish to rearrange the values in the command or insert a subset of the fields.
@@ -50,7 +50,7 @@ INSERT INTO users
 	VALUES (24, 'Frank')
 ```
 
-![Insert 12](./insert12.png)
+![Insert 12](img/insert12.png)
 
 Notice that the fields that we didn't specify are filled in with the default value which is NULL. And
 one last example.
@@ -60,7 +60,7 @@ INSERT INTO users
 	VALUES (DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
 ```
 
-![Insert 2](./insert2.png)
+![Insert 2](img/insert2.png)
 
 This didn't work since both the id and name field are required to not be NULL.
 
@@ -90,7 +90,7 @@ UPDATE users
 	WHERE id = 24;
 ```
 
-![Insert 4](./insert4.png)
+![Insert 4](img/insert4.png)
 
 You have to be very careful with the ```UPDATE``` command as it will set the value for **EVERY** record
 in the table if you don't specify a ```WHERE``` clause. I'm going to create a new column in our users table.
@@ -107,7 +107,7 @@ UPDATE users
 	SET status='active';
 ```
 
-![Insert 5](./insert5.png)
+![Insert 5](img/insert5.png)
 
 I typically make a habit of testing my ```WHERE``` clause with a ```SELECT``` command prior to running an ```UPDATE```
 command. Of course, that assumes that I'm doing this by hand, but that's not uncommon in the development cycle.
@@ -120,7 +120,7 @@ UPDATE users
 	WHERE city = 'Colorado Srpings';
 ```
 
-![Insert 6](./insert6.png)
+![Insert 6](img/insert6.png)
 
 One last example
 
@@ -130,7 +130,7 @@ UPDATE users
 	WHERE age < 18 or age > 65;
 ```
 
-![Insert 13](./insert13.png)
+![Insert 13](img/insert13.png)
 
 ### Exercises
 
@@ -139,7 +139,7 @@ UPDATE users
 2. Write and execute a command that updates the status of all users under the age of 18 to 'young'. Your table should look
 like this after executing the command:
 
-![Insert 7](./insert7.png)
+![Insert 7](img/insert7.png)
 
 <details><summary>
 	Solution
@@ -157,7 +157,7 @@ UPDATE users
 Another option in the ```WHERE``` clause is ```WHERE field IN ( value1, value2, ... )``` which looks for all records that
 have one of the listed values in the specified field. Your table should look like this after executing the command:
 
-![Insert 8](./insert8.png)
+![Insert 8](img/insert8.png)
 
 <details><summary>
 	Solution
@@ -174,7 +174,7 @@ UPDATE users
 4. Write and execute a command that changes the name of all 'Karen's to 'Deborah'. Your table should look like this after
 executing the command:
 
-![Insert 14](./insert14.png)
+![Insert 14](img/insert14.png)
 
 <details><summary>
 	Solution
@@ -191,7 +191,7 @@ UPDATE users
 5. Write and execute a command that increases all ages by 1. (```SET age = age + 1```) Your table should look like this
 after executing the command:
 
-![Insert 15](./insert15.png)
+![Insert 15](img/insert15.png)
 
 <details><summary>
 	Solution
@@ -227,7 +227,7 @@ DELETE FROM users
 	WHERE age IS NULL;
 ```
 
-![Insert 9](./insert9.png)
+![Insert 9](img/insert9.png)
 
 You'll notice that Robert and Isaac are now gone and there aren't any records with NULL ages.
 
@@ -236,7 +236,7 @@ You'll notice that Robert and Isaac are now gone and there aren't any records wi
 1. Write and execute a command to remove all records where the age is either NULL or under 18. Your resulting
 table should look like this:
 
-![Insert 10](./insert10.png)
+![Insert 10](img/insert10.png)
 
 <details><summary>
 	Solution

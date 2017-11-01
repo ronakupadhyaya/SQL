@@ -48,12 +48,12 @@ INSERT INTO users
 
 Here's a quick example:
 
-![Migrate 6](./migrate6.png)
+![Migrate 6](img/migrate6.png)
 
 One thing to note is that if you delete a record, ```SERIAL``` will not reuse that integer so there's no
 problem with duplicate keys.
 
-![Migrate 7](./migrate7.png)
+![Migrate 7](img/migrate7.png)
 
 ## Setup
 
@@ -130,11 +130,11 @@ This will go into the file migrations/sqls/20171025160224-add-users-up.sql. And 
 db-migrate up
 ```
 
-![Migrate 1](./migrate1.png)
+![Migrate 1](img/migrate1.png)
 
 And in psql we can see that the table has been created appropriately.
 
-![Migrate 2](./migrate2.png)
+![Migrate 2](img/migrate2.png)
 
 You can also see that a migrations table has been created. That's a table that is created automatically by
 the db-migrate tool and keeps track of the migrations that have been performed.
@@ -146,11 +146,11 @@ the users table, all we need to do is drop the table. This will go into the file
 DROP TABLE users;
 ```
 
-![Migrate 3](./migrate3.png)
+![Migrate 3](img/migrate3.png)
 
 And you can see that the users table has been dropped.
 
-![Migrate 4](./migrate4.png)
+![Migrate 4](img/migrate4.png)
 
 OK, I'm going to go ahead and run the up migration once again because we will want the users table. I'm
 not going to show it because you already know that that looks like. But I am going to add a new migration file
@@ -200,7 +200,7 @@ the necessary commands to bring the database to the intended state once the migr
 ```db-migrate up``` command said to create the users table, that wasn't necessary since it was already created,
 and the db-migrate command skipped that part.
 
-![Migrate 5](./migrate5.png)
+![Migrate 5](img/migrate5.png)
 
 The down migration for populate-users is to just truncate the table. As mentioned in an earlier lesson,
 

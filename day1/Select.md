@@ -4,7 +4,7 @@
 
 SELECT is the basic tool to read data from a SQL database. The full syntax of SELECT is:
 
-![Full SELECT Syntax](./select_syntax.png)
+![Full SELECT Syntax](img/select_syntax.png)
 
 Fortunately, we'll be starting with a subset of this. In particular, we're going to look at the
 following clauses of the SELECT statement:
@@ -24,7 +24,7 @@ have a testdb database either drop it or rename the database in the script.) Fro
 Using pgweb, we can see all of the information in the table. Make sure to click on the table name and then
 rows in pgweb.
 
-![Table contents](./table_info.png)
+![Table contents](img/table_info.png)
 
 But we really need to learn how to access this data programmatically.
 
@@ -42,7 +42,7 @@ is a table. Let's start with a basic query to get the information from the table
 SELECT * FROM users;
 ```
 
-![Select 1](./select1.png)
+![Select 1](img/select1.png)
 
 <details><summary>
 	Displaying NULL as NULL
@@ -82,7 +82,7 @@ Instead of '\*', we could have listed the fields that we are interested in. And 
 SELECT age, name FROM users;
 ```
 
-![Select 2](./select2.png)
+![Select 2](img/select2.png)
 
 You'll notice that you can list multiple fields with a comma separator.
 
@@ -102,7 +102,7 @@ we'd do this:
 SELECT name, age FROM users LIMIT 5;
 ```
 
-![Select 5](./select5.png)
+![Select 5](img/select5.png)
 
 One problem with this is that there's no discrimination on which records we get. This query just returned the \"first\"
 5 records, but it was up to the server to determine which records those were. We'll see ways to help that in a minute.
@@ -129,7 +129,7 @@ As we said before, the records will come out in a random order from the SELECT s
 SELECT age FROM users ORDER BY age;
 ```
 
-![Select 3](./select3.png)
+![Select 3](img/select3.png)
 
 This will sort the output by the specified field. You can also sort in descending order using this command.
 
@@ -147,7 +147,7 @@ number or a string. And you can specify where you want the NULLs to appear in a 
 SELECT age FROM users ORDER BY age NULLS FIRST LIMIT 5;
 ```
 
-![Select 4](./select4.png)
+![Select 4](img/select4.png)
 
 We can also have more than one field in the order by clause. For instance:
 
@@ -155,7 +155,7 @@ We can also have more than one field in the order by clause. For instance:
 SELECT city, state FROM users ORDER BY state desc, city;
 ```
 
-![Select 27](./select27.png)
+![Select 27](img/select27.png)
 
 Note that he various clauses must be in the proper order. See the big syntax diagram at the beginning for that order.
 We can also put the NULLs last using ```NULLS LAST``` but that is also the default for an ascending list.
@@ -164,15 +164,15 @@ We can also put the NULLs last using ```NULLS LAST``` but that is also the defau
 
 1. Write and execute a query that displays the name and age of each person sorted by age, then name. Your output should look like this:
 
-![Select 6](./select6.png)
+![Select 6](img/select6.png)
 
 2. Write and execute a query that displays the name and age of the 5 youngest people in the table. Your output should look like this:
 
-![Select 7](./select7.png)
+![Select 7](img/select7.png)
 
 3. Write and execute a query that displays the name and age of the 6 youngest people in the table. Your output should look like this:
 
-![Select 8](./select8.png)
+![Select 8](img/select8.png)
 
 4. Did your last query correctly reflect all of the people in the list that should have been displayed? There are 3 people that are 28.
 
@@ -191,7 +191,7 @@ But there's another way to constrain the data. Let's look at an example.
 SELECT name, age FROM users WHERE age < 30 order by age;
 ```
 
-![Select 9](./select9.png)
+![Select 9](img/select9.png)
 
 The new part, of course, is the WHERE clause. This allows us to filter the records on particular constraints. In this case
 we read all records for people under the age of 30. You can also filter for strings. In SQL we use single quotes (\'CA\')
@@ -203,7 +203,7 @@ languages use.
 SELECT name, age, state FROM users WHERE state = 'CA';
 ```
 
-![Select 10](./select10.png)
+![Select 10](img/select10.png)
 
 This query reads all records whose state field is equal to 'CA'. And of course we can combine constraints in the usual way.
 I'm going to start writing longer queries on multiple lines to make them easier to read.
@@ -220,7 +220,7 @@ WHERE
 	AND state = 'CA';
 ```
 
-![Select 11](./select11.png)
+![Select 11](img/select11.png)
 
 You can also use ```NOT``` to change the constraint.
 
@@ -236,7 +236,7 @@ WHERE
 	AND NOT state = 'CA';
 ```
 
-![Select 12](./select12.png)
+![Select 12](img/select12.png)
 
 There are 3 other types of boolean expressions that you need to know about for the WHERE clause. The first
 is ```LIKE``` which permits us to create wild card expressions. The \'%\' is the wild card character. This query
@@ -253,7 +253,7 @@ WHERE
 	state LIKE 'C%';
 ```
 
-![Select 13](./select13.png)
+![Select 13](img/select13.png)
 
 Note that while the SQL language isn't case sensitive, the data in the fields **IS** case sensitive so this query
 has a different result.
@@ -269,7 +269,7 @@ WHERE
 	state LIKE 'c%';
 ```
 
-![Select 14](./select14.png)
+![Select 14](img/select14.png)
 
 <details><summary>
 	ILIKE in PostgreSQL
@@ -293,7 +293,7 @@ WHERE
 	age BETWEEN 20 AND 45;
 ```
 
-![Select 15](./select15.png)
+![Select 15](img/select15.png)
 
 And last is an expression that checks for NULLs.
 
@@ -308,7 +308,7 @@ WHERE
 	age IS NULL;
 ```
 
-![Select 16](./select16.png)
+![Select 16](img/select16.png)
 
 Or check for the absence of NULLs.
 
@@ -323,7 +323,7 @@ WHERE
 	age IS NOT NULL;
 ```
 
-![Select 17](./select17.png)
+![Select 17](img/select17.png)
 
 Once again notice that NULL is really a different beast than it is in most programming languages. See the output of this query:
 
@@ -338,7 +338,7 @@ WHERE
 	age = NULL;
 ```
 
-![Select 28](./select28.png)
+![Select 28](img/select28.png)
 
 You just can't compare NULL to data fields in the normal programming language way.
 
@@ -347,7 +347,7 @@ You just can't compare NULL to data fields in the normal programming language wa
 1. Write and execute a query that will find all records where the age of the person is between 20 and 30 and the person
 lives in a city that starts with 'S'. Your output should look like this:
 
-![Select 18](./select18.png)
+![Select 18](img/select18.png)
 
 <details><summary>
 	Solution
@@ -368,7 +368,7 @@ WHERE
 2. Write and execute a query that will find the name and state of all records that have a NULL age. Order
 your output by state. Your output should look like this:
 
-![Select 19](./select19.png)
+![Select 19](img/select19.png)
 
 <details><summary>
 	Solution
@@ -391,7 +391,7 @@ ORDER BY
 3. Write and execute a query that will find all records where the person lives in Colorado (CO) and whose name isn't Kevin.
 Your output should look like this:
 
-![Select 20](./select20.png)
+![Select 20](img/select20.png)
 
 <details><summary>
 	Solution
@@ -442,7 +442,7 @@ ORDER BY
 	state;
 ```
 
-![Select 21](./select21.png)
+![Select 21](img/select21.png)
 
 This query took all of the records and grouped them by state. For each of the records in each state, it increased
 the count by one (the ```COUNT(1)``` part), thus giving a count of the number of records in each state. (Note: ```COUNT(*)```
@@ -450,7 +450,7 @@ is used interchangeably with ```COUNT(1)```.) I could use state in this query be
 was only one state associated with each count. Let's take a look at what's going on behind the scenes. Consider this
 picture of the data.
 
-![Select 29](./select29.png)
+![Select 29](img/select29.png)
 
 Each of the records enclosed in a block is effectively now a single record. Anything that has multiple values (id,
 name, age, address, city, and zipcode) basically gets tossed in terms of what can be fetched in a SELECT statement. But we can do
@@ -475,11 +475,11 @@ ORDER BY
 	city;
 ```
 
-![Select 30](./select30.png)
+![Select 30](img/select30.png)
 
 And once again, let's look at the data.
 
-![Select 31](./select31.png)
+![Select 31](img/select31.png)
 
 This time we grouped by both city and state. So the data is partitioned accordingly.
 And again we can get only that information that is associated with **ALL** of each group. You just can't pull a single record
@@ -511,7 +511,7 @@ ORDER BY
 	state;
 ```
 
-![Select 22](./select22.png)
+![Select 22](img/select22.png)
 
 This query lists the max age of the people in each state. Notice that the max age for the person in NY is 'NULL'. Why
 is that?
@@ -537,7 +537,7 @@ ORDER BY
 	state;
 ```
 
-![Select 32](./select32.png)
+![Select 32](img/select32.png)
 
 When the ```GROUP BY``` has multiple items, name and state in this case, the groups are created based on all possible
 divisions of those items. There are two Karen's but they are not grouped together since they are in different states.
@@ -549,7 +549,7 @@ Other functions (like COUNT() and MAX()) that you can use are MIN(), SUM(), and 
 1. Write and execute a query that displays the average age of the people in each state. (What are you going to
 do about those NULLs?) Your output should look like this:
 
-![Select 23](./select23.png)
+![Select 23](img/select23.png)
 
 <details><summary>
 	Solution
@@ -573,7 +573,7 @@ ORDER BY
 
 2. Write and execute a query that displays the average age of the people in each city. Make sure to ignore any records that have null in the age. (Hint: GROUP BY both city and state.) Your output should look like this:
 
-![Select 24](./select24.png)
+![Select 24](img/select24.png)
 
 <details><summary>
 	Solution
@@ -610,7 +610,7 @@ FROM
 	users;
 ```
 
-![Select 25](./select25.png)
+![Select 25](img/select25.png)
 
 The ```AS``` is optional. One more example:
 
@@ -628,7 +628,7 @@ ORDER BY
 	state;
 ```
 
-![Select 26](./select26.png)
+![Select 26](img/select26.png)
 
 You can use double quotes when you wish to capitalize something in the alias or have a space in the column name.
 Also you see that you can also do calculations in the SELECT statement.
