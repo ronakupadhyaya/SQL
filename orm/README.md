@@ -120,7 +120,7 @@ TODO
 
 ### Exercises
 
-1. Edit `models.js` and define a new `Post` model
+1. Edit `models.js` and define a new `Post` model TODO flesh out
     1. TODO schema
 1. After you've defined `Post`, create parent-child relationship between
 `User` and `Post`, where `Post` is a child of `User`.
