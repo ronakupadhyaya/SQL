@@ -8,6 +8,8 @@
 
 ## Part 0: Setup
 
+TODO overview, guestbook app
+
 - TODO setup
     - TODO config.js username?
 
@@ -76,7 +78,8 @@ that your table exists and it contains the right columns
 a new user `req.body.username` and `req.body.password`. If the registration
 is successful, redirect to `/login`.
 
-    You'll need to `require()` the user model from `models.js` into `auth.js`.
+    Export the `User` model from `models.js` and `require()` it into
+    `auth.js`.
 
     TODO docs
 
@@ -117,7 +120,43 @@ TODO
 
 ### Exercises
 
-TODO
+1. Edit `models.js` and define a new `Post` model
+    1. TODO schema
+1. After you've defined `Post`, create parent-child relationship between
+`User` and `Post`, where `Post` is a child of `User`.
+
+    You can use `.belongsTo()` to set up a parent-child relationship between
+    User and Post.
+
+    ![Setting up a relationship between Post and User](img/post1.png)
+
+    This will create a `userId` column on the `Post` model which
+    we can later use to find the `User` who wrote each given post.
+    Sort of like `.populate()` in `mongoose`.
+1. Run `node sync.js` again. This will delete and re-create all your tables.
+Verify that the `posts` table has been created in Postgres and that
+it contains `userId` column.
+
+    <details><summary>
+    Exprected Post schema
+    </summary><p>
+    
+    ```
+        Table "public.posts"
+    Column   |           Type           |                     Modifiers
+    -----------+--------------------------+----------------------------------------------------
+    id        | integer                  | not null default nextval('posts_id_seq'::regclass)
+    body      | character varying(255)   | not null
+    createdAt | timestamp with time zone | not null
+    updatedAt | timestamp with time zone | not null
+    userId    | integer                  |
+    Indexes:
+        "posts_pkey" PRIMARY KEY, btree (id)
+    Foreign-key constraints:
+        "posts_userId_fkey" FOREIGN KEY ("userId") REFERENCES users(id) ON UPDATE CASCADE ON DELETE SET NULL
+    ```
+
+    </p></details>
 
 ---
 
