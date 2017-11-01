@@ -10,86 +10,39 @@ router.use(function(req, res, next) {
   }
 });
 
-// TODO remove
-var { User, Post } = require('./models');
+
+// Import models here
+// YOUR CODE HERE
 
 router.get('/', function(req, res, next) {
-  Post.findAll({
-    include: {model: User},
-    order: [['createdAt', 'DESC']]
-  })
-    .then(function(posts) {
-      res.render('index', {
-        posts,
-        user: req.user
-      });
-    })
-    .catch(function(error) {
-      next(error);
-    });
+  // Display all posts in reverse chronological order
+  // YOUR CODE HERE
+  res.render('index', {
+    user: req.user
+  });
 });
 
-// Create a new Post
 router.post('/posts', function(req, res, next) {
-
-  Post.create({ userId: req.user.id, message: req.body.message })
-
-    .then(function(result) {
-      res.redirect('/');
-    })
-    .catch(function(error) {
-      next(error);
-    });
+  // Create a new post
+  // req.body.message contains the message user typed in
+  // YOUR CODE HERE
 });
 
 router.get('/posts/:id', function(req, res, next) {
-
-  Post.findById(req.params.id, {
-    include: {model: User}
-  })
-
-    .then(function(post) {
-      if (! post) {
-        var err = new Error(`Post with id ${req.params.id}`);
-        err.status = 404;
-        next(err);
-      } else {
-        res.render('editPost', {
-          post: post
-        });
-      }
-    })
-    .catch(function(error) {
-      next(error);
-    });
+  // Display a given post by id
+  // YOUR CODE HERE
 });
 
 router.post('/posts/:id', function(req, res, next) {
-
-  Post.update({message: req.body.message},
-    {where: {id: req.params.id}})
-
-    .then(function(result) {
-      res.redirect('/');
-    })
-    .catch(function(error) {
-      next(error);
-    });
+  // Update the message column of the given post by id
+  // YOUR CODE HERE
+  res.render('editPost');
 });
 
 router.post('/posts/:id/delete', function(req, res, next) {
-
-  Post.destroy({ where: {id: req.params.id }})
-
-    .then(function(result) {
-      res.redirect('/');
-    })
-    .catch(function(error) {
-      next(error);
-    });
+  // Delete a given post by id
+  // YOUR CODE HERE
 });
-
-// TODO remove
 
 
 module.exports = router;

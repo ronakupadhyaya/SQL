@@ -120,9 +120,6 @@ the user you registered is present.
 
         See this
         [example of how we implement `LocalStrategy` with `mongoose`](https://github.com/horizons-school-of-technology/express-template/blob/master/app.js#L67), you'll need to adapt it to use [Sequelize models](http://docs.sequelizejs.com/manual/tutorial/models-usage.html)
-    1. Implement `serializeUser()`, call `done()` with `null` as the first
-    argument and the user id as the second argument. All `Sequelize` models
-    have an `id` (in `mongoose` this field is called `_id`).
     1. Implement `deserializeUser()`, find a user with `User.findById()`
     and call `done()` with `null` as the first argument and the user as
     the second argument.

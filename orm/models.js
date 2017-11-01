@@ -14,31 +14,12 @@ sequelize
     console.error('Unable to connect to the database:', err);
   });
 
-// TODO remove solution
-var User = sequelize.define('user', {
-  username: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    unique: true
-  },
-  password: {
-    type: Sequelize.STRING,
-    allowNull: false
-  }
-});
-
-var Post = sequelize.define('post', {
-  message: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  }
-});
-
-Post.belongsTo(User);
+// Define models here
+// YOUR CODE HERE
 
 module.exports = {
-  User,
-  Post,
+  // Export models here
+  // YOUR CODE HERE
   sequelize,
   Sequelize
 };
