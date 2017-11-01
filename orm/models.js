@@ -38,5 +38,7 @@ Post.belongsTo(User);
 
 module.exports = {
   User,
-  Post
+  Post,
+  sequelize,
+  Sequelize
 };
