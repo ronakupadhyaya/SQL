@@ -50,15 +50,24 @@ TODO explain what `sync.js` does
 
 ### Exercises
 
-TODO
+1. Edit `models.js` and create a `User` model with the following columns:
 
-1. Edit `models.js` and create a `User` model
-    1. TODO define schema
-1. Run `node sync.js`, connect to your database via pgweb or psql and check
+    1. `username`, type: `Sequelize.STRING`, not nullable (i.e. required), unique
+    1. `password`, type: `Sequelize.STRING`, not nullable (i.e. required)
+
+    <details><summary>
+    Hint: user schema definition
+    </summary><p>
+
+    ![User schema definition](img/user1.png)
+
+    </p></details>
+
+1. Run `node sync.js` then connect to your database via pgweb or psql and check
 that your table exists and it contains the right columns
 
     <details><summary>
-    Checking tables in `psql`
+    Checking tables in psql
     </summary><p>
 
     When using the Postgres command line utility `psql` you can list
@@ -108,8 +117,6 @@ is successful, redirect to `/login`.
     Export the `User` model from `models.js` and `require()` it into
     `auth.js`.
 
-    TODO docs
-
 1. Run `node app.js` and go to `localhost:3000/register` and register a user.
 Check the contents of the `users` table with `psql` or `pgweb` to verify that
 the user you registered is present.
@@ -134,8 +141,6 @@ the user you registered is present.
 
         </p></details>
 
-    1. TODO make sure `/` loads out of the box
-
 ---
 
 ## Part 3: Defining Posts
@@ -146,8 +151,11 @@ TODO
 
 ### Exercises
 
-1. Edit `models.js` and define a new `Post` model TODO flesh out
-    1. TODO schema
+1. Edit `models.js` and define a new `Post` model that contains the following
+column:
+
+    1. `message`, type: `Sequelize.STRING`, not nullable (i.e. required)
+
 1. After you've defined `Post`, create parent-child relationship between
 `User` and `Post`, where `Post` is a child of `User`.
 
@@ -199,8 +207,6 @@ TODO
 ### [Read: Sequelize Querying](http://docs.sequelizejs.com/manual/tutorial/querying.html)
 
 ### Exercises
-
-TODO
 
 1. Edit `routes.js` and implement the `POST /posts` route. Create a new post
 with a `message` and `userId`. You can read `message` from `req.body` and
