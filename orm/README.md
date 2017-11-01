@@ -128,11 +128,17 @@ TODO
     You can use `.belongsTo()` to set up a parent-child relationship between
     User and Post.
 
-    ![Setting up a relationship between Post and User](img/post1.png)
+    <details><summary>
+    Hint: Sequelize and belongsTo
+    </summary><p>
 
     This will create a `userId` column on the `Post` model which
     we can later use to find the `User` who wrote each given post.
     Sort of like `.populate()` in `mongoose`.
+
+    ![Setting up a relationship between Post and User](img/post1.png)
+
+    </p></details>
 1. Run `node sync.js` again. This will delete and re-create all your tables.
 Verify that the `posts` table has been created in Postgres and that
 it contains `userId` column.
