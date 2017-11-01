@@ -225,11 +225,14 @@ column to order the posts when reading them.
 
     </p></details>
 
-1. Note that the `post.user` is not automatically populated. Update your
-query from the previous step to populate `post.user` using the `belongsTo`
-relationship we set up for `post`.
+1. Note when you visit `localhost:3000/` that the `post.user` is not
+automatically populated. Update your query from the previous step to populate
+`post.user` using the `belongsTo` relationship we set up for `post`.
 
     ![Missing authors in posts](img/post2.png)
+
+    Verify that your query works by visiting `localhost:3000/` and
+    checking that usernames are displayed with posts.
 
     <details><summary>
     Hint: JOINing in Sequelize
@@ -247,8 +250,6 @@ relationship we set up for `post`.
 
     </p></details>
 
-    Verify that your query works by visiting `localhost:3000/` and
-    checking that usernames are displayed with posts.
 1. Implement the `POST /posts/:id/delete` route. Find a post by id and delete
 it from the database then redirect back to `/`. You can read the id
 of the post that should be deleted from `req.params.id`.
