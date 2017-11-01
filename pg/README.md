@@ -336,3 +336,7 @@ argument through `req.params`.
 if insertion is successful.
 
     Insert 3 animals and read them back using `/animals`
+    
+## Done!
+
+Congrats, you're done with this module!

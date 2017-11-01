@@ -274,3 +274,57 @@ of the post that should be deleted from `req.params.id`.
     ![Destroy post by id](img/postdestroy.png)
 
     </p></details>
+
+1. Implement the `GET /post/:id` route. This route should find a post
+by id using `req.params.id`, populate `post.user` by using `include`,
+and render `editPost`:
+
+    ```
+    res.render('editPost', {
+        post: POST FROM DATABASE HERE
+    });
+    ```
+
+    Verify your endpoint by clicking the `Edit` button next to one of the posts
+    you should see the author username, post message and date on the edit page.
+    Don't worry if `Save` button doesn't work yet, we're going to implement
+    it now.
+
+    <details><summary>
+    Hint: Using Post.findById
+    </summary><p>
+
+    ![Using post.findById](postfindbyid.png)
+
+    </p></details>
+
+1. Implement the `POST /post/:id` route. This route should find a post by id
+and update the `message` column using `req.body.message`, then redirect to
+`/`.
+
+    You can update rows with Sequelize using `.update()`. Just like `UPDATE`
+    in SQL, `.update()` will update everything by default so we must provide
+    a `WHERE` clause to specify which row or rows to delete:
+
+    ```javascript
+    Model.update({ COLUMN TO CHANGE: NEW COLUMN VALUE },
+        { where: { COULMN TO FIND BY: COLUMN VALUE TO FIND BY } })
+    ```
+
+    <details><summary>
+    Hint: Updating with Sequelize
+    </summary><p>
+
+    Out update query will look like this:
+
+    ![Updating with Sequelize][img/postupdate.png)
+
+    </p></details>
+
+    Verify your endpoint by clicking the `Edit` button next to one of the posts,
+    modifying the post message and clicking `Save`. The main page should reload
+    with updated contents of the post.
+
+## Done!
+
+Congrats, you're done with this module!
