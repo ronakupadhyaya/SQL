@@ -16,6 +16,8 @@ the `DATABASE_URL` environment variable:
 export DATABASE_URL="postgresql://localhost/pg_node"
 ```
 
+---
+
 ## Part 1. Connecting
 
 `pg` manages connections to Postgres through [the `pg.Pool` object.](https://node-postgres.com/features/pooling)
@@ -35,6 +37,8 @@ scale.
 
 </p></details>
 
+---
+
 ### Exercise
 
 Edit `pool.js` and establish a connection to Postgres using the
@@ -49,6 +53,8 @@ You should see:
 node pool.js
 Success, you are connected to Postgres
 ```
+
+---
 
 ## Part 2. Run queries
 
@@ -131,6 +137,8 @@ Success, you are connected to Postgres
 The animal name is: cow
 ```
 
+---
+
 ## Part 3. Run queries inside Express
 
 Say we wanted to write a JSON endpoint that returns users from Postgres.
@@ -205,6 +213,8 @@ from the table `animals`. It should respond with JSON
 `{ "success": true}` if deletion is successful.
 
     Use the `GET /animals` route to validate that `donkey` is deleted.
+
+---
 
 ## Part 4. Dynamic queries
 
