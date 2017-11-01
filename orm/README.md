@@ -103,7 +103,7 @@ the user you registered is present.
     created earlier. You should see:
 
         <details><summary>
-        Screenshot
+        Successful login screenshot
         </summary><p>
 
         ![Successful login screenshot](img/login1.png)
@@ -180,6 +180,11 @@ with a `message` and `userId`. You can read `message` from `req.body` and
 
     You will need to import your `Post` model from `models.js`.
 
+    Verify that your route is going by visiting `localhost:3000/` and
+    using the form at the bottom of the page to create a Post.
+    Use `pgweb` or `psql` to verify that the new post you created
+    exists in the `posts` table with both `message` and `userId` populated.
+
     <details><summary>
     Hint
     </summary><p>
@@ -187,11 +192,6 @@ with a `message` and `userId`. You can read `message` from `req.body` and
     ![Creating a post](img/post5.png)
 
     </p></details>
-
-    Verify that your route is going by visiting `localhost:3000/` and
-    using the form at the bottom of the page to create a Post.
-    Use `pgweb` or `psql` to verify that the new post you created
-    exists in the `posts` table with both `message` and `userId` populated.
 
 1. Edit the `GET /` route and change it to read all posts from the database
 **in reverse chronological order.** Sequelize models have a builtin
@@ -257,7 +257,7 @@ of the post that should be deleted from `req.params.id`.
     page should refresh and the post should disappear.
 
     <details><summary>
-    Deleting stuff with Sequelize
+    Hint: Deleting stuff with Sequelize
     </summary><p>
 
     You can delete rows with Sequelize using `.destroy`. Just like `DELETE FROM`
