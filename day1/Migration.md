@@ -93,7 +93,7 @@ TODO username
 
 ---
 
-## Part 2: Using migrations
+## Part 2: Creating a migration
 
 The first thing to understand is that there are **Up** migrations and **Down** migrations. An up migration
 is what we'd typically think of as creating a new database, or adding tables to a database, or modifying
@@ -101,7 +101,6 @@ an existing database, etc. Basically this is the direction where we're creating 
 is just the opposite. Effectively a down migration is a scripted rollback of some set of database (SQL)
 commands.
 
-### Creating a migration
 
 Let's start by creating a migration that will create the users tables that we've been using.
 Drop your `users` table from earlier:
@@ -110,13 +109,23 @@ Drop your `users` table from earlier:
 DROP TABLE users;
 ```
 
-When you're in the `sql/day1/migrate` folder run:
+When you're in the `sql/day1/migrate` folder create a migration named `add-users` by running:
 
 ```
 db-migrate create add-users --sql-file
 ```
 
-This will create a migrations directory (if it hasn't already been created) and will create the following files:
+Let's break this command down:
+
+1. `db-migrate`: the package we just installed from npm
+1. `create` tells `db-migrate` to create a new migrations
+1. `add-users`: The name of the migration we're creating. We try to give
+migrations descriptive names like `add-users` because it makes easier to read
+them later but you can choose any name.
+1. `--sql-file`: tells `db-migrate` to create SQL files for us to put migration
+code into.
+
+This will create a migrations directory and will create the following files:
 
 ```
 migrations/20171025160224-add-users.js
@@ -128,7 +137,7 @@ migrations/sqls/20171025160224-add-users-up.sql
 different.**
 
 We don't care about the `.js` file, you can ignore it. It's the `.sql` files
-we care about. Edit the `migrations/sqls/...-add-users-up.sql` file and put this SQL
+we care about. Edit `migrations/sqls/...-add-users-up.sql` and put this SQL
 script in it:
 
 ```SQL
@@ -138,7 +147,7 @@ CREATE TABLE users (
 	address varchar,
 	city varchar,
 	state varchar,
-	zipcode int
+	zipcode int,
 	age int);
 ```
 
@@ -148,21 +157,34 @@ Now run:
 db-migrate up
 ```
 
+You should see:
+
 ![Migrate 1](img/migrate1.png)
 
-And in psql we can see that the table has been created appropriately.
+Now the table has been created:
 
 ![Migrate 2](img/migrate2.png)
 
-You can also see that a migrations table has been created. That's a table that is created automatically by
-the db-migrate tool and keeps track of the migrations that have been performed.
+You can also see that a `migrations` table has been created. That's a table that
+is created automatically by the `db-migrate` tool and keeps track of the
+migrations that have been performed. This way if you run `db-migrate up` again,
+it does nothing, because all migrations have already been applied.
 
 And we should go ahead and add the appropriate command to the down migration script. Since we just created
-the users table, all we need to do is drop the table. This will go into the file migrations/sqls/20171025160224-add-users-down.sql.
+the users table, all we need to do is drop the table.
+Edit `migrations/sqls/...-add-users-down.sql` and add:
 
 ```SQL
 DROP TABLE users;
 ```
+
+Now run:
+
+```sh
+db-migrate down
+```
+
+You should see:
 
 ![Migrate 3](img/migrate3.png)
 
@@ -170,9 +192,15 @@ And you can see that the users table has been dropped.
 
 ![Migrate 4](img/migrate4.png)
 
-OK, I'm going to go ahead and run the up migration once again because we will want the users table. I'm
-not going to show it because you already know that that looks like. But I am going to add a new migration file
-to populate the users table.
+OK. Now that we know that works, run `db-migrate up` to bring back the users
+table.
+
+---
+
+## Part 3: Your second migration
+
+Let's a create a second migration, we're going to call this migration
+`populate-users`:
 
 ```
 db-migrate create populate-users --sql-file
@@ -212,23 +240,23 @@ INSERT INTO users VALUES (DEFAULT, 'Robert', '1951 Heinlein Way', 'Colorado Srpi
 INSERT INTO users VALUES (DEFAULT, 'Isaac', '42 Broadway', 'New York', 'NY', 10001, NULL);
 ```
 
-Once ```db-migrate up``` is run, notice that the new records are added. But ```db-migrate up``` runs **ALL**
-of the up migrations. Well, what it really does is analyze the current state of the database and perform
-the necessary commands to bring the database to the intended state once the migrate is complete. So while the
-```db-migrate up``` command said to create the users table, that wasn't necessary since it was already created,
-and the db-migrate command skipped that part.
+Run `db-migrate up` again and your new records are added. Note how it skips the `add-users` migration
+since we've already run that before.
 
 ![Migrate 5](img/migrate5.png)
 
-The down migration for populate-users is to just truncate the table. As mentioned in an earlier lesson,
+The down migration is in `migrations/sqls/...-populate-users-down.sql`,
+and it should just delete all rows:
 
 ```SQL
-TRUNCATE TABLE users;
+DELETE FROM users;
 ```
 
-deletes all of the records in a table. The file for the down migration ismigrations/sqls/20171025160524-populate-users-up.sql.
+<details><summary>
+Aside: Running only some of the migrations
+</summary><p>
 
-One last note on the ```db-migrate``` command. There an ```-c``` option that specifies the number of migrations
+The `db-migrate` command has a `-c` option that specifies the number of migrations
 to run. So
 
 ```
@@ -249,9 +277,13 @@ migrations you would need to run
 db-migrate down -c 2
 ```
 
+</p></details>
+
 ### Exercises
 
 1. Create and run all of the migration scripts listed above.
+
+1. Create a migration to add a new `status` to the `users` table.
 
 1. Starting with the migration scripts above, write a new migration script to both alter the users table to add a status
 field that is an string and also to create a new table called status_type with the following information:
@@ -260,8 +292,3 @@ field that is an string and also to create a new table called status_type with t
     -------- | --------------
     1 | active
     2 | inactive
-
-1. Create a new migration project and create the up and down migrations necessary to create and populate the tables
-you have designed for the PokeBay project.
-
-1. Run the migrations in .... to prepare for the next lesson. TODO
