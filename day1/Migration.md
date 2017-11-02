@@ -142,13 +142,13 @@ script in it:
 
 ```SQL
 CREATE TABLE users (
-	id serial primary key,
-	name varchar not null,
-	address varchar,
-	city varchar,
-	state varchar,
-	zipcode int,
-	age int);
+    id serial primary key,
+    name varchar not null,
+    address varchar,
+    city varchar,
+    state varchar,
+    zipcode int,
+    age int);
 ```
 
 Now run:
@@ -283,7 +283,11 @@ db-migrate down -c 2
 
 1. Create and run all of the migration scripts listed above.
 
-1. Create a migration to add a new `status` to the `users` table.
+1. Create a migration to add a new `status` column of type `varchar`
+to the `users` table. Update the existing rows so that
+
+TODO
+
 
 1. Starting with the migration scripts above, write a new migration script to both alter the users table to add a status
 field that is an string and also to create a new table called status_type with the following information:
