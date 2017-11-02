@@ -1,4 +1,4 @@
-# Database/Schema Migration
+# Database/Schema Migrations
 
 ## Overview
 
@@ -238,7 +238,7 @@ db-migrate down -c 2
 2. Starting with the migration scripts above, write a new migration script to both alter the users table to add a status
 field that is an string and also to create a new table called status_type with the following information:
 
-id | status_name 
+id | status_name
 -------- | --------------
 1 | active
 2 | inactive

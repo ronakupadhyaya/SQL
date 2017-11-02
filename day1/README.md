@@ -1,4 +1,4 @@
-# Outline
+# SQL Week: Day 1
 
 ## Lessons and Self Directed Exercises
 
@@ -9,7 +9,7 @@
 1. [Setup, creating databases, tables](setup.md)
 1. [Reading data with `SELECT`](Select.md)
 1. [Modifying data with `UPDATE`, `INSERT`, and `DELETE`](Insert.md)
-1. [Migrations](Migration.md)
+1. [Database/Schema Migrations](Migration.md)
 
 ## Pair Programming Exercises
 
