@@ -15,6 +15,7 @@
 
 1. TODO Finish Schema
 1. TODO SQLZoo
+1. bonus: https://cs.uwaterloo.ca/~david/cs348/a1.pdf
 
 TODO Readme number list cleanup
 
