@@ -195,8 +195,9 @@ records that are actually in the table.)
 
 ## The ORDER BY Clause
 
-As we said before, the records will come out in a random order from the SELECT statement, but we can control the order with the
-```ORDER BY``` clause. For example
+As we said before, the records will come out in a random order from the SELECT
+statement, but we can control the order with the
+`ORDER BY` clause. For example
 
 ```SQL
 SELECT age FROM users ORDER BY age;
@@ -204,17 +205,18 @@ SELECT age FROM users ORDER BY age;
 
 ![Select 3](img/select3.png)
 
-This will sort the output by the specified field. You can also sort in descending order using this command.
+This will sort the output by the specified field. It will sort things in ascending
+order by default but you can also sort in descending order:
 
 ```SQL
 SELECT age FROM users ORDER BY age DESC;
 ```
 
-ASC is used for ascending if you need to specify that but ascending is typically the default.
-
-You'll notice that the NULLs came out at the bottom. NULLs are a special case in SQL. Unlike in many programming
-languages where a NULL is equivalent to zero, in SQL NULLs are their own entity. You can't compare a NULL to a
-number or a string. And you can specify where you want the NULLs to appear in a sorted order.
+You'll notice that the NULLs came out at the bottom. NULLs are a special case in
+SQL. Unlike in other programming languages, in SQL NULLs are not equal to
+anything. In fact, in SQL NULL isn't even equal to itself. You can't compare a
+NULL to a number or a string. We use this syntax to specify where NULL appears
+in sorted order:
 
 ```SQL
 SELECT age FROM users ORDER BY age NULLS FIRST LIMIT 5;
@@ -235,19 +237,23 @@ We can also put the NULLs last using ```NULLS LAST``` but that is also the defau
 
 ### Exercises
 
-1. Write and execute a query that displays the name and age of each person sorted by age, then name. Your output should look like this:
+1. Write and execute a query that displays the name and age of each person
+sorted by age, then name. Your output should look like this:
 
-![Select 6](img/select6.png)
+    ![Select 6](img/select6.png)
 
-2. Write and execute a query that displays the name and age of the 5 youngest people in the table. Your output should look like this:
+2. Write and execute a query that displays the name and age of the 5 youngest
+people in the table. Your output should look like this:
 
-![Select 7](img/select7.png)
+    ![Select 7](img/select7.png)
 
-3. Write and execute a query that displays the name and age of the 6 youngest people in the table. Your output should look like this:
+3. Write and execute a query that displays the name and age of the 6 youngest
+people in the table. Your output should look like this:
 
-![Select 8](img/select8.png)
+    ![Select 8](img/select8.png)
 
-4. Did your last query correctly reflect all of the people in the list that should have been displayed? There are 3 people that are 28.
+    Did your last query correctly reflect all of the people in the list that
+    should have been displayed? There are 3 people that are 28.
 
 This leads to....
 
