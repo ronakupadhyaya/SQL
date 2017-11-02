@@ -265,7 +265,7 @@ people in the table. Your output should look like this:
 
 The WHERE clause allows us to filter the records on certain criteria. Let's look at that last exercise.
 
-3. Write and execute a query that displays the name and age of the 6 youngest people in the table.
+> Write and execute a query that displays the name and age of the 6 youngest people in the table.
 
 There were 3 entries with an age of 28. It's basically random which of the entries made it onto our list of 5.
 But there's another way to constrain the data. Let's look at an example.
@@ -305,7 +305,7 @@ WHERE
 
 ![Select 11](img/select11.png)
 
-You can also use ```NOT``` to change the constraint.
+You can also use `NOT` to change the constraint.
 
 ```SQL
 SELECT
@@ -322,7 +322,7 @@ WHERE
 ![Select 12](img/select12.png)
 
 There are 3 other types of boolean expressions that you need to know about for the WHERE clause. The first
-is ```LIKE``` which permits us to create wild card expressions. The \'%\' is the wild card character. This query
+is `LIKE` which permits us to create wild card expressions. The \'%\' is the wild card character. This query
 fetches all records where the first character in the state field is \'C\'.
 
 ```SQL
@@ -430,79 +430,79 @@ You just can't compare NULL to data fields in the normal programming language wa
 1. Write and execute a query that will find all records where the age of the person is between 20 and 30 and the person
 lives in a city that starts with 'S'. Your output should look like this:
 
-![Select 18](img/select18.png)
+    ![Select 18](img/select18.png)
 
-<details><summary>
-	Solution
-</summary><p>
+    <details><summary>
+    Solution
+    </summary><p>
 
-```SQL
-SELECT
-	*
-FROM
-	users
-WHERE
-	age BETWEEN 20 AND 30
-	AND city LIKE 'S%';
-```
+    ```SQL
+    SELECT
+    	*
+    FROM
+    	users
+    WHERE
+    	age BETWEEN 20 AND 30
+    	AND city LIKE 'S%';
+    ```
 
-</p></details>
+    </p></details>
 
 2. Write and execute a query that will find the name and state of all records that have a NULL age. Order
 your output by state. Your output should look like this:
 
-![Select 19](img/select19.png)
+    ![Select 19](img/select19.png)
 
-<details><summary>
-	Solution
-</summary><p>
+    <details><summary>
+    Solution
+    </summary><p>
 
-```SQL
-SELECT
-	name,
-	state
-FROM
-	users
-WHERE
-	age IS NULL
-ORDER BY
-	state;
-```
+    ```SQL
+    SELECT
+    	name,
+    	state
+    FROM
+    	users
+    WHERE
+    	age IS NULL
+    ORDER BY
+    	state;
+    ```
 
-</p></details>
+    </p></details>
 
 3. Write and execute a query that will find all records where the person lives in Colorado (CO) and whose name isn't Kevin.
 Your output should look like this:
 
-![Select 20](img/select20.png)
+    ![Select 20](img/select20.png)
 
-<details><summary>
-	Solution
-</summary><p>
+    <details><summary>
+    Solution
+    </summary><p>
 
-```SQL
-SELECT
-	*
-FROM
-	users
-WHERE
-	state = 'CO'
-	AND NOT name = 'Kevin;
-```
+    ```SQL
+    SELECT
+    	*
+    FROM
+    	users
+    WHERE
+    	state = 'CO'
+    	AND NOT name = 'Kevin;
+    ```
 
-**OR**
+    **OR**
 
-```SQL
-SELECT
-	*
-FROM
-	users
-WHERE
-	state = 'CO'
-	AND name <> 'Kevin;
-```
+    ```SQL
+    SELECT
+    	*
+    FROM
+    	users
+    WHERE
+    	state = 'CO'
+    	AND name <> 'Kevin;
+    ```
 
-</p></details>
+    </p></details>
 
 ---
 
@@ -530,18 +530,20 @@ ORDER BY
 ![Select 21](img/select21.png)
 
 This query took all of the records and grouped them by state. For each of the records in each state, it increased
-the count by one (the ```COUNT(1)``` part), thus giving a count of the number of records in each state. (Note: ```COUNT(*)```
-is used interchangeably with ```COUNT(1)```.) I could use state in this query because we were grouping by state so there
+the count by one (the `COUNT(1)` part), thus giving a count of the number of records in each state. (Note: `COUNT(*)`
+is used interchangeably with `COUNT(1)`.) I could use state in this query because we were grouping by state so there
 was only one state associated with each count. Let's take a look at what's going on behind the scenes. Consider this
 picture of the data.
 
 ![Select 29](img/select29.png)
 
-Each of the records enclosed in a block is effectively now a single record. Anything that has multiple values (id,
-name, age, address, city, and zipcode) basically gets tossed in terms of what can be fetched in a SELECT statement. But we can do
-things that "aggregate" the data. For instance, we can count the number of records (```COUNT(1)```) in each group. Or we
-could find the minimum value in a particular field (```MIN(zipcode)```). Or we could find the sum of all of the values
-in a particular field (```SUM(age)```).
+Each of the records enclosed in a block is effectively now a single record.
+Anything that has multiple values (id, name, age, address, city, and zipcode)
+basically gets tossed in terms of what can be fetched in a SELECT statement. But
+we can do things that "aggregate" the data. For instance, we can count the
+number of records (`COUNT(1)`) in each group. Or we could find the minimum
+value in a particular field (`MIN(zipcode)`). Or we could find the sum of
+all of the values in a particular field (`SUM(age)`).
 
 Let's look at another example.
 
@@ -634,54 +636,54 @@ Other functions (like COUNT() and MAX()) that you can use are MIN(), SUM(), and 
 1. Write and execute a query that displays the average age of the people in each state. (What are you going to
 do about those NULLs?) Your output should look like this:
 
-![Select 23](img/select23.png)
+    ![Select 23](img/select23.png)
 
-<details><summary>
-	Solution
-</summary><p>
+    <details><summary>
+    	Solution
+    </summary><p>
 
-```SQL
-SELECT
-	state,
-	AVG(age)
-FROM
-	users
-WHERE
-	age IS NOT NULL
-GROUP BY
-	state
-ORDER BY
-	state;
-```
+    ```SQL
+    SELECT
+    	state,
+    	AVG(age)
+    FROM
+    	users
+    WHERE
+    	age IS NOT NULL
+    GROUP BY
+    	state
+    ORDER BY
+    	state;
+    ```
 
-</p></details>
+    </p></details>
 
 2. Write and execute a query that displays the average age of the people in each city. Make sure to ignore any records that have null in the age. (Hint: GROUP BY both city and state.) Your output should look like this:
 
-![Select 24](img/select24.png)
+    ![Select 24](img/select24.png)
 
-<details><summary>
-	Solution
-</summary><p>
+    <details><summary>
+    	Solution
+    </summary><p>
 
-```SQL
-SELECT
-	city,
-	state,
-	AVG(age)
-FROM
-	users
-WHERE
-	age IS NOT NULL
-GROUP BY
-	city,
-	state
-ORDER BY
-	state,
-	city;
-```
+    ```SQL
+    SELECT
+    	city,
+    	state,
+    	AVG(age)
+    FROM
+    	users
+    WHERE
+    	age IS NOT NULL
+    GROUP BY
+    	city,
+    	state
+    ORDER BY
+    	state,
+    	city;
+    ```
 
-</p></details>
+    </p></details>
 
 ---
 
