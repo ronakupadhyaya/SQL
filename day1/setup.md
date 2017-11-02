@@ -47,4 +47,4 @@ right columns
 
 # Done
 
-You're done with this module! TODO link to next module
+You're done with this module! Go to the [next module: Select](Select.md).
