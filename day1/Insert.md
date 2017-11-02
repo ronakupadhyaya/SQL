@@ -158,7 +158,8 @@ UPDATE users
 
 ### Exercises
 
-1. Write and execute a command to fill in the rest of Frank's information.
+1. Write and execute a command to fill in all columns with information for the
+user named `Frank`.
 
 2. Write and execute a command that updates the status of all users under the age of 18 to 'young'. Your table should look
 like this after executing the command:
