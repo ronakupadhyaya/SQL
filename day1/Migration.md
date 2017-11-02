@@ -283,16 +283,29 @@ db-migrate down -c 2
 
 1. Create and run all of the migration scripts listed above.
 
-1. Create a migration to add a new `status` column of type `varchar`
-to the `users` table. Update the existing rows so that
+1. Create a new migration to add a new `status` column of type `varchar`
+to the `users` table. Then updating the status of all users in
+California to be `'surfing'` and the `status` of everyone else to be
+`'working'`.
 
-TODO
+    <details><summary>
+    Contents of database after db-migrate up
+    </summary><p>
 
+    ![users table contents after status migration](img/migrate-status.png)
 
-1. Starting with the migration scripts above, write a new migration script to both alter the users table to add a status
-field that is an string and also to create a new table called status_type with the following information:
+    </p></details>
 
-    id | status_name
-    -------- | --------------
-    1 | active
-    2 | inactive
+    Running `db-migrate down -c 1` should remove the status column.
+
+1. Create a new migration to create a new `planets` table with the following
+columns:
+
+    | Column name | Type | Not Null |
+    | :-- | :-- | :-- |
+    | id | serial | Y |
+    | name | varchar | Y |
+    | moons | int | N |
+
+    Populate the table with Mercury, Venus, Earth, Mars and Jupiter
+    to the table.
