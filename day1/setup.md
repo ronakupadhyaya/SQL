@@ -12,7 +12,7 @@
 1. Create a table named `cities` with the following columns
 
     | Column name | Type | Not Null |
-    | :------------- | :------------- |
+    | :-- | :-- | :-- |
     | name | varchar | Y |
     | population | int | Y |
     | country | varchar | N |
@@ -22,7 +22,7 @@
 1. Create a second table named `countries` with the following columns
 
     | Column name | Type | Not Null |
-    | :------------- | :------------- |
+    | :-- | :-- | :-- |
     | name | varchar | Y |
     | population | int | Y |
     | continent | varchar | N |
