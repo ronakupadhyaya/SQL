@@ -12,10 +12,10 @@ definitions when working on SQL applications on a team. We save our SQL
 schema into git and use special migration commands to apply those those
 definitions to our own database.
 
-## Note on primary keys and the serial data type
+## `SERIAL` data type
 
 We want every table to have an `id` column to uniquely identify records.
-We usually create this column like so:
+So we usually create this column like so:
 
 ```SQL
 CREATE TABLE users (
@@ -63,33 +63,25 @@ problem with duplicate keys.
 
 ![Migrate 7](img/migrate7.png)
 
-## Setup
+---
 
-We'll be using the db-migrate service provided by Node.js. You already have Node installed so we just need
-to install the appropriate packages. First create a directory named 'migration' in an appropriate place and
-initialize package.json.
+## Part 1: Setup
 
-```sh
-npm init
-```
-
-Now install the db-migrate package.
+We'll be using the [`db-migrate` NPM package](https://db-migrate.readthedocs.io/en/latest/) to manage
+migrations. This is a command like tool so we need to install it globally
+with `-g`:
 
 ```sh
 npm install -g db-migrate
 ```
 
-And then install the PostgreSQL driver for db-migrate.
+Open the `sql/day1/migrate` in your terminal and run `npm install` to install
+other dependencies.
+
+Create an `env.sh` file and put this in it:
 
 ```sh
-npm install -g db-migrate-pg
-```
-
-Last, we need to tell the system what database we'll be using (and how to access it.)
-
-```
-export DATABASE_URL=postgresql://<username>:<password>@localhost/testdb
-export DATABASE_URL=postgresql://<username>@localhost/testdb
+export DATABASE_URL=postgresql://localhost/testdb
 ```
 
 Where \<username\> is the user name that you created when you installed PostgreSQL. (The default was postgres and that's
@@ -97,19 +89,28 @@ probably what you used.) And \<password\> is the password that you created for t
 Choose the appropriate version and put that into env.sh. Then ```source env.sh``` to get your environment set
 up correctly.
 
-## Usage
+TODO username
+
+---
+
+## Part 2: Using migrations
 
 The first thing to understand is that there are **Up** migrations and **Down** migrations. An up migration
 is what we'd typically think of as creating a new database, or adding tables to a database, or modifying
 an existing database, etc. Basically this is the direction where we're creating or adding. A down migration
 is just the opposite. Effectively a down migration is a scripted rollback of some set of database (SQL)
-commands. Or more informally an "undo".
+commands.
 
 ### Creating a migration
 
-Let's start by creating a migration that will create the users tables that we've been using. (If you haven't
-already ```DROP TABLE users```, you should do that now.) cd into the directory where you are going to create
-the migration project.
+Let's start by creating a migration that will create the users tables that we've been using.
+Drop your `users` table from earlier:
+
+```sql
+DROP TABLE users;
+```
+
+When you're in the `sql/day1/migrate` folder run:
 
 ```
 db-migrate create add-users --sql-file
@@ -123,9 +124,12 @@ migrations/sqls/20171025160224-add-users-down.sql
 migrations/sqls/20171025160224-add-users-up.sql
 ```
 
-The first part of those file names are a date/time stamp from when the command was run so yours will be
-different. We're not going to mess with the Javascript file. Instead we'll just put SQL commands into the
-SQL files. Since we're going to create the users table, the SQL command looks like this:
+**The first part of those file names are a date/time stamp from when the command was run so yours will be
+different.**
+
+We don't care about the `.js` file, you can ignore it. It's the `.sql` files
+we care about. Edit the `migrations/sqls/...-add-users-up.sql` file and put this SQL
+script in it:
 
 ```SQL
 CREATE TABLE users (
@@ -138,9 +142,9 @@ CREATE TABLE users (
 	age int);
 ```
 
-This will go into the file migrations/sqls/20171025160224-add-users-up.sql. And now we can run the db-migrate tool.
+Now run:
 
-```
+```sh
 db-migrate up
 ```
 
@@ -249,15 +253,15 @@ db-migrate down -c 2
 
 1. Create and run all of the migration scripts listed above.
 
-2. Starting with the migration scripts above, write a new migration script to both alter the users table to add a status
+1. Starting with the migration scripts above, write a new migration script to both alter the users table to add a status
 field that is an string and also to create a new table called status_type with the following information:
 
-id | status_name
--------- | --------------
-1 | active
-2 | inactive
+    id | status_name
+    -------- | --------------
+    1 | active
+    2 | inactive
 
-3. Create a new migration project and create the up and down migrations necessary to create and populate the tables
+1. Create a new migration project and create the up and down migrations necessary to create and populate the tables
 you have designed for the PokeBay project.
 
-4. Run the migrations in .... to prepare for the next lesson.
+1. Run the migrations in .... to prepare for the next lesson. TODO
