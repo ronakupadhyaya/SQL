@@ -1,4 +1,6 @@
-## Mac Installation Instructions
+# Mac Installation Instructions
+
+## Part 1: Install Postgres
 
 1. Install [Postgres.app](https://postgresapp.com/)
 1. Move the app to your Applications folder
@@ -27,7 +29,7 @@ then click `Start`
 
 1. You now have Postgres running on your laptop! Type `\q` to exit
 
-## Recommended: Install `pgweb`
+## Part 2: Install pgweb
 
 `pgweb` is a graphical interface for using Postgres databases. We find it
 makes working with the database easier.
