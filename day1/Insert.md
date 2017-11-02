@@ -1,21 +1,23 @@
-# INSERT, UPDATE, and DELETE
+# Modifying data with `UPDATE`, `INSERT`, and `DELETE`
 
 ## Overview
 
-In the previous module you learned to fetch records from a table using ```SELECT```. Now you'll
+In the previous module you learned to fetch records from a table using `SELECT`. Now you'll
 learn how to insert new records (rows), change existing records, and delete existing rows.
 
 ## Setup
 
-We'll use the users table that was created for the last module so no additional setup is required.
+We'll use the `users` table that was created for the last module so no additional setup is required.
 
-## The INSERT Statement
+---
 
-The ```INSERT``` command inserts new records into an existing table. The base syntax is this:
+## Part 1: the `INSERT` Statement
+
+The `INSERT` command inserts new records into an existing table. The base syntax is this:
 
 ```SQL
-INSERT INTO table_name [ ( column_name [, ...] ) ]
-	VALUES ( { expression | DEFAULT } [, ...] ) [, ...]
+INSERT INTO table_name ( column_name1, column_name2, column_name3 )
+    VALUES ( row1_value1,  row1_value2, row1_value3 );
 ```
 
 Let's take a look at an example.
@@ -52,8 +54,25 @@ INSERT INTO users
 
 ![Insert 12](img/insert12.png)
 
-Notice that the fields that we didn't specify are filled in with the default value which is NULL. And
-one last example.
+Notice that the fields that we didn't specify are filled in with the default
+value which is NULL.
+
+If we don't specify column names, SQL will assume that values are listed in the
+order that columns in the table are defined. Our columns are defined in this
+order: id, name, age, address, city, state, zipcode. So earlier we could rewrite
+our earlier query as:
+
+```SQL
+INSERT INTO users
+    VALUES (24, 'Frank')
+```
+
+However, this is not recommended as the order of your columns in your SQL
+table could change. SQL INSERT statements are easier to read if columns are
+explicitly defined.
+
+Finally, you can use the keyword `DEFAULT` to explicitly ask SQL to use
+a default value in place of a column (usually NULL):
 
 ```SQL
 INSERT INTO users
@@ -66,20 +85,22 @@ This didn't work since both the id and name field are required to not be NULL.
 
 ### Exercises
 
-1. Insert the records (if you haven't already done so) that we created above.
+1. Insert the data we listed above into your `users` table.
+1. Insert a user with the id `32` and name `Beyonce` to the `users` table.
+1. Insert 3 of your own records into the users table with a single insert
+query.
 
-2. Insert several of your own records into the users table.
+---
 
-## The UPDATE Statement
+## Part 2: the `UPDATE` Statement
 
-The ```UPDATE``` command modifies existing records in a table. The base syntax is this:
+The `UPDATE` command modifies existing records in a table. The base syntax is this:
 
 ```SQL
 UPDATE table_name
-	SET { column_name = { expression | DEFAULT } |
-			( column_name [, ...] ) = ( { expression | DEFAULT } [, ...] )
-		} [, ...]
-	[ WHERE condition ]
+    SET column_name1 = column_value1,
+        column_name2 = column_value2
+    WHERE condition
 ```
 
 Let's take a look at an example.
@@ -92,8 +113,11 @@ UPDATE users
 
 ![Insert 4](img/insert4.png)
 
-You have to be very careful with the ```UPDATE``` command as it will set the value for **EVERY** record
-in the table if you don't specify a ```WHERE``` clause. I'm going to create a new column in our users table.
+⚠️ **Warning:** You have to be very careful with the `UPDATE` command as it
+will set the value for **EVERY** record in the table if you don't specify a
+`WHERE` clause.
+
+I'm going to create a new column in our users table.
 
 ```SQL
 ALTER TABLE users
@@ -104,7 +128,7 @@ And then set the status for all of the records.
 
 ```SQL
 UPDATE users
-	SET status='active';
+	SET status = 'active';
 ```
 
 ![Insert 5](img/insert5.png)
@@ -116,7 +140,7 @@ And an example of setting multiple fields. Of course we can also do things like 
 
 ```SQL
 UPDATE users
-	SET (city, status) = ('Colorado Springs', 'inactive')
+	SET city = 'Colorado Springs', status = 'inactive'
 	WHERE city = 'Colorado Srpings';
 ```
 
@@ -127,7 +151,7 @@ One last example
 ```SQL
 UPDATE users
 	SET status = 'inactive'
-	WHERE age < 18 or age > 65;
+	WHERE age < 18 OR age > 65;
 ```
 
 ![Insert 13](img/insert13.png)
@@ -207,7 +231,9 @@ The ```WHERE age IS NOT NULL``` may not be necessary but is good practice as add
 
 </p></details>
 
-## The DELETE Statement
+---
+
+## Part 3: the `DELETE` Statement
 
 And finally the ```DELETE``` command deletes rows from a table. The base syntax is:
 
@@ -236,17 +262,22 @@ You'll notice that Robert and Isaac are now gone and there aren't any records wi
 1. Write and execute a command to remove all records where the age is either NULL or under 18. Your resulting
 table should look like this:
 
-![Insert 10](img/insert10.png)
+    ![Insert 10](img/insert10.png)
 
-<details><summary>
-	Solution
-</summary><p>
+    <details><summary>
+    	Solution
+    </summary><p>
 
-```SQL
-DELETE FROM users
-	WHERE age IS NULL
-	OR age < 18;
-```
+    ```SQL
+    DELETE FROM users
+    	WHERE age IS NULL
+    	OR age < 18;
+    ```
 
-</p></details>
+    </p></details>
 
+---
+
+## Done!
+
+You're done with this module. Go to the [next module: Migrations](Migration.md).

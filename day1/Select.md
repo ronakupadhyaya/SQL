@@ -1,4 +1,4 @@
-# Read data with SELECT
+# Reading data with `SELECT`
 
 ## Overview
 
@@ -729,8 +729,10 @@ You can use double quotes when you wish to capitalize something in the alias or
 have a space in the column name. Also you see that you can also do calculations
 in the SELECT statement.
 
+TODO strings vs double quotes
+
 ---
 
 ## Done!
 
-You're done with the Select module. Go to the [next module: Insert](Insert.md).
+You're done with this module. Go to the [next module: Insert](Insert.md).

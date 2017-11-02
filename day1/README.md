@@ -19,4 +19,6 @@
 
 TODO Readme number list cleanup
 
+TODO make sure students know about `SERIAL` type
+
 TODO
