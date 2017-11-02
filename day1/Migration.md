@@ -309,3 +309,11 @@ columns:
 
     Populate the table with Mercury, Venus, Earth, Mars and Jupiter
     to the table.
+
+    <details><summary>
+    Contents of database after db-migrate up
+    </summary><p>
+
+    ![planets table contents](img/migrate-planets.png)
+
+    </p></details>
