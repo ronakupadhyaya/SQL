@@ -317,3 +317,10 @@ columns:
     ![planets table contents](img/migrate-planets.png)
 
     </p></details>
+
+---
+
+## Done!
+
+You're done with today's lessons. You're ready to
+[start today's exercises](README.md).
