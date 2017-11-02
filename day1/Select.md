@@ -83,7 +83,7 @@ Screenshot: Users table contents in pgweb
 
 Alright, let's see if we can read this data back using `SELECT` statements.
 
-## The SELECT Statement
+## Part 1: The SELECT Statement
 
 The SELECT statement is probably the most used tool in the SQL toolbox. As you saw above, it has a rich set of
 options and mastering these can make you a very valuable member of a development team. You can also write queries
@@ -145,7 +145,9 @@ You'll notice that you can list multiple fields with a comma separator.
 1. Write and execute a query that displays the name and city of each person in the table.
 2. Write and execute a query that displays the states followed by the zip code of each person in the table.
 
-## The LIMIT Clause
+---
+
+## Part 2: The LIMIT Clause
 
 While showing the 20 records of the table in our database isn't too bad, most production databases have tables
 that have hundreds/thousands/millions of entries. So we need a way to limit the number of records in the output.
@@ -193,7 +195,9 @@ the syntax is slightly different in each:
 (Notice that this still works, but it only shows the 20
 records that are actually in the table.)
 
-## The ORDER BY Clause
+---
+
+## Part 3: The ORDER BY Clause
 
 As we said before, the records will come out in a random order from the SELECT
 statement, but we can control the order with the
@@ -255,9 +259,9 @@ people in the table. Your output should look like this:
     Did your last query correctly reflect all of the people in the list that
     should have been displayed? There are 3 people that are 28.
 
-This leads to....
+---
 
-## The WHERE Clause
+## Part 4: The WHERE Clause
 
 The WHERE clause allows us to filter the records on certain criteria. Let's look at that last exercise.
 
@@ -500,7 +504,9 @@ WHERE
 
 </p></details>
 
-## The GROUP BY Clause
+---
+
+## Part 5: The GROUP BY Clause
 
 The last part of SELECT that we're going to look at now is the ```GROUP BY``` clause. This will just be an
 introduction to aggregates as this is a much more complicated topic that we'll explore more thoroughly later.
@@ -677,9 +683,12 @@ ORDER BY
 
 </p></details>
 
-## Column Aliasing
+---
 
-There's one last item that needs to be mentioned. You can change the name of a column when the query returns. For instance:
+## Aside: Column Aliasing
+
+There's one last item that needs to be mentioned. You can rename columns
+in your output using `AS`:
 
 ```SQL
 SELECT
@@ -689,14 +698,16 @@ FROM
 	users;
 ```
 
+Note that the first output column is now labeled `customer`:
+
 ![Select 25](img/select25.png)
 
-The ```AS``` is optional. One more example:
+The `AS` is optional. You can leave it out:
 
 ```SQL
 SELECT
-	state AS State,
-	SUM(age)/COUNT(1) AS "Average Age"
+	state "State",
+	SUM(age)/COUNT(1) "Average Age"
 FROM
 	users
 WHERE
@@ -709,7 +720,6 @@ ORDER BY
 
 ![Select 26](img/select26.png)
 
-You can use double quotes when you wish to capitalize something in the alias or have a space in the column name.
-Also you see that you can also do calculations in the SELECT statement.
-
-One good reason for aliasing columns is if you wish to hide the actual column names for security reasons.
+You can use double quotes when you wish to capitalize something in the alias or
+have a space in the column name. Also you see that you can also do calculations
+in the SELECT statement.
