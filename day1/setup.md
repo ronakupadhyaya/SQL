@@ -8,7 +8,15 @@
 ## Exercises
 
 1. Create a database named `setup` with `psql`
-1. Connect to the `setup` database using `pgweb` or `psql`
+1. Connect to the `setup` database using `pgweb`
+
+    <details><summary>
+    Troubleshooting pgweb
+    </summary><p>
+
+    Set **SSL Mode** to **false** and **Database** to **setup**.
+
+    </p></details>
 1. Create a table named `cities` with the following columns
 
     | Column name | Type | Not Null |
@@ -34,6 +42,8 @@ right columns
 1. Verify that the table `countries` has been updated
 1. Drop the `cities` and `countries` tables
 1. Drop the `setup` database
+
+    If you're using `pgweb`, make sure you disconnect first.
 
 # Done
 
