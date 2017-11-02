@@ -2,11 +2,15 @@
 
 ## Overview
 
-Consider the following circumstance. You are working on a project that requires a database and you decide
-to collaborate with a partner. You have both already created databases and populated them with tables and
-data, but now need to merge the two databases into one. Moving the schema and data from one database to
-the other is known as **database or schema migration**. Another example might be if two businesses merge
-(or one acquires another) and there is a need to merge the corporate databases.
+Consider the following circumstance. You are working on a project that requires
+a database and you decide to collaborate with a partner. Your partner creates a
+new column and writes code to use it. After you get your partners code, your
+application breaks because your database doesn't contain the new column yet.
+
+**Database or schema migrations** allow you to share table and database
+definitions when working on SQL applications on a team. We save our SQL
+schema into git and use special migration commands to apply those those
+definitions to our local database.
 
 ## Note on primary keys and the serial data type
 
