@@ -602,10 +602,13 @@ ORDER BY
 
 This query lists the max age of the people in each state. Notice that the max age for the person in NY is 'NULL'. Why
 is that?
+
 <details><summary>
-	Answer
+Answer
 </summary><p>
+
 That's the **ONLY** record in NY.
+
 </p></details>
 
 One last example.
