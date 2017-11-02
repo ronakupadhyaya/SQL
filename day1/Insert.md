@@ -163,73 +163,73 @@ UPDATE users
 2. Write and execute a command that updates the status of all users under the age of 18 to 'young'. Your table should look
 like this after executing the command:
 
-![Insert 7](img/insert7.png)
+    ![Insert 7](img/insert7.png)
 
-<details><summary>
-	Solution
-</summary><p>
+    <details><summary>
+    	Solution
+    </summary><p>
 
-```SQL
-UPDATE users
-	SET status='young'
-	WHERE age < 18;
-```
+    ```SQL
+    UPDATE users
+    	SET status='young'
+    	WHERE age < 18;
+    ```
 
-</p></details>
+    </p></details>
 
 3. Write and execute a command that sets the status of all users living east of the Mississippi to 'inactive'. Note:
 Another option in the ```WHERE``` clause is ```WHERE field IN ( value1, value2, ... )``` which looks for all records that
 have one of the listed values in the specified field. Your table should look like this after executing the command:
 
-![Insert 8](img/insert8.png)
+    ![Insert 8](img/insert8.png)
 
-<details><summary>
-	Solution
-</summary><p>
+    <details><summary>
+    Solution
+    </summary><p>
 
-```SQL
-UPDATE users
-	SET status='inactive'
-	WHERE state IN ('GA', 'NC', 'NY');
-```
+    ```SQL
+    UPDATE users
+    	SET status='inactive'
+    	WHERE state IN ('GA', 'NC', 'NY');
+    ```
 
-</p></details>
+    </p></details>
 
 4. Write and execute a command that changes the name of all 'Karen's to 'Deborah'. Your table should look like this after
 executing the command:
 
-![Insert 14](img/insert14.png)
+    ![Insert 14](img/insert14.png)
 
-<details><summary>
-	Solution
-</summary><p>
+    <details><summary>
+    	Solution
+    </summary><p>
 
-```SQL
-UPDATE users
-	SET name = 'Deborah'
-	WHERE name = 'Karen';
-```
+    ```SQL
+    UPDATE users
+    	SET name = 'Deborah'
+    	WHERE name = 'Karen';
+    ```
 
-</p></details>
+    </p></details>
 
 5. Write and execute a command that increases all ages by 1. (```SET age = age + 1```) Your table should look like this
 after executing the command:
 
-![Insert 15](img/insert15.png)
+    ![Insert 15](img/insert15.png)
 
-<details><summary>
-	Solution
-</summary><p>
+    <details><summary>
+    	Solution
+    </summary><p>
 
-```SQL
-UPDATE users
-	SET age = age + 1
-	WHERE age IS NOT NULL;
-```
+    ```SQL
+    UPDATE users
+    	SET age = age + 1
+    	WHERE age IS NOT NULL;
+    ```
 
-The ```WHERE age IS NOT NULL``` may not be necessary but is good practice as addition with a NULL isn't defined.
+    The ```WHERE age IS NOT NULL``` may not be necessary but is good practice as addition with a NULL isn't defined.
 
-</p></details>
+    </p></details>
 
 ---
 
