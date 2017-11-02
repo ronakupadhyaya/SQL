@@ -10,24 +10,28 @@ application breaks because your database doesn't contain the new column yet.
 **Database or schema migrations** allow you to share table and database
 definitions when working on SQL applications on a team. We save our SQL
 schema into git and use special migration commands to apply those those
-definitions to our local database.
+definitions to our own database.
 
 ## Note on primary keys and the serial data type
 
-To this point, we've been creating our tables like this:
+We want every table to have an `id` column to uniquely identify records.
+We usually create this column like so:
 
 ```SQL
 CREATE TABLE users (
-	id INT PRIMARY KEY NOT NULL
+	id INT PRIMARY KEY
 	...
 	);
 ```
 
-But there's actually a better way. You don't really want to have to keep track of what the next number
-is for your key. The answer to this is to declare id a ```SERIAL``` type. ```SERIAL``` is an integer type and
-automatically uses the next available integer (starting with 1) for the value. It is also automatically
-```NOT NULL```. It isn't automatically a primary key so you still have to declare that. (So you can
-use ```SERIAL``` for fields other than a primary key.)
+Now every time we insert a new record we need to issue a new id. To do this we
+need to remember the last id we've used and increment it by one. But there's
+actually a better way. You don't really want to have to keep track of what the
+next number is for your key. The answer to this is to declare id a `SERIAL`
+type. `SERIAL` is an integer type and automatically uses the next available
+integer (starting with 1) for the value.
+It isn't automatically a primary key so you still have to declare that.
+(So you can use `SERIAL` for fields other than a primary key.)
 
 ```SQL
 CREATE TABLE users (
@@ -65,15 +69,21 @@ We'll be using the db-migrate service provided by Node.js. You already have Node
 to install the appropriate packages. First create a directory named 'migration' in an appropriate place and
 initialize package.json.
 
-```npm init```
+```sh
+npm init
+```
 
 Now install the db-migrate package.
 
-```npm install -g --save db-migrate```
+```sh
+npm install -g db-migrate
+```
 
 And then install the PostgreSQL driver for db-migrate.
 
-```npm install -g --save db-migrate-pg```
+```sh
+npm install -g db-migrate-pg
+```
 
 Last, we need to tell the system what database we'll be using (and how to access it.)
 
