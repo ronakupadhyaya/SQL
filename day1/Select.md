@@ -1,4 +1,4 @@
-# Introduction to SELECT
+# Read data with SELECT
 
 ## Overview
 
@@ -8,6 +8,7 @@ SELECT is the basic tool to read data from a SQL database. The full syntax of SE
 
 Fortunately, we'll be starting with a subset of this. In particular, we're going to look at the
 following clauses of the SELECT statement:
+
 * LIMIT
 * ORDER BY
 * WHERE
@@ -15,18 +16,72 @@ following clauses of the SELECT statement:
 
 ## Setup
 
-The first thing is to create a database and some data that we can play with. Run the provided
-migration script to create the database 'testdb' and populate it with a 'users' table. (If you already
-have a testdb database either drop it or rename the database in the script.) From psql you can run the command
+The first thing is to create a database and some data that we can play with.
+Open `psql` and create database named `testdb`. Connect to `testdb` with
+`pgweb` and run the following SQL query to create a `users` table:
 
-```\i <path to script>```
+```sql
+create table users (
+    id int primary key not null,
+    name varchar not null,
+    age int,
+    address varchar,
+    city varchar,
+    state varchar,
+    zipcode int
+);
+```
 
-Using pgweb, we can see all of the information in the table. Make sure to click on the table name and then
-rows in pgweb.
+The table `users` should now show up on the left side. Click on the
+`users` table then click `Structure` up top to see the columns.
+You should see:
+
+<details><summary>
+Screenshot: Users table in pgweb
+</summary><p>
+
+![Users table in pgweb](img/select-users1.png)
+
+</p></details>
+
+Now let's populate the `users` table with data. Click `SQL Query` up top
+and run the following query:
+
+```sql
+insert into users values
+    (1, 'Tom', 45, '123 Broad St.', 'Douglasville', 'GA', 30135),
+    (2, 'Sarah', 39, '123 Broad St.', 'Douglasville', 'GA', 30135),
+    (3, 'Camille', 31, '577 Willow Glen Dr.', 'Marietta', 'GA', 30068),
+    (4, 'Indiana', 10, '577 Willow Glen Dr.', 'Marietta', 'GA', 30068),
+    (5, 'Luke', 29, '4242 Main St.', 'Smyrna', 'GA', 30071),
+    (6, 'Natalia', 28, '4242 Main St.', 'Smyrna', 'GA', 30071),
+    (7, 'Isaac', 3, '4242 Main St.', 'Smyrna', 'GA', 30071),
+    (8, 'Layla', 1, '4242 Main St.', 'Smyrna', 'GA', 30071),
+    (9, 'Hilary', 26, '1573 Mountain Way', 'Durango', 'CO', 81301),
+    (10, 'Kevin', 28, '1573 Mountain Way', 'Durango', 'CO', 81301),
+    (11, 'Fran', 63, '2324 Knoll Ridge Ln.', 'Wake Forest', 'NC', 27587),
+    (12, 'Jim', 65, '2324 Knoll Ridge Ln.', 'Wake Forest', 'NC', 27587),
+    (13, 'Karen', 38, '231 Third Ave.', 'Salt Lake City', 'UT', 84047),
+    (14, 'Chris', 28, '1313 Mockingbird Ln.', 'San Francisco', 'CA', 94102),
+    (15, 'Fred', 31, '12 LeTour Ave.', 'Bend', 'OR', 97701),
+    (16, 'Karen', 14, '412 Payton Place', 'Los Angeles', 'CA', 90001),
+    (17, 'George', 73, '1 Lucas Valley Rd.', 'Nicasio', 'CA', 94946),
+    (18, 'James', 38, '1701 Main St.', 'Riverside', 'IA', 52327),
+    (19, 'Robert', NULL, '1951 Heinlein Way', 'Colorado Srpings', 'CO', 80829),
+    (20, 'Isaac', NULL, '42 Broadway', 'New York', 'NY', 10001);
+```
+
+Click on the `users` table on the left again, you should now see:
+
+<details><summary>
+Screenshot: Users table contents in pgweb
+</summary><p>
 
 ![Table contents](img/table_info.png)
 
-But we really need to learn how to access this data programmatically.
+</p></details>
+
+Alright, let's see if we can read this data back using `SELECT` statements.
 
 ## The SELECT Statement
 
@@ -42,19 +97,18 @@ is a table. Let's start with a basic query to get the information from the table
 SELECT * FROM users;
 ```
 
-![Select 1](img/select1.png)
+![Result of SELECT *](img/select-users2.png)
 
 <details><summary>
-	Displaying NULL as NULL
+Aside: Displaying NULL as NULL in psql
 </summary><p>
 
-Aside: You'll notice that I have a 'NULL' where there's a NULL in the data. You can do that by running the command
+Normally psql displays NULL as blank which can be confusing. To make null
+values visible run:
 
 ```
 \pset null NULL
 ```
-
-in psql. Normally psql displays NULL as a blank area which can be confusing.
 
 </p></details>
 
@@ -82,7 +136,7 @@ Instead of '\*', we could have listed the fields that we are interested in. And 
 SELECT age, name FROM users;
 ```
 
-![Select 2](img/select2.png)
+![Result of SELECT age, name](img/select-users3.png)
 
 You'll notice that you can list multiple fields with a comma separator.
 
@@ -102,22 +156,41 @@ we'd do this:
 SELECT name, age FROM users LIMIT 5;
 ```
 
-![Select 5](img/select5.png)
+![Result of SELECT with LIMIT](img/select-users4.png)
 
 One problem with this is that there's no discrimination on which records we get. This query just returned the \"first\"
 5 records, but it was up to the server to determine which records those were. We'll see ways to help that in a minute.
 
-NOTE: While most (all?) other products also have this functionality, it seems to be different in each one. For instance:
-* Microsoft SQL Server uses TOP<br>
-```SELECT TOP 5 age FROM users;```
+<details><summary>
+Aside: LIMIT in other SQL databases
+</summary><p>
 
-* Oracle SQL uses ROWNUM<br>
-```SELECT age FROM users WHERE ROWNUM <= 5;``` (We'll see WHERE in just a minute.)
+While most other SQL databases have the functionality to limit output rows,
+the syntax is slightly different in each:
+
+* Microsoft SQL Server uses TOP
+
+    ```
+    SELECT TOP 5 age FROM users;
+    ```
+
+* Oracle SQL uses ROWNUM
+
+    ```
+    SELECT age FROM users WHERE ROWNUM <= 5;
+    ```
+
+    (We'll see WHERE in just a minute.)
+
+</p></details>
+
+
 
 ### Exercises
 
 1. Write and execute a query that displays 10 records of the user table.
-2. Write and execute a query that displays 30 records of the user table. (Notice that this still works, but it only shows the 20
+2. Write and execute a query that displays 30 records of the user table.
+(Notice that this still works, but it only shows the 20
 records that are actually in the table.)
 
 ## The ORDER BY Clause
@@ -211,7 +284,7 @@ I'm going to start writing longer queries on multiple lines to make them easier 
 ```SQL
 SELECT
 	name,
-	age, 
+	age,
 	state
 FROM
 	users
@@ -227,7 +300,7 @@ You can also use ```NOT``` to change the constraint.
 ```SQL
 SELECT
 	name,
-	age, 
+	age,
 	state
 FROM
 	users
@@ -245,7 +318,7 @@ fetches all records where the first character in the state field is \'C\'.
 ```SQL
 SELECT
 	name,
-	age, 
+	age,
 	state
 FROM
 	users
@@ -261,7 +334,7 @@ has a different result.
 ```SQL
 SELECT
 	name,
-	age, 
+	age,
 	state
 FROM
 	users
@@ -285,7 +358,7 @@ Note that BETWEEN is between inclusively.
 ```SQL
 SELECT
 	name,
-	age, 
+	age,
 	state
 FROM
 	users
@@ -300,7 +373,7 @@ And last is an expression that checks for NULLs.
 ```SQL
 SELECT
 	name,
-	age, 
+	age,
 	state
 FROM
 	users
@@ -315,7 +388,7 @@ Or check for the absence of NULLs.
 ```SQL
 SELECT
 	name,
-	age, 
+	age,
 	state
 FROM
 	users
@@ -330,7 +403,7 @@ Once again notice that NULL is really a different beast than it is in most progr
 ```SQL
 SELECT
 	name,
-	age, 
+	age,
 	state
 FROM
 	users
