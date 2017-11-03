@@ -10,5 +10,5 @@
 
 ## Afternoon Exercises
 
-1. Complete Tutorials & Quizzes 0 (SELECT basics) through 5 (SUM and COUNT) on
-[SQLZoo](https://sqlzoo.net/)
+1. [Complete Tutorials & Quizzes 0 (SELECT basics) through 5 (SUM and COUNT) on
+SQLZoo](https://sqlzoo.net/)
