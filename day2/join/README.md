@@ -58,7 +58,7 @@ membership type (i.e. membership type is null).
 
     </p></details>
 
-1. Write a query to count the number of customers in each activity level:
+1. Write a query to count the number of customers in each activity level.
 
     <details><summary>
     Hint
