@@ -12,8 +12,17 @@ called `pg_node`.
 Open this folder in your terminal and create an `env.sh` file that sets
 the `DATABASE_URL` environment variable:
 
+**On a Mac your `env.sh` should contain:**
+
 ```sh
-export DATABASE_URL="postgresql://localhost/pg_node"
+export DATABASE_URL=postgresql://postgres@localhost/pg_node
+```
+
+**On Windows your `env.sh` should contain:**
+
+```sh
+# Use the password you set during Postgres installation
+export DATABASE_URL=postgresql://postgres:YOUR POSTGRES PASSWORD HERE@localhost/pg_node
 ```
 
 ---
@@ -336,7 +345,7 @@ argument through `req.params`.
 if insertion is successful.
 
     Insert 3 animals and read them back using `/animals`
-    
+
 ## Done!
 
 Congrats, you're done with this module!
