@@ -61,7 +61,7 @@ membership type (i.e. membership type is null).
 1. Write a query to count the number of customers in each activity level:
 
     <details><summary>
-    Screenshot
+    Hint
     </summary><p>
 
     Join the `customers` table to the `activity_levels` table and use a
