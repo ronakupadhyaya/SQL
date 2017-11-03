@@ -2,7 +2,7 @@
 
 ## Videos and Self-directed Exercises
 
-1. JOIN TODO
+1. [`JOIN`ing Tables](join/)
 1. Normalization TODO
 1. [Using Posgres in Node](pg/)
 
