@@ -40,7 +40,7 @@ makes working with the database easier.
     ```sh
     cd ~/Downloads
     unzip pgweb_darwin_amd64.zip
-    unzip pgweb_darwin_amd64 ~/pgweb
+    mv pgweb_darwin_amd64 ~/pgweb
     ```
 
 1. To start pgweb, open your terminal and type `./pgweb`. This will bring
