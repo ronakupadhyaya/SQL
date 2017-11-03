@@ -32,7 +32,11 @@ exercise should now be created.
 
 ## Exercises
 
-1. Write a query to get the first names of all customers who don't have a membership type
+We recommend breaking down the task of writing queries. Start by writing a
+`SELECT *` query that joins the tables that contain the data you need, then add
+the `WHERE`, `ORDER BY` and `GROUP BY` clauses to get to the final result.
+
+1. Write a query to get the first name of the customer who doesn't have a membership type
 (i.e. membership type is null).
 
     <details><summary>
@@ -45,8 +49,8 @@ exercise should now be created.
 
     </p></details>
 
-1. Write a query to get the first names and activity levels of all customers who don't have a
-membership type (i.e. membership type is null).
+1. Write a query to get the first name and activity level of the customer who
+doesn't have a membership type (i.e. membership type is null).
 
     <details><summary>
     Result
@@ -58,7 +62,29 @@ membership type (i.e. membership type is null).
 
     </p></details>
 
-1. Write a query to count the number of customers in each activity level.
+1. Write a query to get the price of the most expensive product that `Fred`
+has bought.
+
+    <details><summary>
+    Result
+    </summary><p>
+
+    | max |
+    | --- |
+    | 299 |
+
+    </p></details>
+
+    <details><summary>
+    Hint
+    </summary><p>
+
+    Write a query to get all the products `Fred` has bought then use
+    `MAX(price)` to find the row with the highest price.
+
+    </p></details>
+
+1. Write a query to count the number of customers for each activity level.
 
     <details><summary>
     Hint
@@ -82,4 +108,31 @@ membership type (i.e. membership type is null).
 
     </p></details>
 
-1. TODO 3 more
+1. Write a query to get the first and last name of the customer who ordered
+a `Magellen eXplorist GC`:
+
+    <details><summary>
+    Result
+    </summary><p>
+
+    | name_first | name_last  |
+    |------------|------------|
+    | Wilma      | Flintstone|
+
+    </p></details>
+
+1. **Bonus** Write a query to count how many family members in each family
+(based on `name_last`) have each membership type
+
+    <details><summary>
+    Result
+    </summary><p>
+
+    | name_last  |   name   | count |
+    |------------|----------|-------|
+    | Flintstone | premium  |     2|
+    | Rubble     | regular  |     1|
+    | Flintstone | inactive |     1|
+    | Rubble     | charter  |     1|
+
+    </p></details>
