@@ -1,7 +1,13 @@
 "use strict";
 
+// On Windows we needa DBPASSWORD
+if (/^win/.test(process.platform) && ! process.env.DBPASSWORD) {
+  console.log('You need to set DBPASSWORD in your env.sh file');
+  process.exit(1);
+}
+
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize('guestbook', process.env.USER || process.env.USERNAME, null, {
+var sequelize = new Sequelize('guestbook', 'postgres', process.env.DBPASSWORD, {
   dialect: 'postgres'
 });
 

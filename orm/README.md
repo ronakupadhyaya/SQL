@@ -29,7 +29,14 @@ post, edit and delete Guestbook posts.
 ### Exercises
 
 1. Create a new database in Postgres called `guestbook`
-1. Open `models.js` in your browser. Check it out, you have everything you
+1. If you're on Windows create an `env.sh` file with the Postgres password
+you set when you installed Postgres and `source env.sh`
+
+    ```sh
+    export DBPASSWORD="YOUR POSTGRES PASSWORD HERE"
+    ```
+
+1. Open `models.js` in your browser. You have everything you
 need to connect to your local Postgres!
 
     Run `node models.js`, you should see:
