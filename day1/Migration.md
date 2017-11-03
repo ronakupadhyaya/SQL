@@ -78,18 +78,20 @@ npm install -g db-migrate
 Open the `sql/day1/migrate` in your terminal and run `npm install` to install
 other dependencies.
 
-Create an `env.sh` file and put this in it:
+Create an `env.sh` file and run `source env.sh`
+
+**On a Mac your `env.sh` should contain:**
 
 ```sh
-export DATABASE_URL=postgresql://localhost/testdb
+export DATABASE_URL=postgresql://postgres@localhost/testdb
 ```
 
-Where \<username\> is the user name that you created when you installed PostgreSQL. (The default was postgres and that's
-probably what you used.) And \<password\> is the password that you created for that user name if you created a password.
-Choose the appropriate version and put that into env.sh. Then ```source env.sh``` to get your environment set
-up correctly.
+**On Windows your `env.sh` should contain:**
 
-TODO username
+```sh
+# Use the password you set during Postgres installation
+export DATABASE_URL=postgresql://postgres:YOUR POSTGRES PASSWORD HERE@localhost/testdb
+```
 
 ---
 

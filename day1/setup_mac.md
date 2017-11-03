@@ -1,4 +1,4 @@
-# Mac Installation Instructions
+# Postgres Mac Installation Instructions
 
 ## Part 1: Install Postgres
 

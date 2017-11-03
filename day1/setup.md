@@ -7,8 +7,10 @@
 
 ## Exercises
 
-1. Create a database named `setup` with `psql`
-1. Connect to the `setup` database using `pgweb`
+1. Connect to your database with `pgweb`, use the `SQL Query` tab to create
+a database named `setup` using the `CREATE DATABASE` command
+1. Click `Connect` on the upper right now connect to the `setup` database
+by filling **Database** field (fill the other fields as you did before).
 
     <details><summary>
     Troubleshooting pgweb
@@ -41,10 +43,11 @@ right columns
 1. Alter the `countries` table and modify `continent` to be `NOT NULL`
 1. Verify that the table `countries` has been updated
 1. Drop the `cities` and `countries` tables
-1. Drop the `setup` database
+1. Drop the `setup` database using `psql`
 
     If you're using `pgweb`, make sure you disconnect first.
 
-# Done
+    On Windows, you can open `SQL Shell (psql)` from the start menu.
 
-You're done with this module! Go to the [next module: Select](Select.md).
+    On a Mac, you can open psql from `Postgres` in your applications by
+    double-clicking on the `Postgres` database.
