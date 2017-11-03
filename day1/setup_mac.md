@@ -43,7 +43,7 @@ makes working with the database easier.
     mv pgweb_darwin_amd64 ~/pgweb
     ```
 
-1. To start pgweb, open your terminal and type `./pgweb`. This will bring
+1. To start pgweb, open your terminal and type `~/pgweb`. This will bring
 up a browser window. If not navigate to [localhost:8081](http://localhost:8081/).
 
     You will see:
