@@ -63,7 +63,7 @@ TODO explain what `sync.js` does
     1. `password`, type: `Sequelize.STRING`, not nullable (i.e. required)
 
     <details><summary>
-    Hint: user schema definition
+    Solution: user schema definition
     </summary><p>
 
     ![User schema definition](img/user1.png)
@@ -170,7 +170,7 @@ column:
     User and Post.
 
     <details><summary>
-    Hint: Sequelize and belongsTo
+    Solution: Sequelize and belongsTo
     </summary><p>
 
     This will create a `userId` column on the `Post` model which
@@ -227,7 +227,7 @@ with a `message` and `userId`. You can read `message` from `req.body` and
     exists in the `posts` table with both `message` and `userId` populated.
 
     <details><summary>
-    Hint
+    Solution
     </summary><p>
 
     ![Creating a post](img/post5.png)
@@ -252,7 +252,7 @@ column to order the posts when reading them.
     chronological order.
 
     <details><summary>
-    Hint: Ordering in Sequelize
+    Solution: Ordering in Sequelize
     </summary><p>
 
     You can pass Sequelize queries an object with the key `order` to
@@ -276,7 +276,7 @@ automatically populated. Update your query from the previous step to populate
     checking that usernames are displayed with posts.
 
     <details><summary>
-    Hint: JOINing in Sequelize
+    Solution: JOINing in Sequelize
     </summary><p>
 
     We can instruct Sequelize to join against another table when querying by
@@ -299,7 +299,7 @@ of the post that should be deleted from `req.params.id`.
     page should refresh and the post should disappear.
 
     <details><summary>
-    Hint: Deleting stuff with Sequelize
+    Solution: Deleting stuff with Sequelize
     </summary><p>
 
     You can delete rows with Sequelize using `.destroy`. Just like `DELETE FROM`
@@ -332,7 +332,7 @@ and render `editPost`:
     it now.
 
     <details><summary>
-    Hint: Using Post.findById
+    Solution: Using Post.findById
     </summary><p>
 
     ![Using post.findById](postfindbyid.png)
@@ -353,10 +353,10 @@ and update the `message` column using `req.body.message`, then redirect to
     ```
 
     <details><summary>
-    Hint: Updating with Sequelize
+    Solution: Updating with Sequelize
     </summary><p>
 
-    Out update query will look like this:
+    Our update query will look like this:
 
     ![Updating with Sequelize][img/postupdate.png)
 
