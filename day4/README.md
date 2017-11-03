@@ -4,4 +4,4 @@
 
 ## Pair Programming Exercises
 
-Reddit TODO
+Reddit: Coming soon!
