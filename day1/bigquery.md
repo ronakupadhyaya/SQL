@@ -40,41 +40,10 @@ You will need to use a subquery (i.e. select within select) and
 [window functions](https://cloud.google.com/bigquery/docs/reference/legacy-sql#windowfunctions)
 to answer this one.
 
-Find the female name that experienced the greatest increase in popularity
+1. Find the top 10 female names that experienced the greatest increase in popularity
 in Florida between between 1989 and 1990.
 
 Use absolute increase in population as a measure of popularity.
-
-<details><summary>
-Answer
-</summary><p>
-
-Ashley
-
-</p></details>
-
-<details><summary>
-Solution
-</summary><p>
-
-```sql
-SELECT
-    name,
-    number - prev_year as change
-    FROM (
-        SELECT name as name,
-        number,
-        LAG(number) OVER(ORDER BY year) prev_year,
-        FROM [bigquery-public-data:usa_names.usa_1910_current]
-        WHERE year = 1990 AND gender = 'F' AND state = 'FL'
-    )
-    ORDER BY change DESC
-```
-
-</p></details>
-
-1. Find the top 10 female names that experienced the greatest increase in popularity
-in Florida between between 1989 and 1990.
 
 <details><summary>
 Answer
@@ -102,13 +71,13 @@ Solution
 ```sql
 SELECT
     name,
-    SUM(number) - SUM(prev_year) as change
+    number - prev_year as change
     FROM (
-        SELECT name,
+        SELECT name as name,
         number,
         LAG(number) OVER(ORDER BY year) prev_year,
         FROM [bigquery-public-data:usa_names.usa_1910_current]
-        WHERE year = 1990 AND gender = 'F' AND state = 'FL'
+        WHERE year = 2010 AND gender = 'F' AND state = 'FL'
     )
     ORDER BY change DESC
     LIMIT 10
