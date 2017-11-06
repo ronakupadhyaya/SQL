@@ -48,13 +48,13 @@ up a browser window. If not navigate to [localhost:8081](http://localhost:8081/)
 
     You will see:
 
-    ![pgweb initial window Mac](pgwebmac1.png)
+    ![pgweb initial window Mac](img/pgwebmac1.png)
 
 1. Leave everything blank, and set **SSL Mode** to **disable** then click `Connect`
 
     You should now see:
 
-    ![pgweb connected](pgwebmac2.png)
+    ![pgweb connected](img/pgwebmac2.png)
 
 ## Done!
 
