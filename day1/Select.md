@@ -698,7 +698,7 @@ in your output using `AS`:
 ```SQL
 SELECT
 	name as customer,
-	state location
+	state as location
 FROM
 	users;
 ```
