@@ -25,7 +25,7 @@ then click `Start`
 
 1. You should see the `psql` prompt in your terminal
 
-    ![Terminal `psql` prompt](postgresterm.png)
+    ![Terminal `psql` prompt](img/postgresterm.png)
 
 1. You now have Postgres running on your laptop! Type `\q` to exit
 
