@@ -24,6 +24,9 @@ are some differences so experiment with variation.
 
 ## Exercises
 
+Find the answer to these questions
+[using the US name dataset from Google BigTable](https://bigquery.cloud.google.com/table/bigquery-public-data:usa_names.usa_1910_2013?pli=1).
+
 1. Find the total number of boys and the total number of girls in the whole
 dataset.
 1. Find out how many girls were born in Oregon in 1949.
@@ -34,14 +37,18 @@ dataset.
 (i.e. the year when most `Ruth`s are born)
 1. Find the 10 states with the largest number of boys born in 1955.
 
-## Double bonus
+## Complete the [SQL Zoo: Join](https://sqlzoo.net/wiki/The_JOIN_operation)
 
-You will need to use a subquery (i.e. select within select) and
-[window functions](https://cloud.google.com/bigquery/docs/reference/legacy-sql#windowfunctions)
+## Double bonus: window functions
+
+You will need to use a subquery (i.e. select within select) and window functions
 to answer this one.
 
-1. Find the top 10 female names that experienced the greatest increase in popularity
-in Florida between between 1989 and 1990.
+Read about [window functions](https://community.modeanalytics.com/sql/tutorial/sql-window-functions/).
+[BigQuery docs on window functions.](https://cloud.google.com/bigquery/docs/reference/legacy-sql#windowfunctions)
+
+Find the top 10 female names that experienced the greatest increase in popularity
+in Florida between between 2009 and 2010.
 
 Use absolute increase in population as a measure of popularity.
 
@@ -50,17 +57,17 @@ Answer
 </summary><p>
 
 | name |
-| -- |
-| Ashley |
-| Jessica |
-| Brittany |
-| Amanda |
-| Stephanie |
-| Samantha |
-| Jennifer |
-| Sarah |
-| Lauren |
-| Nicole |
+| --- |
+| Isabella |
+| Sophia |
+| Olivia |
+| Emma |
+| Emily |
+| Mia |
+| Ava |
+| Madison |
+| Abigail |
+| Chloe |
 
 </p></details>
 
