@@ -37,7 +37,7 @@ dataset.
 (i.e. the year when most `Ruth`s are born)
 1. Find the 10 states with the largest number of boys born in 1955.
 
-## Complete the [SQL Zoo: Join](https://sqlzoo.net/wiki/The_JOIN_operation)
+## Complete [SQL Zoo: Join](https://sqlzoo.net/wiki/The_JOIN_operation)
 
 ## Double bonus: window functions
 
