@@ -11,7 +11,7 @@ then click `Start`
     ![Opening a database inside Postgres](img/postgresapp.png)
 
     <details><summary>
-    Tourbleshooting: if the Postgres window is empty
+    Troubleshooting: if the Postgres window is empty
     </summary><p>
 
     If the Postgres window is empty run the following commands from your terminal
