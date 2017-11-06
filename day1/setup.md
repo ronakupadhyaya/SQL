@@ -37,7 +37,7 @@ by filling **Database** field (fill the other fields as you did before).
     | population | int | Y |
     | continent | varchar | N |
 
-1. Use `pgweb` or `psql` that the `countries` table exists and contains the
+1. Use `pgweb` or `psql` to verify that the `countries` table exists and contains the
 right columns
 1. Verify that the table `countries` exists and contains the right columns
 1. Alter the `countries` table and modify `continent` to be `NOT NULL`
