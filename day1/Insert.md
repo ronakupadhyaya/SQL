@@ -85,7 +85,7 @@ This didn't work since both the id and name field are required to not be NULL.
 
 ### Exercises
 
-1. Insert the data we listed above into your `users` <table></table>.
+1. Insert the data we listed above into your `users` table.
 1. Insert a user with the id `32` and name `Beyonce` to the `users` table.
 1. Insert 3 of your own records into the users table with a single insert
 query.
