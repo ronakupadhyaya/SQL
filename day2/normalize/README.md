@@ -360,8 +360,6 @@ Your schema should support the following features:
 
 ---
 
-## Done
-
 ## Done!
 
 Congrats, you're done with this module! [Next up: Using Postgres in Node](../pg)
