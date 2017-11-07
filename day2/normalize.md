@@ -70,22 +70,47 @@ SELECT comments.contents, users.first_name, users.last_name, users.email
 
 ## Designing normalized schemas
 
-To design a normalized schema you have to know two things:
+To design a normalized schema you have to answer two questions:
 
-1. Identify key entities in your application
-1. Determine the relationship between those entities
+1. What are the different entities in my application?
+1. What's the relationship between those entities?
 
-In our public comment board example.
+### One-to-many relationships
 
-## One-to-one relationships
+Take our public comment board example. Let's answer the two questions:
 
-## One-to-many relationships
+1. What are the different entities in my application?
 
+    We have two entities, users and comments.
+
+1. What's the relationship between those entities?
+
+    Each comment belongs to a single user.
+    Each single user can have many comments. We can picture this relationship:
+    as:
+
+    ![User comment entity relationship](img/usercomment.png)
+
+This is known as a **one-to-many relationship.** (Where one user maps to
+many comments, but one comment only maps to one user.)
+
+In SQL we represent one-to-many relationships by adding the key of
+the "one" entity to the table of the "many" entity.
+In the case of comments, we added `author_id` to the `comments` table.
+
+When we add a column to a table that contains an id for another table,
+we call that a **foreign key**. In our case, the user id we added to the
+`comments` table is a foreign key. It lives on the `comments` table but it
+belongs to `users` table. Like a foreigner.
+
+### Many-to-many relationships
+
+Take
 TODO
 
-## Many-to-many relationships
+### One-to-one relationships
 
-TODO
+TODO delete
 
 ---
 
