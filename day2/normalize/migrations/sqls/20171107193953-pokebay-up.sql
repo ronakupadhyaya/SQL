@@ -15,6 +15,8 @@ CREATE TABLE users (
 CREATE TABLE pokemon (
   id SERIAL PRIMARY KEY,
   name TEXT NOT NULL,
+  type TEXT,
+  image_url TEXT,
   description TEXT
 );
 
@@ -24,9 +26,9 @@ CREATE TABLE auctions (
   fk_pokemon INT NOT NULL,
   start_date TIMESTAMP NOT NULL,
   duration_days INT NOT NULL,
-  opening_bid DECIMAL NOT NULL,
-  reserve_price DECIMAL,
-  shipping_from TEXT NOT NULL,
+  opening_bid DECIMAL DEFAULT 0.0,
+  reserve_price DECIMAL DEFAULT 0.01,
+  description TEXT
 );
 
 CREATE TABLE bids (
