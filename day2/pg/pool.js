@@ -5,9 +5,12 @@ if (! process.env.DATABASE_URL) {
   process.exit(1);
 }
 
-var pool;
 // Establish a connection to Postgres here using pg.Pool
 // YOUR CODE HERE
+var pg = require('pg');
+var pool = new pg.Pool({
+  connectionString: process.env.DATABASE_URL
+});
 
 if (! pool) {
   console.error('pg.Pool is not set up, edit app.js and setup the pool');
@@ -24,3 +27,4 @@ pool.query('SELECT NOW()', (err, res) => {
 
 // Export 'pool' so other files can use Postgres
 // YOUR CODE HERE
+module.exports = pool;
