@@ -169,27 +169,123 @@ columns. So you don't need to do any joins to handle them.
 
 ## Exercises: Normalize these schemas
 
+### Setup
+
+1. Create a new database called `normalize`.
+1. Create and source `env.sh` that contains a `DATABASE_URL`
+that connects you to this database.
+
 ### Part 1: Professors, students, courses
 
-TODO
+In the folder `sql/day2/normalize_school` you will find migrations
+that create a schema for a school. This schema is not normalized,
+create a new migration to normalize it.
+
+✅ Run `npm install` and `db-migrate up` to test your migration.
+
+There are three entities in our school schema:
+
+1. Professors have the properties
+
+    - name: `text`, legal name of the professor
+    - email: `text`, email address of the professot
+
+1. Students have the property
+
+    - name: `text`, legal name of the student
+
+1. Courses have the property
+
+    - name: `text`, the name the course is listed under
+
+Relationships:
+
+- Each professor can teach multiple courses.
+- Each course is taught by a single professor.
+- Students can take multiple courses.
+- Each course can be taken by multiple students.
+
+<details><summary>
+Solution
+</summary><p>
+
+You can find the solution SQL in the `solution/` folder.
+
+</p></details>
 
 ---
 
 ### Part 2: Instagram following and followers
 
-TODO
+Design a schema for a social networking app where users have the ability to
+follow each other.
+
+There is only one entity in this schema:
+
+1. Users have a username property of type `text`
+
+Relationships:
+
+- Users can follow 0 or more other users
+- Users can be followed by 0 or more other users
+- Users don't automatically follow each other back, i.e. if A follows B, B
+doesn't necessarily follow A
+
+It should be possible to query your schema to find all followers for a given
+user or to find all users that a given user is following.
+
+✅ Go to the folder `sql/day2/normalize_insta` and create migrations to create
+a normalized schema. Run `npm install` and `db-migrate up` to test your migration.
+
+<details><summary>
+Solution
+</summary><p>
+
+You can find the solution SQL in the `solution/` folder.
+
+</p></details>
 
 ---
 
 ### Part 3: Amazon Products and Subproducts
 
-TODO
+Design a schema for an e-commerce app where products can have subproducts.
+Take this example of a
+[water bottle listed on Amazon](https://www.amazon.com/CamelBak-Bottle-0-75-Liter-African-Violet/dp/B015DJASPY/).
+This product has a single product page with user rating and detailed description
+where the user can find a number of different colors each with a different price.
+
+Entities:
+
+1. Products have the properties
+
+    - name of the product, `text`
+    - detailed description of the product, `text`
+    - user rating, average number of stars the product has been given, `int`
+
+1. Subproducts have the properties
+
+    - price in dollars, `decimal`
+    - color, `text`
+
+Relationships: exercise left to reader!
+
+✅ Go to the folder `sql/day2/normalize_amazon` and create migrations to create
+a normalized schema. Run `npm install` and `db-migrate up` to test your migration.
+
+<details><summary>
+Solution
+</summary><p>
+
+You can find the solution SQL in the `solution/` folder.
+
+</p></details>
 
 ---
 
 ### Part 4: PokeBay
 
-Design the schema for an auction site
+Design the schema for an auction site where Pokemon can be bought and sold.
 
 ---
 
