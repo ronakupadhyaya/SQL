@@ -72,8 +72,10 @@ SELECT comments.contents, users.first_name, users.last_name, users.email
 
 To design a normalized schema you have to know two things:
 
-1. What entities
-1. What relationships
+1. Identify key entities in your application
+1. Determine the relationship between those entities
+
+In our public comment board example.
 
 ## One-to-one relationships
 
