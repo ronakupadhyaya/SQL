@@ -172,16 +172,18 @@ columns. So you don't need to do any joins to handle them.
 ### Setup
 
 1. Create a new database called `normalize`.
+1. Go to folder `sql/day2/normalize`
 1. Create and source `env.sh` that contains a `DATABASE_URL`
 that connects you to this database.
+1. Run `npm install` and `db-migrate up`
 
 ### Part 1: Professors, students, courses
 
-In the folder `sql/day2/normalize_school` you will find migrations
+In the folder `sql/day2/normalize` you will find migrations
 that create a schema for a school. This schema is not normalized,
 create a new migration to normalize it.
 
-✅ Run `npm install` and `db-migrate up` to test your migration.
+✅ Run `db-migrate up` to test your migration.
 
 #### Entities
 
@@ -234,8 +236,8 @@ doesn't necessarily follow A
 It should be possible to query your schema to find all followers for a given
 user or to find all users that a given user is following.
 
-✅ Go to the folder `sql/day2/normalize_insta` and create migrations to create
-a normalized schema. Run `npm install` and `db-migrate up` to test your migration.
+✅ Go to the folder `sql/day2/normalize` and create migrations to create
+a normalized schema. Run `db-migrate up` to test your migration.
 
 <details><summary>
 Solution
@@ -275,8 +277,8 @@ Exercise left to you!
 It should be possible to query your schema to find all subproducts for a
 given product.
 
-✅ Go to the folder `sql/day2/normalize_amazon` and create migrations to create
-a normalized schema. Run `npm install` and `db-migrate up` to test your migration.
+✅ Go to the folder `sql/day2/normalize` and create migrations to create
+a normalized schema. Run `db-migrate up` to test your migration.
 
 <details><summary>
 Solution
