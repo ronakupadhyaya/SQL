@@ -5,10 +5,10 @@ CREATE TABLE professors (
   course_id INT
 );
 
-CREATE TABLE professor_emails (
-  id SERIAL PRIMARY KEY,
-  email TEXT
-);
+-- CREATE TABLE professor_emails (
+--   id SERIAL PRIMARY KEY,
+--   email TEXT
+-- );
 
 CREATE TABLE students (
   id SERIAL PRIMARY KEY,
