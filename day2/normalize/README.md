@@ -292,6 +292,9 @@ You can find the solution SQL in the `solution/` folder.
 
 ### Part 4: PokeBay
 
+We're starting a two-day pair programming project today, PokeBay. As with
+any application built on a SQL database first step is to design our schema.
+
 Design the schema for an auction site where Pokemon can be bought and sold.
 Go to the folder `sql/day2/normalize` and create migrations to create
 a normalized schema. Run `db-migrate up` to test your migration.
@@ -351,6 +354,9 @@ Your schema should support the following features:
     - How much time is left in the auction (based on start date and duration)
     - The amount of highest bid for the auction (if any bids were made), who
     made the highest bid and when
+    - List of all bids on the auction, who made them and when
+    - Bids should be displayed in reverse-chronological order. Highest bid should
+    be displayed at the top and highlighted.
 
 1. **Bidding on auctions**
 
@@ -360,6 +366,15 @@ Your schema should support the following features:
     - The current highest bidder cannot bid on an auction
     - The new bid has to be at least $0.50 more than the last bid
     - The owner of the auction cannot bid on their own auction
+
+1. **Auction watchlist**
+
+    Logged in users can add auctions to their watchlist.
+
+    - Users can view the details of all auctions they are watching on a single
+    page.
+    - The auction detail page can display the number of people who have the
+    auction in their watchlist.
 
 ---
 
