@@ -1,1 +1,4 @@
-/* Replace with your SQL commands */
+DROP TABLE professors;
+DROP TABLE professor_emails;
+DROP TABLE students;
+DROP TABLE courses;
