@@ -167,7 +167,15 @@ columns. So you don't need to do any joins to handle them.
 
 ---
 
-## Exercises: Normalize this schema
+## Exercises: Normalize these schemas
+
+### Part 1: Professors, students, courses
+
+TODO
+
+### Part 2: Instagram following and followers
+
+TODO
 
 ---
 
