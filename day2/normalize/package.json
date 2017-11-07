@@ -1,7 +1,7 @@
 {
   "name": "join",
   "version": "1.0.0",
-  "description": "",
+  "description": "## What's normalization?",
   "main": "index.js",
   "scripts": {},
   "author": "",
@@ -9,5 +9,6 @@
   "dependencies": {
     "db-migrate": "^0.10.0-beta.24",
     "db-migrate-pg": "^0.2.5"
-  }
+  },
+  "devDependencies": {}
 }
