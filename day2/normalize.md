@@ -220,11 +220,11 @@ You can find the solution SQL in the `solution/` folder.
 Design a schema for a social networking app where users have the ability to
 follow each other.
 
-There is only one entity in this schema:
+#### Entity
 
 1. Users have a username property of type `text`
 
-Relationships:
+#### Relationships
 
 - Users can follow 0 or more other users
 - Users can be followed by 0 or more other users
@@ -255,7 +255,7 @@ Take this example of a
 This product has a single product page with user rating and detailed description
 where the user can find a number of different colors each with a different price.
 
-Entities:
+#### Entities
 
 1. Products have the properties
 
@@ -268,7 +268,9 @@ Entities:
     - price in dollars, `decimal`
     - color, `text`
 
-Relationships: exercise left to reader!
+#### Relationships
+
+Exercise left to you!
 
 It should be possible to query your schema to find all subproducts for a
 given product.
@@ -290,7 +292,44 @@ You can find the solution SQL in the `solution/` folder.
 
 Design the schema for an auction site where Pokemon can be bought and sold.
 
-###
+#### Entities
+
+**Note:** Some of this information may need to be stored in other tables!
+Normalize your schema.
+
+1. **Users**
+
+    When a user registers to our application they will be prompted for the
+    following information:
+
+    - First and last name: must be stored separately
+    - Address: broken down into street address, city, state, zipcode
+    - Username
+    - Email address
+    - Phone number
+
+1. **Pokemon**
+
+    Pokemon are bought and sold on our auction site. Each Pokemon has the
+    following information stored:
+
+    - name: every Pokemon has a name
+    - image_url: the url for a picture of the Pokemon
+    - types: each Pokemon can have one or more types, each of which is string
+
+1. **Auctions**
+
+    - Pokemon: each auction sells one and only one Pokemon.
+    - Opening bid: each auction has a starting bid, all subsequent bids
+    must be higher than this amount
+    - Auction length: duration of the auction
+    - Shipping location: where the Pokemon will be shipped from
+    - Description: customizable detailed description about Pokemon being sold
+
+
+#### Relationships
+
+TODO populate poke!!!
 
 ---
 
