@@ -87,7 +87,7 @@ Take our public comment board example. Let's answer the two questions:
 
     Each comment belongs to a single user.
     Each single user can have many comments. We can picture this relationship
-    liek so:
+    like so:
 
     ![User comment entity relationship](img/usercomment.png)
 
@@ -114,15 +114,60 @@ We can picture this relationship as:
 
 ![Shopping cart and product relationship](img/product.png)
 
-TODO
+This is known as a **many-to-many relationship.** (Where one shopping cart
+cart maps to many products and vice versa.)
+
+In SQL we represent many-to-many relationships by creating a separate table.
+This table is called a [junction or join table](https://en.wikipedia.org/wiki/Associative_entity)
+and it will contain two foreign keys, one for each side of the many-to-many
+relationship:
+
+In the case of our product/shopping cart example, we would have 3 tables:
+
+**products** would have columns `id` and `product_name`.
+
+**shopping_carts** would just have an `id` column.
+
+**products_shopping_carts** (junction table) would have a `product_id` and a
+`shopping_cart_id` column.
+
+To add the product with id 42 to the shopping cart with id 87 we would do:
+
+```sql
+INSERT INTO products_shopping_carts
+    (product_id, shopping_cart_id) VALUES
+    (42, 87);
+```
+
+To get the names of all products inside the shopping cart with id 123 we can do:
+
+```sql
+SELECT products.name
+    FROM products
+    JOIN products_shopping_carts
+    ON products.id = products_shopping_carts.product_id
+    WHERE products_shopping_carts.shopping_cart_id = 123;
+```
+
+We can also find all the carts that contain the product with id 777:
+
+```sql
+SELECT products_shopping_carts.shopping_cart_id
+    FROM products_shopping_carts
+    WHERE products_shopping_carts.product_id = 777;
+```
 
 ### One-to-one relationships
 
-TODO delete
+The final and simplest relationship in SQL is a **one-to-one** relationship.
+An example would be `email` and `user`. Every user has one email address
+and each email address belongs to one user. We typically represent
+`one-to-one` relationships by storing them on the same table as separate
+columns. So you don't need to do any joins to handle them.
 
 ---
 
-# Normalize this schema
+## Exercises: Normalize this schema
 
 ---
 
