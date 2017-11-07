@@ -86,8 +86,8 @@ Take our public comment board example. Let's answer the two questions:
 1. What's the relationship between those entities?
 
     Each comment belongs to a single user.
-    Each single user can have many comments. We can picture this relationship:
-    as:
+    Each single user can have many comments. We can picture this relationship
+    liek so:
 
     ![User comment entity relationship](img/usercomment.png)
 
@@ -105,7 +105,15 @@ belongs to `users` table. Like a foreigner.
 
 ### Many-to-many relationships
 
-Take
+Let's design a schema to represent products and shopping carts in an e-commerce
+application. In this case, each product can be in multiple shopping carts
+(i.e. multiple people can have the same book in their shopping cart).
+Each shopping cart can contain multiple products.
+
+We can picture this relationship as:
+
+![Shopping cart and product relationship](img/product.png)
+
 TODO
 
 ### One-to-one relationships
