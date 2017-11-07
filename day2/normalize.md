@@ -326,6 +326,10 @@ Your schema should support the following features:
     Pokemon from a list of available Pokemon.
     - Opening bid: each auction has a starting bid, all subsequent bids
     must be higher than this amount
+    - Reserve price: if the auction closes for less than this amount of
+    money, the auction is cancelled and the item is not sold. This
+    amount is hidden from users other than the auction creator and acts
+    as a hidden minimum price.
     - Auction length: duration of the auction in number of days
     - Shipping location: where the Pokemon will be shipped from
     - Description: customizable detailed description about Pokemon being sold
@@ -338,15 +342,16 @@ Your schema should support the following features:
     - Username and city of the user who created the auction
     - When the auction was created
     - Status of the auction: either running or finished
-    - How much time is left in the auction
+    - Start date of auction
+    - How much time is left in the auction (based on start date and duration)
     - The amount of highest bid for the auction (if any bids were made), who
     made the highest bid and when
 
 1. **Bidding on auctions**
 
-    Logged in users can bid on auctions that are still running. With the
-    following rules:
+    Logged in users can bid on auctions based on the following rules:
 
+    - Users can only bid on auctions that are still running
     - The current highest bidder cannot bid on an auction
     - The new bid has to be at least $0.50 more than the last bid
     - The owner of the auction cannot bid on their own auction
