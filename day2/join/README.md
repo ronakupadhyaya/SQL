@@ -136,3 +136,10 @@ a `Magellen eXplorist GC`:
     | Rubble     | charter  |     1|
 
     </p></details>
+
+---
+
+## Done!
+
+Congrats, you're done with this module!
+[Next up: Normalization.](../normalize)
