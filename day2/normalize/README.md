@@ -1,4 +1,4 @@
-# Normalization
+# Self-directed Tutorial and Exercises: Normalization
 
 ## What's normalization?
 
