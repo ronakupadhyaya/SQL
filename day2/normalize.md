@@ -183,7 +183,7 @@ create a new migration to normalize it.
 
 ✅ Run `npm install` and `db-migrate up` to test your migration.
 
-There are three entities in our school schema:
+#### Entities
 
 1. Professors have the properties
 
@@ -198,7 +198,7 @@ There are three entities in our school schema:
 
     - name: `text`, the name the course is listed under
 
-Relationships:
+#### Relationships
 
 - Each professor can teach multiple courses.
 - Each course is taught by a single professor.
@@ -270,6 +270,9 @@ Entities:
 
 Relationships: exercise left to reader!
 
+It should be possible to query your schema to find all subproducts for a
+given product.
+
 ✅ Go to the folder `sql/day2/normalize_amazon` and create migrations to create
 a normalized schema. Run `npm install` and `db-migrate up` to test your migration.
 
@@ -287,47 +290,11 @@ You can find the solution SQL in the `solution/` folder.
 
 Design the schema for an auction site where Pokemon can be bought and sold.
 
+###
+
 ---
 
 Exercises
-
-1. Amazon where products have subproducts, product categories
-
-    Give a Schema where info is duplicated
-
-    Must be able to rename a product by updating a single row on a single table
-
-    Must be able to get all products for a given type
-
-    Must be able to modify the price of a single subproduct
-
-1. Give a bad schema for instagram
-
-    User: followers, following columns
-
-    Fix this so we can make a user follow another user by inserting a single row into a single table (no updates)
-
-    Bonus: given a user, find all people user is following who don’t follow back
-
-1. Designa schema for kickstarter where there are projects and users, every user can contribute to 0 or more projects, every project can have 0 or more contributors
-
-    Get all project that a user had contributed
-
-    Get all users who have contributed to a project
-
-    Get total contributions to a project
-
-    User can make a contribution to a project by inserting a single row into a single table (no updates to other tables allowed)
-
-1. Design a course catalog schema for a school where there are courses, professors and students.  Each course has a single professor. Each professor can teach multiple courses. Each course can have multiple students in it and each student can take multiple courses
-
-    Student can join a course by inserting a single row into a single table
-
-    You can change the professor of a course by updating a single column of a single table
-
-    You can list all students taking a course
-
-    You can list all courses a student is taking
 
 1. Bonus: design a schma for hierarchical comment threads. In a hierarchical comment thread, each comment can have replies and each reply can have replies of its own. Your schema should be able to
 
