@@ -346,6 +346,39 @@ if insertion is successful.
 
     Insert 3 animals and read them back using `/animals`
 
+---
+
+## Populate PokeBay with `Promise.all()`
+
+Edit `insert-pokemon.js` and write a script to insert Pokemon defined in
+the `sql/day2/pg/data/` folder into your database.
+
+Switch your `env.sh` to use the database from the Normalization exercises.
+
+Remember that `pg.query()` returns a promise. So we can combine it with `.map()`
+and `Promise.all()` to insert whole arrays into a database.
+
+For example, we can insert data into our users table from earlier like so:
+
+```javascript
+var users = ['moose', 'graham', 'pam', 'prath'];
+
+function insertUser(userName) {
+    return pg.query('INSERT INTO users (firstName) VALUES ($1)', [userName]);
+}
+
+var userPromises = users.map(userName => insertUser(userName));
+Promise.all(userPromises)
+    .then(() => {
+        console.log('Saved all users!');
+    });
+```
+
+Check the contents of your `pokemon` table to verify that all 50 Pokemon are
+loaded.
+
+---
+
 ## Done!
 
-Congrats, you're done with this module!
+Congrats, you're done with this module! [Next up: Pair Programming Exercise PokeBay](https://github.com/horizons-school-of-technology/pokebay)
