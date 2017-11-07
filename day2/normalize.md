@@ -173,23 +173,23 @@ columns. So you don't need to do any joins to handle them.
 
 TODO
 
+---
+
 ### Part 2: Instagram following and followers
 
 TODO
 
 ---
 
-## PokeBay
+### Part 3: Amazon Products and Subproducts
 
-- Instagram: get followers, get following
-- (bonus) Facebook?
-- message board
-- product listings on amazon where a single product can have many subproducts each with a different color and price
-- Kickstarter where user can “fave” projects
-- bonus: hierarchical comments, each comment can have a parent
-- double bonus: given a parent comment query all descendants
-- course has a single professor
-- course can have multiple students, student can have multiple courses
+TODO
+
+---
+
+### Part 4: PokeBay
+
+Design the schema for an auction site
 
 ---
 
@@ -236,3 +236,18 @@ Exercises
 1. Bonus: design a schma for hierarchical comment threads. In a hierarchical comment thread, each comment can have replies and each reply can have replies of its own. Your schema should be able to
 
     Double bonus: write a query to get all subreplies for a given comment (replies, replies to replies, replies to replies to replies etc.)
+---
+
+TODO remove below
+
+## PokeBay
+
+- Instagram: get followers, get following
+- (bonus) Facebook?
+- message board
+- product listings on amazon where a single product can have many subproducts each with a different color and price
+- Kickstarter where user can “fave” projects
+- bonus: hierarchical comments, each comment can have a parent
+- double bonus: given a parent comment query all descendants
+- course has a single professor
+- course can have multiple students, student can have multiple courses
