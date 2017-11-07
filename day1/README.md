@@ -12,3 +12,4 @@
 
 1. [Complete Tutorials & Quizzes 0 (SELECT basics) through 5 (SUM and COUNT) on
 SQLZoo](https://sqlzoo.net/)
+1. [Bonus: Use Google BigQuery to query large datasets](bigquery.md)
