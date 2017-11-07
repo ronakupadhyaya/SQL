@@ -2,384 +2,256 @@
   {
     "name": "Bulbasaur",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/001.png",
-    "types": [
-      "grass",
-      "poison"
-    ]
+    "type": "grass"
   },
   {
     "name": "Ivysaur",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/002.png",
-    "types": [
-      "grass",
-      "poison"
-    ]
+    "type": "grass"
   },
   {
     "name": "Venusaur",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/003.png",
-    "types": [
-      "grass",
-      "poison"
-    ]
+    "type": "grass"
   },
   {
     "name": "Venusaur",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/003.png",
-    "types": [
-      "grass",
-      "poison"
-    ]
+    "type": "grass"
   },
   {
     "name": "Charmander",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/004.png",
-    "types": [
-      "fire"
-    ]
+    "type": "fire"
   },
   {
     "name": "Charmeleon",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/005.png",
-    "types": [
-      "fire"
-    ]
+    "type": "fire"
   },
   {
     "name": "Charizard",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/006.png",
-    "types": [
-      "fire",
-      "flying"
-    ]
+    "type": "fire"
   },
   {
     "name": "Charizard",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/006.png",
-    "types": [
-      "fire",
-      "dragon"
-    ]
+    "type": "fire"
   },
   {
     "name": "Charizard",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/006.png",
-    "types": [
-      "fire",
-      "flying"
-    ]
+    "type": "fire"
   },
   {
     "name": "Squirtle",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/007.png",
-    "types": [
-      "water"
-    ]
+    "type": "water"
   },
   {
     "name": "Wartortle",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/008.png",
-    "types": [
-      "water"
-    ]
+    "type": "water"
   },
   {
     "name": "Blastoise",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/009.png",
-    "types": [
-      "water"
-    ]
+    "type": "water"
   },
   {
     "name": "Blastoise",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/009.png",
-    "types": [
-      "water"
-    ]
+    "type": "water"
   },
   {
     "name": "Caterpie",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/010.png",
-    "types": [
-      "bug"
-    ]
+    "type": "bug"
   },
   {
     "name": "Metapod",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/011.png",
-    "types": [
-      "bug"
-    ]
+    "type": "bug"
   },
   {
     "name": "Butterfree",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/012.png",
-    "types": [
-      "bug",
-      "flying"
-    ]
+    "type": "bug"
   },
   {
     "name": "Weedle",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/013.png",
-    "types": [
-      "bug",
-      "poison"
-    ]
+    "type": "bug"
   },
   {
     "name": "Kakuna",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/014.png",
-    "types": [
-      "bug",
-      "poison"
-    ]
+    "type": "bug"
   },
   {
     "name": "Beedrill",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/015.png",
-    "types": [
-      "bug",
-      "poison"
-    ]
+    "type": "bug"
   },
   {
     "name": "Beedrill",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/015.png",
-    "types": [
-      "bug",
-      "poison"
-    ]
+    "type": "bug"
   },
   {
     "name": "Pidgey",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/016.png",
-    "types": [
-      "normal",
-      "flying"
-    ]
+    "type": "normal"
   },
   {
     "name": "Pidgeotto",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/017.png",
-    "types": [
-      "normal",
-      "flying"
-    ]
+    "type": "normal"
   },
   {
     "name": "Pidgeot",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/018.png",
-    "types": [
-      "normal",
-      "flying"
-    ]
+    "type": "normal"
   },
   {
     "name": "Pidgeot",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/018.png",
-    "types": [
-      "normal",
-      "flying"
-    ]
+    "type": "normal"
   },
   {
     "name": "Rattata",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/019.png",
-    "types": [
-      "dark",
-      "normal"
-    ]
+    "type": "dark"
   },
   {
     "name": "Rattata",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/019.png",
-    "types": [
-      "normal"
-    ]
+    "type": "normal"
   },
   {
     "name": "Raticate",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/020.png",
-    "types": [
-      "dark",
-      "normal"
-    ]
+    "type": "dark"
   },
   {
     "name": "Raticate",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/020.png",
-    "types": [
-      "normal"
-    ]
+    "type": "normal"
   },
   {
     "name": "Spearow",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/021.png",
-    "types": [
-      "normal",
-      "flying"
-    ]
+    "type": "normal"
   },
   {
     "name": "Fearow",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/022.png",
-    "types": [
-      "normal",
-      "flying"
-    ]
+    "type": "normal"
   },
   {
     "name": "Ekans",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/023.png",
-    "types": [
-      "poison"
-    ]
+    "type": "poison"
   },
   {
     "name": "Arbok",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/024.png",
-    "types": [
-      "poison"
-    ]
+    "type": "poison"
   },
   {
     "name": "Pikachu",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/025.png",
-    "types": [
-      "electric"
-    ]
+    "type": "electric"
   },
   {
     "name": "Raichu",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/026.png",
-    "types": [
-      "electric",
-      "psychic"
-    ]
+    "type": "electric"
   },
   {
     "name": "Raichu",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/026.png",
-    "types": [
-      "electric"
-    ]
+    "type": "electric"
   },
   {
     "name": "Sandshrew",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/027.png",
-    "types": [
-      "ice",
-      "steel"
-    ]
+    "type": "ice"
   },
   {
     "name": "Sandshrew",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/027.png",
-    "types": [
-      "ground"
-    ]
+    "type": "ground"
   },
   {
     "name": "Sandslash",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/028.png",
-    "types": [
-      "ice",
-      "steel"
-    ]
+    "type": "ice"
   },
   {
     "name": "Sandslash",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/028.png",
-    "types": [
-      "ground"
-    ]
+    "type": "ground"
   },
   {
     "name": "Nidoran♀",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/029.png",
-    "types": [
-      "poison"
-    ]
+    "type": "poison"
   },
   {
     "name": "Nidorina",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/030.png",
-    "types": [
-      "poison"
-    ]
+    "type": "poison"
   },
   {
     "name": "Nidoqueen",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/031.png",
-    "types": [
-      "poison",
-      "ground"
-    ]
+    "type": "poison"
   },
   {
     "name": "Nidoran♂",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/032.png",
-    "types": [
-      "poison"
-    ]
+    "type": "poison"
   },
   {
     "name": "Nidorino",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/033.png",
-    "types": [
-      "poison"
-    ]
+    "type": "poison"
   },
   {
     "name": "Nidoking",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/034.png",
-    "types": [
-      "poison",
-      "ground"
-    ]
+    "type": "poison"
   },
   {
     "name": "Clefairy",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/035.png",
-    "types": [
-      "fairy"
-    ]
+    "type": "fairy"
   },
   {
     "name": "Clefable",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/036.png",
-    "types": [
-      "fairy"
-    ]
+    "type": "fairy"
   },
   {
     "name": "Vulpix",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/037.png",
-    "types": [
-      "ice"
-    ]
+    "type": "ice"
   },
   {
     "name": "Vulpix",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/037.png",
-    "types": [
-      "fire"
-    ]
+    "type": "fire"
   },
   {
     "name": "Ninetales",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/038.png",
-    "types": [
-      "ice",
-      "fairy"
-    ]
+    "type": "ice"
   },
   {
     "name": "Ninetales",
     "image_url": "http://assets.pokemon.com/assets/cms2/img/pokedex/detail/038.png",
-    "types": [
-      "fire"
-    ]
+    "type": "fire"
   }
 ]

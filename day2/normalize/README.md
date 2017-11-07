@@ -293,6 +293,9 @@ You can find the solution SQL in the `solution/` folder.
 ### Part 4: PokeBay
 
 Design the schema for an auction site where Pokemon can be bought and sold.
+Go to the folder `sql/day2/normalize` and create migrations to create
+a normalized schema. Run `db-migrate up` to test your migration.
+
 Your schema should support the following features:
 
 1. **User registration**
@@ -318,7 +321,7 @@ Your schema should support the following features:
 
     - the name of the Pokemon
     - a picture of the Pokemon (you only need to store the URL for an image)
-    - types: each Pokemon can have one or more types. Each type is a string.
+    - type: each Pokemon has a type
 
 1. **Creating auctions**
 
