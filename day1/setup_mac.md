@@ -11,7 +11,7 @@ then click `Start`
     ![Opening a database inside Postgres](img/postgresapp.png)
 
     <details><summary>
-    Tourbleshooting: if the Postgres window is empty
+    Troubleshooting: if the Postgres window is empty
     </summary><p>
 
     If the Postgres window is empty run the following commands from your terminal
@@ -25,7 +25,7 @@ then click `Start`
 
 1. You should see the `psql` prompt in your terminal
 
-    ![Terminal `psql` prompt](postgresterm.png)
+    ![Terminal `psql` prompt](img/postgresterm.png)
 
 1. You now have Postgres running on your laptop! Type `\q` to exit
 
@@ -48,13 +48,13 @@ up a browser window. If not navigate to [localhost:8081](http://localhost:8081/)
 
     You will see:
 
-    ![pgweb initial window Mac](pgwebmac1.png)
+    ![pgweb initial window Mac](img/pgwebmac1.png)
 
 1. Leave everything blank, and set **SSL Mode** to **disable** then click `Connect`
 
     You should now see:
 
-    ![pgweb connected](pgwebmac2.png)
+    ![pgweb connected](img/pgwebmac2.png)
 
 ## Done!
 

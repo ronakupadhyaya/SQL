@@ -14,7 +14,7 @@
 
     If successful, you should see this:
 
-    ![SQL shell in Windows](img/postgres-win.png)
+    ![SQL shell in Windows](img/postgres-win.PNG)
 
 ## Install pgweb
 
@@ -26,7 +26,7 @@ if you're running 32-bit Windows download (less common) `pgweb_windows_386.exe.z
 
     You should see:
 
-    ![pgweb running inside terminal](img/pgweb-win.png)
+    ![pgweb running inside terminal](img/pgweb-win.PNG)
 
 1. Visit [localhost:8081](http://localhost:8081) in your browser
 1. For **Username** type in `postgres`, for **Password** fill in the password
@@ -35,7 +35,7 @@ fields blank, then click `Connect`
 
     You should see:
 
-    ![pgweb connected to database](img/pgweb-win2.png)
+    ![pgweb connected to database](img/pgweb-win2.PNG)
 
 ## Done!
 

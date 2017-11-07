@@ -8,4 +8,4 @@
 
 ## Pair programming exercise
 
-PokeBay: Coming soon!
+[PokeBay](https://github.com/horizons-school-of-technology/pokebay)
