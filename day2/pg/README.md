@@ -350,6 +350,8 @@ if insertion is successful.
 
 TODO
 
+---
+
 ## Done!
 
-Congrats, you're done with this module!
+Congrats, you're done with this module! [Next up: Pair Programming Exercise PokeBay](https://github.com/horizons-school-of-technology/pokebay)
