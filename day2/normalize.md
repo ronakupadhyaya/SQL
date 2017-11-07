@@ -291,13 +291,9 @@ You can find the solution SQL in the `solution/` folder.
 ### Part 4: PokeBay
 
 Design the schema for an auction site where Pokemon can be bought and sold.
+Your schema should support the following features:
 
-#### Entities
-
-**Note:** Some of this information may need to be stored in other tables!
-Normalize your schema.
-
-1. **Users**
+1. **User registration**
 
     When a user registers to our application they will be prompted for the
     following information:
@@ -305,51 +301,58 @@ Normalize your schema.
     - First and last name: must be stored separately
     - Address: broken down into street address, city, state, zipcode
     - Username
+    - Password
     - Email address
     - Phone number
 
-1. **Pokemon**
+1. **User login**
 
-    Pokemon are bought and sold on our auction site. Each Pokemon has the
-    following information stored:
+    Users login by providing a username and password.
 
-    - name: every Pokemon has a name
-    - image_url: the url for a picture of the Pokemon
-    - types: each Pokemon can have one or more types, each of which is string
+1. **Pokemon catalog**
 
-1. **Auctions**
+    Pokemon are bought and sold on our auction site. Users can view a list
+    of all Pokemon with the following information:
 
-    - Pokemon: each auction sells one and only one Pokemon.
+    - the name of the Pokemon
+    - a picture of the Pokemon (you only need to store the URL for an image)
+    - types: each Pokemon can have one or more types. Each type is a string.
+
+1. **Creating auctions**
+
+    Logged in users can create auctions by providing the following information:
+
+    - Pokemon: each auction sells one and only one Pokemon. User can pick a
+    Pokemon from a list of available Pokemon.
     - Opening bid: each auction has a starting bid, all subsequent bids
     must be higher than this amount
-    - Auction length: duration of the auction
+    - Auction length: duration of the auction in number of days
     - Shipping location: where the Pokemon will be shipped from
     - Description: customizable detailed description about Pokemon being sold
 
+1. **Viewing auctions**
 
-#### Relationships
+    Any user (logged in or logged out) can view all auctions.
+    Users can see the following info about auctions:
 
-TODO populate poke!!!
+    - Username and city of the user who created the auction
+    - When the auction was created
+    - Status of the auction: either running or finished
+    - How much time is left in the auction
+    - The amount of highest bid for the auction (if any bids were made), who
+    made the highest bid and when
+
+1. **Bidding on auctions**
+
+    Logged in users can bid on auctions that are still running. With the
+    following rules:
+
+    - The current highest bidder cannot bid on an auction
+    - The new bid has to be at least $0.50 more than the last bid
+    - The owner of the auction cannot bid on their own auction
 
 ---
 
-Exercises
+## Done
 
-1. Bonus: design a schma for hierarchical comment threads. In a hierarchical comment thread, each comment can have replies and each reply can have replies of its own. Your schema should be able to
-
-    Double bonus: write a query to get all subreplies for a given comment (replies, replies to replies, replies to replies to replies etc.)
----
-
-TODO remove below
-
-## PokeBay
-
-- Instagram: get followers, get following
-- (bonus) Facebook?
-- message board
-- product listings on amazon where a single product can have many subproducts each with a different color and price
-- Kickstarter where user can “fave” projects
-- bonus: hierarchical comments, each comment can have a parent
-- double bonus: given a parent comment query all descendants
-- course has a single professor
-- course can have multiple students, student can have multiple courses
+TODO

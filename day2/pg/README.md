@@ -346,6 +346,10 @@ if insertion is successful.
 
     Insert 3 animals and read them back using `/animals`
 
+## Populate PokeBay with `Promise.all()`
+
+TODO
+
 ## Done!
 
 Congrats, you're done with this module!
