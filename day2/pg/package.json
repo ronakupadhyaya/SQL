@@ -5,6 +5,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "body-parser": "~1.18.2",
+    "db-migrate-pg": "^0.2.5",
     "express": "~4.16.2",
     "express-handlebars": "~3.0.0",
     "pg": "~7.3.0"
