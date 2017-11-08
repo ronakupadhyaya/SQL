@@ -1,5 +1,10 @@
 "use strict";
 
+var pg = require('pg');
+var pool = new pg.Pool({
+  connectionString: process.env.DATABASE_URL
+});
+
 if (! process.env.DATABASE_URL) {
   console.error("DATABASE_URL environment variable missing. Did you run 'source env.sh'?");
   process.exit(1);
@@ -24,3 +29,5 @@ pool.query('SELECT NOW()', (err, res) => {
 
 // Export 'pool' so other files can use Postgres
 // YOUR CODE HERE
+
+module.exports = pool;
