@@ -1,3 +1,28 @@
 "use strict";
+const pool = require('./pool');
 
-// YOUR CODE HERE
+
+pool.query(`CREATE TABLE IF NOT EXISTS animals (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    food TEXT,
+    sound TEXT
+  );`)
+  .then(()=>{return pool.query(`
+    INSERT INTO animals ( name,      food,       sound      )
+      VALUES            ( 'donkey',  'carrots',  'hee-haw'  ),
+                        ( 'cow',     'grass',    'moo'      ),
+                        ( 'duck',    'seeds',    'quack'    )
+  ;`);})
+  .then(()=>{return pool.query(`
+    SELECT
+      name
+    FROM
+      animals
+    WHERE
+      sound = 'moo'
+  ;`);})
+  .then((result)=>{
+    console.log('the animals name is ', result.rows[0].name);
+  })
+  .catch((err)=>console.log(err));
