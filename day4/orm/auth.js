@@ -2,7 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
-
+var User = require('./models').User;
 router.get('/login', function(req, res) {
   res.render('login');
 });
@@ -20,6 +20,10 @@ router.post('/register', function(req, res, next) {
     // Create a new user using req.body.username and req.body.password
     // then redirect to /login
     // YOUR CODE HERE
+    User.create(req.body)
+      .then(user => {
+        res.redirect('/login');
+      });
   }
 });
 
@@ -36,12 +40,23 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(id, done) {
   // Find a user by id and call done(null, user)
   // YOUR CODE HERE
+  User.findById(id).then(user => {
+    return done(null, user);
+  });
 });
 
 passport.use(new LocalStrategy(function(username, password, done) {
   // Find a user by username, if password matches call done(null, user)
   // otherwise call done(null, false)
   // YOUR CODE HERE
+  User.find({where: {username, password}})
+    .then(user => {
+      if(!user) {
+        return done("no user found", null);
+      }
+      return done(null, user);
+    });
+
 }));
 
 router.use(passport.initialize());
