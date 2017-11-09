@@ -335,7 +335,7 @@ and render `editPost`:
     Solution: Using Post.findById
     </summary><p>
 
-    ![Using post.findById](postfindbyid.png)
+    ![Using post.findById](img/postfindbyid.png)
 
     </p></details>
 
@@ -358,7 +358,7 @@ and update the `message` column using `req.body.message`, then redirect to
 
     Our update query will look like this:
 
-    ![Updating with Sequelize][img/postupdate.png)
+    ![Updating with Sequelize](img/postupdate.png)
 
     </p></details>
 
