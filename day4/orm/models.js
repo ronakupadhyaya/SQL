@@ -23,9 +23,38 @@ sequelize
 // Define models here
 // YOUR CODE HERE
 
+var Animal = sequelize.define('animal', {
+  name: Sequelize.TEXT,
+  food: Sequelize.TEXT,
+  sound: Sequelize.TEXT
+});
+
+var User = sequelize.define('user', {
+  username: {
+   type: Sequelize.STRING,
+   allowNull: false,
+   unique: true
+  },
+  password: {
+   type: Sequelize.STRING,
+   allowNull: false
+  }
+});
+
+var Post = sequelize.define('post',{
+  message: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  }
+})
+
+Post.belongsTo(User);
+
 module.exports = {
   // Export models here
   // YOUR CODE HERE
+  User,
+  Post,
   sequelize,
   Sequelize
 };
