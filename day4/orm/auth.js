@@ -19,7 +19,9 @@ router.post('/register', function(req, res, next) {
   } else {
     // Create a new user using req.body.username and req.body.password
     // then redirect to /login
-    // YOUR CODE HERE
+    User.create({username: req.body.username, password: req.body.password})
+      .then(() => res.redirect('/login'))
+      .catch((e) => res.json({success: false, error: e}));
   }
 });
 
@@ -27,7 +29,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 
 // Import the User model here
-// YOUR CODE HERE
+const User = require('./models').User;
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -35,13 +37,17 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(id, done) {
   // Find a user by id and call done(null, user)
-  // YOUR CODE HERE
+  User.findById(id).then(user => done(null, user)).catch(e => console.log(e));
 });
 
 passport.use(new LocalStrategy(function(username, password, done) {
   // Find a user by username, if password matches call done(null, user)
   // otherwise call done(null, false)
-  // YOUR CODE HERE
+  User.findOne({ where: { username } }).then(user => {
+    if (!user) done(null, false);
+    else if (user.password === password) done(null, user);
+    else done(null, false);
+  }).catch(e => console.log(e));
 }));
 
 router.use(passport.initialize());
