@@ -2,19 +2,24 @@
 
 ## Intro to Object Relational Mapping
 
-- TODO video
-
 In previous exercises, you've been writing your own SQL queries to communicate
 to Postgres. This is a manual and tedious process. Sequelize is a tool
 that makes interacting with relational databases like Postgres easier by
 generating SQL for you.
+
+Sequelize generates SQL queries from JavaScript function calls and turns the
+results into JavaScript objects. To use Sequelize we first declare a Model
+object (this is similar to Mongoose). We can then call functions on these
+models to read and update data. For example, `Model.findAll()` would
+run a `SELECT * FROM model` query behind the scenes.
+This is called Object Relational Mapping, ORM.
 
 In this exercise, you will read and write data to Postgres using Sequelize.
 And you will be reading Sequelize documentation to learn how to use it.
 
 Navigating and reading documentation is a learned skill just like coding.
 It will be hard at first but you will get better with practice. Most
-importantly, as you become confortable reading documentation you will gain the
+importantly, as you become comfortable reading documentation you will gain the
 ability to teach yourself new tools and technologies, which is awesome!
 
 ---
@@ -22,7 +27,9 @@ ability to teach yourself new tools and technologies, which is awesome!
 ## Part 0: Setup
 
 You're going to build a Guestbook app with user logins and the ability to
-post, edit and delete Guestbook posts.
+post, edit and delete Guestbook posts. We've written the Handlebars files
+for you. You will need to implement the Express endpoints and make the
+appropriate database queries using Sequelize.
 
 ### [Read: Sequelize getting started](http://docs.sequelizejs.com/manual/installation/getting-started.html)
 
@@ -30,12 +37,14 @@ post, edit and delete Guestbook posts.
 
 1. Create a new database in Postgres called `guestbook`
 1. If you're on Windows create an `env.sh` file with the Postgres password
-you set when you installed Postgres and `source env.sh`
+you set when you installed Postgres and `source env.sh`.
+**Note that this env.sh file is different from yesterday!**
 
     ```sh
     export DBPASSWORD="YOUR POSTGRES PASSWORD HERE"
     ```
 
+    You don't need an `env.sh` file on Mac.
 1. Open `models.js` in your browser. You have everything you
 need to connect to your local Postgres!
 
@@ -49,9 +58,51 @@ need to connect to your local Postgres!
 
 ## Part 1: Model definitions
 
-TODO why we need models
+We configure Sequelize to use our database tables correctly by creating
+Model objects. Similar to how Mongoose works, Sequelize models also
+contain a declaration of the columns that are part of our table.
 
-TODO explain what `sync.js` does
+Sequelize adds these 3 columns to every model automatically:
+
+1. `id` auto generated numeric id
+1. `createdAt` a timestamp indicating when this record was created
+1. `updatedAt` a timestamp indicating when this record was last updated
+
+For example take the `animals` table we created previously. It contains three
+columns of type `TEXT`: name, food, and sound. In Sequelize we would declare
+the same table as:
+
+```javascript
+var Animal = sequelize.define('animal', {
+    name: Sequelize.TEXT,
+    food: Sequelize.TEXT,
+    sound: Sequelize.TEXT
+});
+```
+
+Declaring a Model in Sequelize does not automatically create the necessary
+tables. We can create these tables using the `.sync()` function:
+
+```javascript
+sequelize.sync();
+```
+
+By default `.sync()` does not modify existing tables. If we change the schema
+of an existing table we must use `{force: true}` for the changes to take effect;
+
+```javascript
+sequelize.sync({force: true});
+```
+
+We've written a script in `orm/sync.js` that calls `.sync({force: true})` to
+apply schema changes. You can run it directly from the command line in the
+`orm` directory:
+
+```sh
+node sync.js
+```
+
+Note that this will delete data in your existing tables.
 
 ### [Read: Sequelize Model Definitions](http://docs.sequelizejs.com/manual/tutorial/models-definition.html)
 
@@ -111,7 +162,39 @@ that your table exists and it contains the right columns
 
 ## Part 2: Creating and finding users
 
-TODO
+Once you've declared a model you can use it to add or retrieve data.
+
+Use `.create()` to add new data to the database. This will get turned into a
+`INSERT` statement behind the scenes.
+
+We can add a new row to our `Animal` table like so:
+
+```javascript
+Animal.create({name: 'cow', food: 'grass', sound: 'moo'});
+```
+
+Use `.findAll()` to read data back. `.findAll()` generates `SELECT` statement
+and if you want to filter data with a `WHERE` clause you must specify a
+`{where: {sound: 'moo'}}`. For instance you can read the cow from the animals
+table with:
+
+```javascript
+Animal.findAll({where: {name: 'cow'}});
+```
+
+Both `findAll()` and `create()` return Promises so we can combine them
+using `.then()`s.
+
+```javascript
+// Save an animal then read it back
+Animal.create({name: 'donkey', food: 'carrots', sound: 'hee-haw'})
+.then(function() {
+    return Animal.findAll();
+})
+.then(function(animals) {
+    console.log(animals); // contains 'donkey'
+});
+```
 
 ### [Read: Sequelize Model Usage](http://docs.sequelizejs.com/manual/tutorial/models-usage.html)
 
@@ -133,7 +216,9 @@ the user you registered is present.
     specifying a where clause.
 
         See this
-        [example of how we implement `LocalStrategy` with `mongoose`](https://github.com/horizons-school-of-technology/express-template/blob/master/app.js#L67), you'll need to adapt it to use [Sequelize models](http://docs.sequelizejs.com/manual/tutorial/models-usage.html)
+        [example of how we implement `LocalStrategy` with `mongoose`](https://github.com/horizons-school-of-technology/express-template/blob/master/app.js#L67),
+        you'll need to adapt it to use
+        [Sequelize models](http://docs.sequelizejs.com/manual/tutorial/models-usage.html)
     1. Implement `deserializeUser()`, find a user with `User.findById()`
     and call `done()` with `null` as the first argument and the user as
     the second argument.
@@ -152,7 +237,8 @@ the user you registered is present.
 
 ## Part 3: Defining Posts
 
-TODO
+You can use foreign keys and joins with Sequelize using associations.
+Read the documentation to learn how to use them.
 
 ### [Read: Sequelize Associations](http://docs.sequelizejs.com/manual/tutorial/associations.html)
 
@@ -209,7 +295,8 @@ it contains `userId` column.
 
 ## Part 4: Creating, updating, deleting Posts
 
-TODO
+Sequelize provides access to the full power of SQL in JavaScript. Read about
+complex querying in Sequelize here:
 
 ### [Read: Sequelize Querying](http://docs.sequelizejs.com/manual/tutorial/querying.html)
 
@@ -335,7 +422,7 @@ and render `editPost`:
     Solution: Using Post.findById
     </summary><p>
 
-    ![Using post.findById](postfindbyid.png)
+    ![Using post.findById](img/postfindbyid.png)
 
     </p></details>
 
@@ -358,7 +445,7 @@ and update the `message` column using `req.body.message`, then redirect to
 
     Our update query will look like this:
 
-    ![Updating with Sequelize][img/postupdate.png)
+    ![Updating with Sequelize](img/postupdate.png)
 
     </p></details>
 
