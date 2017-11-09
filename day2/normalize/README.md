@@ -292,6 +292,12 @@ You can find the solution SQL in the `solution/` folder.
 
 ### Part 4: PokeBay
 
+:star2:
+**For this exercise you are given a list of features
+instead of a list of entities. It's up to you to turn this list of
+features into a list of entities and their relationships.**
+:star2:
+
 We're starting a two-day pair programming project today, PokeBay. As with
 any application built on a SQL database first step is to design our schema.
 
@@ -299,7 +305,10 @@ Design the schema for an auction site where Pokemon can be bought and sold.
 Go to the folder `sql/day2/normalize` and create migrations to create
 a normalized schema. Run `db-migrate up` to test your migration.
 
-Your schema should support the following features:
+Your schema should support the following features.
+**Note: Features don't map to tables cleanly. Try to come up with a minimal
+set of tables that will support all of these features. As always, keep your
+data normalized.**
 
 1. **User registration**
 

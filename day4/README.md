@@ -4,4 +4,4 @@
 
 ## Pair Programming Exercises
 
-Reddit: Coming soon!
+[Reddit](https://github.com/horizons-school-of-technology/reddit)
