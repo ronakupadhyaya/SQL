@@ -186,10 +186,15 @@ Both `findAll()` and `create()` return Promises so we can combine them
 using `.then()`s.
 
 ```javascript
+// Save an animal then read it back
 Animal.create({name: 'donkey', food: 'carrots', sound: 'hee-haw'})
 .then(function() {
-    Animal.findAll();
+    return Animal.findAll();
+})
+.then(function(animals) {
+    console.log(animals); // contains 'donkey'
 });
+```
 
 ### [Read: Sequelize Model Usage](http://docs.sequelizejs.com/manual/tutorial/models-usage.html)
 
