@@ -1,5 +1,8 @@
 "use strict";
 
+// TODO: questions
+// composite unique key?
+
 // On Windows we needa DBPASSWORD
 if (/^win/.test(process.platform) && ! process.env.DBPASSWORD) {
   console.log('You need to set DBPASSWORD in your env.sh file');
@@ -22,10 +25,22 @@ sequelize
 
 // Define models here
 // YOUR CODE HERE
+const User = sequelize.define('user', {
+  username: {type: Sequelize.STRING, allowNull: false, unique: true},
+  password: {type: Sequelize.STRING, allowNull: false},
+});
+
+const Post = sequelize.define('post', {
+  message: {type: Sequelize.STRING, allowNull: false},
+});
+
+Post.belongsTo(User, {allowNull: false});
 
 module.exports = {
   // Export models here
   // YOUR CODE HERE
   sequelize,
-  Sequelize
+  Sequelize,
+  User,
+  Post,
 };
