@@ -21,11 +21,21 @@ sequelize
   });
 
 // Define models here
-// YOUR CODE HERE
+const User = sequelize.define('user', {
+  username: { type: Sequelize.STRING, allowNull: false, unique: true},
+  password: { type: Sequelize.STRING, allowNull: false }
+});
+
+const Post = sequelize.define('post', {
+  message: { type: Sequelize.STRING, allowNull: false }
+});
+
+Post.belongsTo(User);
 
 module.exports = {
   // Export models here
-  // YOUR CODE HERE
   sequelize,
-  Sequelize
+  Sequelize,
+  User,
+  Post
 };

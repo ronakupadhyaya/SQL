@@ -11,7 +11,7 @@ router.get('/register', function(req, res) {
   res.render('register');
 });
 
-router.post('/register', function(req, res, next) {
+router.post('/register', async function(req, res, next) {
   if (req.body.password !== req.body.password2) {
     res.status(400).render('register', {
       error: 'Passwords do not match'
@@ -19,7 +19,12 @@ router.post('/register', function(req, res, next) {
   } else {
     // Create a new user using req.body.username and req.body.password
     // then redirect to /login
-    // YOUR CODE HERE
+    try {
+      await User.create({ username: req.body.username , password: req.body.password });
+    } catch(error){
+      res.send(error);
+    }
+    res.redirect('/login');
   }
 });
 
@@ -27,21 +32,39 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 
 // Import the User model here
-// YOUR CODE HERE
+var { User } = require('./models');
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser(async function(id, done) {
   // Find a user by id and call done(null, user)
-  // YOUR CODE HERE
+  var user;
+  try {
+    user = await User.findById(id);
+  } catch(error){
+    done(error, false);
+    return;
+  }
+  done(null, user);
 });
 
-passport.use(new LocalStrategy(function(username, password, done) {
+passport.use(new LocalStrategy( async function(username, password, done) {
   // Find a user by username, if password matches call done(null, user)
   // otherwise call done(null, false)
-  // YOUR CODE HERE
+  var user;
+  try {
+    user = await User.findOne({ where: {username}});
+  } catch(error){
+    done(error, false);
+    return;
+  }
+  if(!user || user.password !== password){
+    done(null, false);
+    return;
+  }
+  done(null, user);
 }));
 
 router.use(passport.initialize());

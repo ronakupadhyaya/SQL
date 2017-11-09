@@ -12,36 +12,74 @@ router.use(function(req, res, next) {
 
 
 // Import models here
-// YOUR CODE HERE
+var { Post, User } = require('./models');
 
-router.get('/', function(req, res, next) {
+router.get('/', async function(req, res, next) {
   // Display all posts in reverse chronological order
-  // YOUR CODE HERE
+  var posts;
+  try{
+    posts = await Post.findAll({
+      order: [['createdAt','DESC']],
+      include: { model: User }
+    });
+  } catch(error){
+    console.log(error);
+    res.send(error);
+    return;
+  }
+  console.log(posts);
   res.render('index', {
-    user: req.user
+    user: req.user,
+    posts
   });
 });
 
-router.post('/posts', function(req, res, next) {
+router.post('/posts', async function(req, res, next) {
   // Create a new post
   // req.body.message contains the message user typed in
-  // YOUR CODE HERE
+  try {
+    await Post.create({ message: req.body.message , userId: req.user.id });
+  } catch(error){
+    res.send(error);
+    return;
+  }
+  res.redirect('/');
 });
 
-router.get('/posts/:id', function(req, res, next) {
+router.get('/posts/:id', async function(req, res, next) {
   // Display a given post by id
-  // YOUR CODE HERE
+  var post;
+  try {
+    post = await Post.findById(req.params.id, {
+      include: { model: User }
+    });
+  } catch(error){
+    res.send(error);
+    return;
+  }
+  res.render('editPost', { post });
 });
 
-router.post('/posts/:id', function(req, res, next) {
+router.post('/posts/:id', async function(req, res, next) {
   // Update the message column of the given post by id
-  // YOUR CODE HERE
-  res.render('editPost');
+  try {
+    await Post.update({ message: req.body.message }, { where : { id: req.params.id} });
+  } catch(error){
+    res.send(error);
+    return;
+  }
+  res.redirect('/');
 });
 
-router.post('/posts/:id/delete', function(req, res, next) {
+router.post('/posts/:id/delete', async function(req, res, next) {
   // Delete a given post by id
-  // YOUR CODE HERE
+  try {
+    await Post.destroy({ where: { id: req.params.id } });
+  } catch(error){
+    res.send(error);
+    return;
+  }
+  res.redirect('/');
 });
 
 
