@@ -4,8 +4,10 @@ if (! process.env.DATABASE_URL) {
   console.error("DATABASE_URL environment variable missing. Did you run 'source env.sh'?");
   process.exit(1);
 }
-
-var pool;
+var pg = require('pg');
+var pool= new pg.Pool({
+  connectionString: process.env.DATABASE_URL
+});
 // Establish a connection to Postgres here using pg.Pool
 // YOUR CODE HERE
 
@@ -24,3 +26,4 @@ pool.query('SELECT NOW()', (err, res) => {
 
 // Export 'pool' so other files can use Postgres
 // YOUR CODE HERE
+module.exports = pool;

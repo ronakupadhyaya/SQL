@@ -3,6 +3,8 @@
 var express = require('express');
 var router = express.Router();
 
+var User = require('./models').User;
+
 router.get('/login', function(req, res) {
   res.render('login');
 });
@@ -20,6 +22,16 @@ router.post('/register', function(req, res, next) {
     // Create a new user using req.body.username and req.body.password
     // then redirect to /login
     // YOUR CODE HERE
+    User.create({
+      username: req.body.username,
+      password: req.body.password
+    })
+      .then((user) => {
+        res.redirect('/login');
+      })
+      .catch((err) => {
+        console.log('error creating user', err);
+      });
   }
 });
 
@@ -36,12 +48,33 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(id, done) {
   // Find a user by id and call done(null, user)
   // YOUR CODE HERE
+  User.findById(id)
+    .then((user) => {
+      console.log('deserialized user is: ', user.dataValues);
+      done(null, user.dataValues);
+    })
+    .catch((err) => {
+      console.log('error deserializing user: ', err);
+    });
 });
 
 passport.use(new LocalStrategy(function(username, password, done) {
   // Find a user by username, if password matches call done(null, user)
   // otherwise call done(null, false)
   // YOUR CODE HERE
+  User.findAll({where: {username: username}})
+    .then((user) => {
+      console.log('user in local strategy is: ', user[0].dataValues);
+      if(user[0].dataValues.password === password) {
+        done(null, user[0].dataValues);
+      } else {
+        done(null, false);
+      }
+    })
+    .catch((err) => {
+      console.log('error finding local user', err);
+      done(null, false);
+    });
 }));
 
 router.use(passport.initialize());

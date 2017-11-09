@@ -1,4 +1,4 @@
 DROP TABLE professors;
-DROP TABLE professor_emails;
+DROP TABLE students_courses;
 DROP TABLE students;
 DROP TABLE courses;
