@@ -2,19 +2,24 @@
 
 ## Intro to Object Relational Mapping
 
-- TODO video
-
 In previous exercises, you've been writing your own SQL queries to communicate
 to Postgres. This is a manual and tedious process. Sequelize is a tool
 that makes interacting with relational databases like Postgres easier by
 generating SQL for you.
+
+Sequelize generates SQL queries from JavaScript function calls and turns the
+results into JavaScript objects. To use Sequelize we first declare a Model
+object (this is similar to Mongoose). We can then call functions on these
+models to read and update data. For example, `Model.findAll()` would
+run a `SELECT * FROM model` query behind the scenes.
+This is called Object Relational Mapping, ORM.
 
 In this exercise, you will read and write data to Postgres using Sequelize.
 And you will be reading Sequelize documentation to learn how to use it.
 
 Navigating and reading documentation is a learned skill just like coding.
 It will be hard at first but you will get better with practice. Most
-importantly, as you become confortable reading documentation you will gain the
+importantly, as you become comfortable reading documentation you will gain the
 ability to teach yourself new tools and technologies, which is awesome!
 
 ---
