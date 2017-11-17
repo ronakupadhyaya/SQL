@@ -1,4 +1,4 @@
-# SQL Week: Day 1
+# SQL Week: Day 4
 
 ## [Self Directed Exercise: Object Relational Mapping](orm/)
 
